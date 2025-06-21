@@ -10,8 +10,39 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #E8F5E9; /* Light green background */
+            background-color: #E8F5E9; /* Fallback color */
+            background: linear-gradient(170deg, #E8F5E9 0%, #F1F8E9 100%);
+            overflow-x: hidden; /* Prevent horizontal scroll from shapes */
+            position: relative;
         }
+
+        /* Abstract background shapes */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(50px);
+        }
+
+        body::before {
+            width: 400px;
+            height: 400px;
+            background-color: #A5D6A7;
+            top: -150px;
+            left: -150px;
+        }
+
+        body::after {
+            width: 350px;
+            height: 350px;
+            background-color: #C8E6C9;
+            bottom: -100px;
+            right: -120px;
+        }
+
         .page {
             display: none;
         }
@@ -19,7 +50,9 @@
             display: block;
         }
         .activity-card {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 0.75rem;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -163,7 +196,7 @@
             <div id="page-2" class="page">
                  <div class="activity-card">
                     <h1 class="text-2xl font-bold text-gray-700 mb-2">Activity 1: Classify the Assets</h1>
-                    <p class="mb-6 text-gray-600">For each item below, choose the correct asset type.</p>
+                    <p class="mb-6 text-gray-600 text-lg">For each item below, choose the correct asset type.</p>
                     <div id="activity-1-questions"></div>
                     <div id="activity-1-result" class="mt-6 text-center font-bold text-xl"></div>
                 </div>
@@ -189,10 +222,17 @@
             <!-- Page 4: Activity 3 -->
             <div id="page-4" class="page">
                  <div class="activity-card">
-                    <h1 class="text-2xl font-bold text-gray-700 mb-2">Activity 3: True or False?</h1>
-                    <p class="mb-6 text-gray-600">Read the statements and decide if they are true or false.</p>
-                    <div id="activity-3-questions" class="space-y-4"></div>
-                    <div id="activity-3-result" class="mt-6 text-center font-bold text-xl"></div>
+                     <div class="flex flex-col md:flex-row md:space-x-8 items-center">
+                        <div class="flex-1">
+                            <h1 class="text-2xl font-bold text-gray-700 mb-2">Activity 3: True or False?</h1>
+                            <p class="mb-6 text-gray-600">Read the statements and decide if they are true or false.</p>
+                            <div id="activity-3-questions" class="space-y-4"></div>
+                            <div id="activity-3-result" class="mt-6 text-center font-bold text-xl"></div>
+                        </div>
+                        <div class="flex-shrink-0 w-full md:w-2/5 lg:w-1/3 mt-4 md:mt-0">
+                            <img src="https://johanka2014.github.io/bus_vocab_in_use/balance_sheet.png" alt="A balance sheet" class="w-full h-auto rounded-lg shadow-md object-cover">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -208,6 +248,10 @@
                 </div>
             </div>
         </main>
+
+        <footer class="mt-12">
+            <img src="https://johanka2014.github.io/englishunpacked/eng_unp_footer-29-8-24.jpg" alt="Footer" class="w-full h-auto rounded-lg shadow-md">
+        </footer>
     </div>
 
     <script>
@@ -258,9 +302,9 @@
             activity1Data.forEach((item, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'p-4 border rounded-lg mb-4';
-                questionDiv.innerHTML = `<p class="font-semibold mb-2">${index + 1}. ${item.question}</p>
+                questionDiv.innerHTML = `<p class="font-semibold mb-2 text-lg">${index + 1}. ${item.question}</p>
                     <div class="flex flex-wrap gap-2" data-question-index="${index}">
-                        ${activity1Options.map(opt => `<button class="btn option-btn flex-grow">${opt}</button>`).join('')}
+                        ${activity1Options.map(opt => `<button class="btn option-btn flex-grow text-base">${opt}</button>`).join('')}
                     </div>`;
                 container.appendChild(questionDiv);
             });
@@ -307,10 +351,10 @@
             activity3Data.forEach((item, index) => {
                  const questionDiv = document.createElement('div');
                 questionDiv.className = 'p-4 border rounded-lg';
-                questionDiv.innerHTML = `<p class="font-semibold mb-2">${index + 1}. ${item.statement}</p>
+                questionDiv.innerHTML = `<p class="font-semibold mb-2 text-lg">${index + 1}. ${item.statement}</p>
                     <div class="flex flex-wrap gap-2" data-question-index="${index}">
-                        <button class="btn option-btn flex-grow">True</button>
-                        <button class="btn option-btn flex-grow">False</button>
+                        <button class="btn option-btn flex-grow text-base">True</button>
+                        <button class="btn option-btn flex-grow text-base">False</button>
                     </div>`;
                 container.appendChild(questionDiv);
             });
