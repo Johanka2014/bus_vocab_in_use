@@ -49,21 +49,18 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
             border-left: 4px solid #4ade80; /* green-400 */
         }
-        /* Styles for drag-and-drop list */
-        .draggable-list li {
-            cursor: grab;
-            transition: background-color 0.2s;
+        /* Styles for drag-and-drop */
+        .draggable-item { cursor: grab; }
+        .draggable-item:active { cursor: grabbing; }
+        .drop-zone {
+            transition: background-color 0.2s, border-color 0.2s;
         }
-        .draggable-list li:active {
-            cursor: grabbing;
+        .drop-zone.drag-over {
+            background-color: #dcfce7; /* green-100 */
+            border-color: #22c55e; /* green-500 */
         }
-        .dragging {
-            opacity: 0.5;
-            background: #dcfce7 !important; /* light green */
-        }
-        .drag-over {
-            border-top: 2px solid #22c55e;
-        }
+        .drop-zone.correct-drop { border-left-color: #22c55e; }
+        .drop-zone.incorrect-drop { border-left-color: #dc2626; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -76,18 +73,18 @@
 
         <!-- Navigation -->
         <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
-            <button id="nav-rules" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Vocabulary</button>
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Vocabulary</button>
             <button id="nav-activity1" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Activity 1</button>
             <button id="nav-activity2" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Activity 2</button>
+            <button id="nav-activity3" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Activity 3</button>
         </nav>
 
         <main class="bg-green-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
-            <!-- Page 1: Rules/Vocabulary -->
-            <div id="page-rules" class="page active">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
                 <h1 class="text-3xl font-bold text-green-700 mb-6 text-center">Stress and Stress Management</h1>
-                
                 <div class="space-y-6">
-                    <div class="rule-card">
+                     <div class="rule-card">
                         <h2 class="text-2xl font-semibold text-gray-700 mb-2">Positive Work Feelings</h2>
                         <ul class="list-disc list-inside space-y-2 text-gray-600">
                             <li><span class="font-semibold text-green-700">Rewarding:</span> Giving you satisfaction.</li>
@@ -96,7 +93,6 @@
                             <li><span class="font-semibold text-green-700">Challenging:</span> Difficult, but in an interesting and enjoyable way.</li>
                         </ul>
                     </div>
-                    
                     <div class="rule-card">
                         <h2 class="text-2xl font-semibold text-gray-700 mb-2">When Stimulation turns to Stress</h2>
                         <ul class="list-disc list-inside space-y-2 text-gray-600">
@@ -109,7 +105,6 @@
                              <li><span class="font-semibold text-green-700">Burned out / Burnout:</span> So tired by work you feel unable to work again.</li>
                         </ul>
                     </div>
-
                     <div class="rule-card">
                         <h2 class="text-2xl font-semibold text-gray-700 mb-2">Downshifting & Lifestyle</h2>
                         <ul class="list-disc list-inside space-y-2 text-gray-600">
@@ -122,76 +117,58 @@
                 </div>
             </div>
 
-            <!-- Page 2: Activity 1 -->
+            <!-- Page 2: Activity 1 (New Matching Game) -->
             <div id="page-activity1" class="page">
-                <h1 class="text-3xl font-bold text-green-700 mb-2">Activity 1: Sentence Order</h1>
-                <p class="text-gray-500 mb-6">Drag and drop Piet's story into the correct order, or use the arrows.</p>
-                
-                <ul id="sentence-list" class="draggable-list space-y-3">
-                    <li data-id="1" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
-                        <span>and stimulating. I felt pleasantly stretched. But then the pressure became too much and I felt overworked</span>
-                        <div class="flex flex-col space-y-1 ml-4">
-                            <button onclick="moveItem(this, -1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&uarr;</button>
-                            <button onclick="moveItem(this, 1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&darr;</button>
-                        </div>
-                    </li>
-                    <li data-id="2" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
-                        <span>and under a lot of stress: I found travelling very tiring. I was overwhelmed by my work. I started getting bad headaches, and I'm sure they were stress-induced.</span>
-                         <div class="flex flex-col space-y-1 ml-4">
-                            <button onclick="moveItem(this, -1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&uarr;</button>
-                            <button onclick="moveItem(this, 1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&darr;</button>
-                        </div>
-                    </li>
-                    <li data-id="3" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
-                        <span>challenging to change professions in this way, but now I feel the stress again! I must do something to avoid burning out.</span>
-                         <div class="flex flex-col space-y-1 ml-4">
-                            <button onclick="moveItem(this, -1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&uarr;</button>
-                            <button onclick="moveItem(this, 1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&darr;</button>
-                        </div>
-                    </li>
-                    <li data-id="4" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
-                        <span>Hi, my name's Piet. I'm an engineer, or I was. I worked for a Dutch multinational for 10 years. I was based here in Holland, but my work involved a lot of travelling, visiting factories. At first I liked my job: it was very rewarding</span>
-                         <div class="flex flex-col space-y-1 ml-4">
-                            <button onclick="moveItem(this, -1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&uarr;</button>
-                            <button onclick="moveItem(this, 1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&darr;</button>
-                        </div>
-                    </li>
-                    <li data-id="5" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
-                        <span>So, when I was 35, I made a change. I started a little wine shop in Amsterdam, working on my own. Now, after five years, I have 6 employees. At first it was</span>
-                         <div class="flex flex-col space-y-1 ml-4">
-                            <button onclick="moveItem(this, -1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&uarr;</button>
-                            <button onclick="moveItem(this, 1)" class="p-1 rounded-full hover:bg-gray-200 text-gray-500">&darr;</button>
-                        </div>
-                    </li>
-                </ul>
-
-                 <div class="mt-6 text-center">
-                    <button onclick="checkOrder()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check Order</button>
-                    <p id="q1-feedback" class="feedback"></p>
+                <h1 class="text-3xl font-bold text-green-700 mb-2">Activity 1: Vocabulary Match</h1>
+                <p class="text-gray-500 mb-6">Drag the vocabulary word from the left and drop it onto its correct definition on the right.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Draggable Words -->
+                    <div id="words-container" class="space-y-3">
+                        <p class="font-bold text-lg text-gray-600">Words</p>
+                        <!-- Words will be dynamically inserted here -->
+                    </div>
+                    <!-- Drop Zones -->
+                    <div id="definitions-container" class="space-y-3">
+                        <p class="font-bold text-lg text-gray-600">Definitions</p>
+                        <!-- Definitions will be dynamically inserted here -->
+                    </div>
+                </div>
+                 <div class="mt-8 text-center">
+                    <button onclick="checkMatching()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="matching-feedback" class="feedback"></p>
                 </div>
             </div>
 
-            <!-- Page 3: Activity 2 -->
+            <!-- Page 3: Activity 2 (Sentence Order) -->
             <div id="page-activity2" class="page">
-                <h1 class="text-3xl font-bold text-green-700 mb-2">Activity 2: Correct the Mistakes</h1>
+                <h1 class="text-3xl font-bold text-green-700 mb-2">Activity 2: Sentence Order</h1>
+                <p class="text-gray-500 mb-6">Drag and drop Piet's story into the correct order, or use the arrows.</p>
+                <ul id="sentence-list" class="space-y-3">
+                    <li data-id="1" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between draggable-item">...and stimulating. I felt pleasantly stretched. But then the pressure became too much and I felt overworked</li>
+                    <li data-id="2" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between draggable-item">...and under a lot of stress: I found travelling very tiring. I was overwhelmed by my work. I started getting bad headaches, and I'm sure they were stress-induced.</li>
+                    <li data-id="3" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between draggable-item">...challenging to change professions in this way, but now I feel the stress again! I must do something to avoid burning out.</li>
+                    <li data-id="4" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between draggable-item">Hi, my name's Piet. I'm an engineer... At first I liked my job: it was very rewarding...</li>
+                    <li data-id="5" draggable="true" class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between draggable-item">So, when I was 35, I made a change. I started a little wine shop... At first it was...</li>
+                </ul>
+                 <div class="mt-6 text-center">
+                    <button onclick="checkOrder()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check Order</button>
+                    <p id="order-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Activity 3 (Correct Mistakes) -->
+            <div id="page-activity3" class="page">
+                <h1 class="text-3xl font-bold text-green-700 mb-2">Activity 3: Correct the Mistakes</h1>
                 <p class="text-gray-500 mb-6">Read the text and correct the italicized words.</p>
                 <div class="space-y-6 text-lg leading-relaxed bg-white p-6 rounded-lg shadow-sm">
-                    <p>
-                        Shift down a gear to find a sweeter (1) <input id="q2-input" type="text" placeholder="lifetype" class="w-24 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent">. If you feel trapped in your job, you are a likely candidate for a 'downshift'.
-                    </p>
-                     <p>
-                        Trading part of your income for more time is about redefining yourself. But how do you achieve one aspect of the (2) <input id="q3-input" type="text" placeholder="downshift's" class="w-28 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent"> dream - financial independence?
-                    </p>
-                    <p>
-                       First, try living on less. Ms Jones suggests you don't use money to keep the (3) <input id="q4-input" type="text" placeholder="footmill" class="w-24 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent"> turning. In her case, she found a third of her income was her (4) <input id="q5-input" type="text" placeholder="mouse race" class="w-32 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent"> 'membership fee', spent on work-related activities.
-                    </p>
-                     <p>
-                       Downshifting doesn't necessarily mean changing your job. It can involve flexible working, job sharing, or cutting down to fewer days at work. All of these things can lead to a better (5) <input id="q6-input" type="text" placeholder="quantity of live" class="w-40 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent">.
-                    </p>
+                     <p>Shift down a gear to find a sweeter (1) <input id="q2-input" type="text" placeholder="lifetype" class="w-24 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent">...</p>
+                     <p>...how do you achieve one aspect of the (2) <input id="q3-input" type="text" placeholder="downshift's" class="w-28 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent"> dream...?</p>
+                    <p>...don't use money to keep the (3) <input id="q4-input" type="text" placeholder="footmill" class="w-24 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent"> turning. In her case, a third of her income was her (4) <input id="q5-input" type="text" placeholder="mouse race" class="w-32 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent"> 'membership fee'...</p>
+                     <p>All of these things can lead to a better (5) <input id="q6-input" type="text" placeholder="quantity of live" class="w-40 p-1 border-b-2 border-green-300 focus:outline-none focus:border-green-500 bg-transparent">.</p>
                 </div>
                  <div class="mt-6 text-center">
                     <button onclick="checkAllMistakes()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check All Answers</button>
-                    <p id="q-mistakes-feedback" class="feedback"></p>
+                    <p id="mistakes-feedback" class="feedback"></p>
                 </div>
             </div>
 
@@ -199,14 +176,18 @@
     </div>
 
     <script>
-        // --- Data for questions and answers ---
+        // --- Data ---
         const answers = {
-            1: "41253", // Correct order of data-id attributes
-            2: ["lifestyle"],
-            3: ["downshifter's"],
-            4: ["treadmill"],
-            5: ["rat race"],
-            6: ["quality of life"]
+            order: "41253",
+            mistakes: { 2: "lifestyle", 3: "downshifter's", 4: "treadmill", 5: "rat race", 6: "quality of life" },
+            matching: [
+                { id: 1, term: 'Rewarding', definition: 'Giving you satisfaction.' },
+                { id: 2, term: 'Burnout', definition: 'So tired by work you feel unable to work again.' },
+                { id: 3, term: 'Challenging', definition: 'Difficult, but in an interesting and enjoyable way.' },
+                { id: 4, term: 'Downshifting', definition: 'Choosing to work less and live a less stressful life.' },
+                { id: 5, term: 'Overwhelmed', definition: 'Feeling unable to do your work.' },
+                { id: 6, term: 'Rat race', definition: 'The feeling that work is too competitive and relentless.' },
+            ]
         };
 
         // --- Page Navigation Logic ---
@@ -217,125 +198,136 @@
             function showPage(pageId) {
                 pages.forEach(page => page.classList.remove('active'));
                 document.getElementById(pageId)?.classList.add('active');
-
                 navButtons.forEach(button => button.classList.remove('active'));
                 const navButtonId = `nav-${pageId.split('-')[1]}`;
                 document.getElementById(navButtonId)?.classList.add('active');
             }
-
-            document.getElementById('nav-rules').addEventListener('click', () => showPage('page-rules'));
+            
+            document.getElementById('nav-vocabulary').addEventListener('click', () => showPage('page-vocabulary'));
             document.getElementById('nav-activity1').addEventListener('click', () => showPage('page-activity1'));
             document.getElementById('nav-activity2').addEventListener('click', () => showPage('page-activity2'));
+            document.getElementById('nav-activity3').addEventListener('click', () => showPage('page-activity3'));
             
-            setupDragAndDrop();
+            // Setup activities
+            setupMatchingGame();
+            setupSentenceOrderGame();
 
-            const allInputs = document.querySelectorAll('input[type="text"]');
-            allInputs.forEach(input => {
-                input.addEventListener('keypress', event => {
-                    if (event.key === 'Enter') {
-                        event.preventDefault();
-                        checkAllMistakes();
-                    }
-                });
+            // Add enter key listener for text inputs
+            document.querySelectorAll('#page-activity3 input').forEach(input => {
+                input.addEventListener('keypress', e => e.key === 'Enter' && checkAllMistakes());
             });
         });
 
-        // --- Drag and Drop Logic ---
-        let draggedItem = null;
+        // --- Activity 1: Matching Game ---
+        function setupMatchingGame() {
+            const wordsContainer = document.getElementById('words-container');
+            const defsContainer = document.getElementById('definitions-container');
+            const shuffledTerms = [...answers.matching].sort(() => Math.random() - 0.5);
+            const shuffledDefs = [...answers.matching].sort(() => Math.random() - 0.5);
 
-        function setupDragAndDrop() {
-            const list = document.getElementById('sentence-list');
-            const items = list.querySelectorAll('li');
+            shuffledTerms.forEach(item => {
+                wordsContainer.innerHTML += `<div id="word-${item.id}" data-id="${item.id}" draggable="true" class="draggable-item bg-white p-3 rounded shadow-sm">${item.term}</div>`;
+            });
+            shuffledDefs.forEach(item => {
+                defsContainer.innerHTML += `<div class="drop-zone bg-white p-3 rounded shadow-sm border-l-4 border-gray-300 h-16 flex items-center" data-id="${item.id}"><span class="text-gray-500 italic">${item.definition}</span></div>`;
+            });
+            
+            addMatchingDragListeners();
+        }
 
-            items.forEach(item => {
-                item.addEventListener('dragstart', (e) => {
-                    draggedItem = item;
-                    setTimeout(() => item.classList.add('dragging'), 0);
-                });
-
-                item.addEventListener('dragend', () => {
-                    draggedItem.classList.remove('dragging');
-                    draggedItem = null;
-                });
-
-                item.addEventListener('dragover', (e) => {
+        function addMatchingDragListeners() {
+            document.querySelectorAll('#words-container .draggable-item').forEach(item => {
+                item.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', e.target.id));
+            });
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+                zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                zone.addEventListener('drop', e => {
                     e.preventDefault();
-                    const afterElement = getDragAfterElement(list, e.clientY);
-                    if (afterElement == null) {
-                        list.appendChild(draggedItem);
-                    } else {
-                        list.insertBefore(draggedItem, afterElement);
+                    zone.classList.remove('drag-over');
+                    const wordId = e.dataTransfer.getData('text');
+                    const wordEl = document.getElementById(wordId);
+                    if (wordEl && zone.children.length > 0 && zone.children[0].tagName === 'SPAN') {
+                        zone.innerHTML = '';
+                        zone.appendChild(wordEl);
                     }
                 });
             });
         }
+
+        function checkMatching() {
+            let allCorrect = true;
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                const isCorrect = zone.children.length > 0 && zone.dataset.id === zone.children[0].dataset.id;
+                zone.classList.remove('correct-drop', 'incorrect-drop');
+                if (zone.children.length === 0) { // Unanswered
+                    allCorrect = false;
+                } else if(isCorrect) {
+                    zone.classList.add('correct-drop');
+                } else {
+                    zone.classList.add('incorrect-drop');
+                    allCorrect = false;
+                }
+            });
+            const feedbackEl = document.getElementById('matching-feedback');
+            feedbackEl.textContent = allCorrect ? "Excellent! All matched correctly." : "Some matches are incorrect. Please review.";
+            feedbackEl.className = `feedback text-center ${allCorrect ? 'correct' : 'incorrect'}`;
+        }
         
+        // --- Activity 2: Sentence Order ---
+        function setupSentenceOrderGame() {
+            const list = document.getElementById('sentence-list');
+            list.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', e.target.dataset.id));
+            list.addEventListener('dragover', e => {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(list, e.clientY);
+                const dragging = document.querySelector('.dragging');
+                if(dragging) {
+                     if (afterElement == null) list.appendChild(dragging);
+                     else list.insertBefore(dragging, afterElement);
+                }
+            });
+            list.addEventListener('drag', e => e.target.classList.add('dragging'));
+            list.addEventListener('dragend', e => e.target.classList.remove('dragging'));
+        }
+
         function getDragAfterElement(container, y) {
-            const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
+            const draggableElements = [...container.querySelectorAll('.draggable-item:not(.dragging)')];
             return draggableElements.reduce((closest, child) => {
                 const box = child.getBoundingClientRect();
                 const offset = y - box.top - box.height / 2;
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    return closest;
-                }
+                if (offset < 0 && offset > closest.offset) return { offset: offset, element: child };
+                else return closest;
             }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
 
-        // --- Move with arrows logic ---
-        function moveItem(button, direction) {
-            const item = button.closest('li');
-            if (direction === -1 && item.previousElementSibling) { // Move up
-                item.parentNode.insertBefore(item, item.previousElementSibling);
-            } else if (direction === 1 && item.nextElementSibling) { // Move down
-                item.parentNode.insertBefore(item.nextElementSibling, item);
+        function checkOrder() {
+            const feedbackEl = document.getElementById('order-feedback');
+            let currentOrder = Array.from(document.querySelectorAll('#sentence-list li')).map(li => li.dataset.id).join('');
+            if (currentOrder === answers.order) {
+                feedbackEl.textContent = "Correct! Well done.";
+                feedbackEl.className = "feedback correct text-center";
+            } else {
+                feedbackEl.textContent = "Not quite. The order is incorrect. Please try again.";
+                feedbackEl.className = "feedback incorrect text-center";
             }
         }
 
-        // --- Checking Logic ---
-        function checkOrder() {
-            const feedbackElement = document.getElementById('q1-feedback');
-            const list = document.getElementById('sentence-list');
-            const items = list.querySelectorAll('li');
-            let currentOrder = '';
-            items.forEach(item => {
-                currentOrder += item.getAttribute('data-id');
-            });
-            
-            if (currentOrder === answers[1]) {
-                feedbackElement.textContent = "Correct! Well done.";
-                feedbackElement.className = "feedback correct text-center";
-            } else {
-                feedbackElement.textContent = "Not quite. The order is incorrect. Please try again.";
-                feedbackElement.className = "feedback incorrect text-center";
-            }
-        }
-        
+        // --- Activity 3: Correct Mistakes ---
         function checkAllMistakes() {
             let allCorrect = true;
-            for(let i=2; i<=6; i++){
-                const inputElement = document.getElementById(`q${i}-input`);
-                const userAnswer = inputElement.value.toLowerCase().trim();
-                const correctAnswers = answers[i];
-                if (!correctAnswers.includes(userAnswer)) {
-                    allCorrect = false;
-                    inputElement.classList.remove('border-green-500');
-                    inputElement.classList.add('border-red-500');
-                } else {
-                     inputElement.classList.remove('border-red-500');
-                     inputElement.classList.add('border-green-500');
-                }
-            }
-            const feedbackElement = document.getElementById('q-mistakes-feedback');
-            if(allCorrect) {
-                feedbackElement.textContent = "Excellent! All corrections are right.";
-                feedbackElement.className = "feedback correct text-center";
-            } else {
-                feedbackElement.textContent = "Some answers are incorrect. Please review the red boxes.";
-                 feedbackElement.className = "feedback incorrect text-center";
-            }
+            Object.entries(answers.mistakes).forEach(([qNum, correctAns]) => {
+                const inputEl = document.getElementById(`q${qNum}-input`);
+                const isCorrect = inputEl.value.toLowerCase().trim() === correctAns;
+                inputEl.classList.toggle('border-red-500', !isCorrect);
+                inputEl.classList.toggle('border-green-500', isCorrect);
+                if (!isCorrect) allCorrect = false;
+            });
+            const feedbackEl = document.getElementById('mistakes-feedback');
+            feedbackEl.textContent = allCorrect ? "Excellent! All corrections are right." : "Some answers are incorrect. Review the red boxes.";
+            feedbackEl.className = `feedback text-center ${allCorrect ? 'correct' : 'incorrect'}`;
         }
+
     </script>
 </body>
 </html>
