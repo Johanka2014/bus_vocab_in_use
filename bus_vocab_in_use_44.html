@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Leadership & Management</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Light purple theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a; /* green-600 */
+        }
+        .incorrect {
+            color: #dc2626; /* red-600 */
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #8b5cf6; /* violet-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #a78bfa; /* violet-400 */
+        }
+        /* Styles for drag-and-drop */
+        .draggable-item { cursor: grab; }
+        .draggable-item:active { cursor: grabbing; }
+        .dragging { opacity: 0.5; background: #ddd6fe !important; }
+        .drop-zone {
+            transition: background-color 0.2s, border-color 0.2s;
+            min-height: 60px;
+        }
+        .drop-zone.drag-over {
+            background-color: #ddd6fe;
+            border-color: #8b5cf6;
+        }
+        /* Crossword styles */
+        .crossword-grid {
+            display: grid;
+            grid-template-columns: repeat(15, minmax(0, 1fr));
+            gap: 1px;
+        }
+        .crossword-cell {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 1px solid #d1d5db;
+        }
+        .crossword-cell:not(.empty):focus {
+            outline: 2px solid #8b5cf6;
+            background-color: #f5f3ff;
+        }
+        .crossword-cell.empty {
+            background-color: transparent;
+            border: none;
+        }
+        .crossword-cell.correct { background-color: #dcfce7; border-color: #22c55e;}
+        .crossword-cell.incorrect { background-color: #fee2e2; border-color: #ef4444;}
+
+        /* Styles for multiple choice options */
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #ddd6fe;
+            border-color: #8b5cf6;
+            color: #5b21b6;
+        }
+         .option-btn.correct { background-color: #dcfce7; border-color: #22c55e;}
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444;}
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-violet-700 text-center">Leadership and Management Styles</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Vocabulary</button>
+            <button id="nav-vocab-match" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Vocabulary Match</button>
+            <button id="nav-sentence-match" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Sentence Match (44.1)</button>
+            <button id="nav-crossword" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Crossword (44.2)</button>
+            <button id="nav-styles-match" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Management Styles</button>
+            <button id="nav-reading-comp" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Reading Comprehension</button>
+            <button id="nav-grammar-habits" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Grammar: Habits</button>
+        </nav>
+
+        <main class="bg-violet-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-violet-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Leadership</h3>
+                        <p class="text-gray-600">Traditionally, business leadership mirrored the army: managers give orders, and <strong>subordinates</strong> (people below them) obey. While managers can attend courses to develop <strong>leadership skills</strong>, they still need a natural <strong>flair</strong> or talent. Great leaders often possess <strong>charisma</strong>, an attractive quality that makes others want to follow. They are described as <strong>visionary</strong> (seeing the future clearly) and are said to have <strong>drive</strong>, <strong>dynamism</strong>, and <strong>energy</strong>.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Modern Management Styles</h3>
+                        <p class="text-gray-600">Previously, leaders were distant and <strong>remote</strong>. Today, they are more <strong>open</strong> and <strong>approachable</strong>. Management is shifting towards <strong>consensus</strong>, where decisions are made through <strong>consultation</strong> with employees, rather than a <strong>top-down approach</strong> where decisions are imposed from above.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Empowerment</h3>
+                        <p class="text-gray-600"><strong>Empowerment</strong> involves encouraging employees to use their own <strong>initiative</strong> and make decisions without first asking a manager. This makes decision-making more <strong>decentralized</strong> and less <strong>bureaucratic</strong>. To achieve this, managers must be able to <strong>delegate</strong>—giving others responsibility instead of doing everything themselves.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Vocabulary Matching -->
+            <div id="page-vocab-match" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Vocabulary Match</h2>
+                <p class="text-gray-500 mb-6">Match the vocabulary words with their correct definitions.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div id="vocab-words-container" class="space-y-4"></div>
+                    <div id="vocab-definitions-container" class="space-y-4"></div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkVocabMatching()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Vocabulary</button>
+                    <p id="vocab-matching-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Exercise 44.1 (Sentence Matching) -->
+            <div id="page-sentence-match" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 44.1: Match the Sentences</h2>
+                <p class="text-gray-500 mb-6">Drag the sentence beginnings from the left and drop them onto the correct endings on the right.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div id="beginnings-container" class="space-y-4"></div>
+                    <div id="endings-container" class="space-y-4"></div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkSentenceMatching()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Matches</button>
+                    <p id="sentence-matching-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Exercise 44.2 (Crossword) -->
+            <div id="page-crossword" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 44.2: Crossword</h2>
+                <p class="text-gray-500 mb-6">Complete the crossword with words from the vocabulary section.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-3">
+                         <div id="crossword-grid" class="crossword-grid mx-auto" style="max-width: 500px;"></div>
+                    </div>
+                    <div class="lg:col-span-2 text-sm">
+                        <div>
+                            <h3 class="font-bold text-lg text-violet-700">Across</h3>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><b>1.</b> (with 7 down) What managers do (8, 6)</li>
+                                <li><b>5.</b> Leading without consultation (13)</li>
+                                <li><b>8.</b> Not easy to talk to (7)</li>
+                                <li><b>9.</b> (see 13 across)</li>
+                                <li><b>11.</b> What an authoritarian boss doesn't do (7)</li>
+                                <li><b>13.</b> (with 9 across) Deciding without talking to employees is a ___-down ___ (3, 8)</li>
+                                <li><b>14.</b> Give others responsibility (8)</li>
+                                <li><b>15.</b> Not made in head office (13)</li>
+                            </ul>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="font-bold text-lg text-violet-700">Down</h3>
+                             <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><b>2.</b> Allow employees to decide (7)</li>
+                                <li><b>3.</b> Full of rules and procedures (12)</li>
+                                <li><b>4.</b> Deciding on your own (10)</li>
+                                <li><b>6.</b> Adjective from 'consensus' (10)</li>
+                                <li><b>7.</b> (see 1 across)</li>
+                                <li><b>10.</b> Decisions are ___ if there is no consensus (7)</li>
+                                <li><b>12.</b> Easy to talk to (4)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkCrossword()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Crossword</button>
+                     <p id="crossword-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 5: Management Styles -->
+            <div id="page-styles-match" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Management Styles</h2>
+                <p class="text-gray-500 mb-6">Match the phrases to the kind of management style.</p>
+                <div id="styles-match-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkStylesMatch()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Styles</button>
+                     <p id="styles-match-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 6: Reading Comprehension -->
+            <div id="page-reading-comp" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Reading Comprehension</h2>
+                <p class="text-gray-500 mb-6">Read the article and answer the questions.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="prose max-w-none bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-bold">Survey reports record-breaking dissatisfaction</h3>
+                        <p class="text-sm text-gray-500">Last updated at 06:11 GMT</p>
+                        <p>A new poll carried out for unions that represent public sector workers shows growing dissatisfaction with managers. Fewer than 35% of civil servants said that they were happy with their supervisors, with the most frequent complaints being that bosses were poor listeners, gave no feedback on their team's work and were reluctant to delegate. A worrying number of employees also reported cases of harassment.</p>
+                        <p>The results of the poll will be acutely embarrassing to senior executives who have seen a steady rise in job dissatisfaction in recent years. Higher staff turnover, days lost through illness and decreased efficiency are the immediate costs of demotivated personnel. 'We need government departments to start taking employee satisfaction seriously,' said one union leader. 'Our members need clear tasks and targets, and they want their voice to be heard in the overall running of their workplaces."</p>
+                        <p>In the current economic climate, the need for inspirational leaders looks greater than ever. Faced with frozen salaries and downsized departments, old-fashioned top-down approaches to management are likely to make the problems even worse unless priority is given to addressing the issue.</p>
+                    </article>
+                    <div id="reading-questions-container" class="space-y-6"></div>
+                </div>
+                 <div class="mt-8 text-center">
+                    <button onclick="checkReadingComp()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Answers</button>
+                     <p id="reading-comp-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+             <!-- Page 7: Grammar - Annoying Habits -->
+            <div id="page-grammar-habits" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Grammar: Describing Annoying Habits</h2>
+                <p class="text-gray-500 mb-6">Rewrite the sentences using the word in brackets.</p>
+                <div class="activity-card space-y-4">
+                    <div id="grammar-habits-container"></div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkGrammarHabits()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Grammar</button>
+                     <p id="grammar-habits-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const sentenceMatchingData = [
+            { id: '1', start: "We are looking for a new CEO, someone with strong leadership", end: "skills and experience with financial institutions." },
+            { id: '2', start: "Richard has real managerial flair", end: "and has won the respect of colleagues and employees." },
+            { id: '3', start: "In the police, leaders are held responsible", end: "for the actions of their subordinates." },
+            { id: '4', start: "The study concludes that a charismatic visionary leader is absolutely not required for a visionary company", end: "and, in fact, can be bad for a company's long-term prospects." },
+            { id: '5', start: "She is an extraordinary leader", end: "who will bring dynamism and energy to the job." },
+            { id: '6', start: "Thatcher had drive, energy and vision,", end: "but many thought it was the wrong vision." },
+            { id: '7', start: "He was a born leader. When everyone else was discussing", end: "what to do, he knew exactly what to do." }
+        ];
+        
+        const vocabMatchingData = [
+            { id: 1, term: 'Subordinates', definition: 'People working below a manager.' },
+            { id: 2, term: 'Charisma', definition: 'An attractive quality that makes others admire and follow someone.' },
+            { id: 3, term: 'Visionary', definition: 'Someone who can see how things will be in the future.' },
+            { id: 4, term: 'Consensus', definition: 'Arriving at decisions by asking employees to contribute.' },
+            { id: 5, term: 'Top-down approach', definition: 'When decisions are imposed from above.' },
+            { id: 6, term: 'Empowerment', definition: 'Encouraging employees to use their own initiative.' },
+            { id: 7, term: 'Delegate', definition: 'To give other people responsibility for work.' },
+            { id: 8, term: 'Bureaucratic', definition: 'Dependent on a complex system of rules and procedures.' }
+        ];
+
+        const crosswordLayout = [
+            "....DECISION..",
+            "....M.U...M...",
+            "AUTHORITARIAN.",
+            "....K.R...P...",
+            "..REMOTE..W...",
+            "....N.A...E...",
+            "....G.U...R...",
+            "....CONSULT...",
+            "....I...V.I...",
+            "IMPOSED.A.A...",
+            "....V...T.T...",
+            "DELEGATE..I...",
+            "....E...V.V...",
+            "DECENTRALIZED.",
+            ".........E...",
+        ];
+        
+        const crosswordCluesMap = {
+            '0_4': { clue: '1 across' }, '0_8': { clue: '7 down' }, '1_6': { clue: '3 down' }, '1_10': { clue: '2 down' },
+            '2_0': { clue: '5 across' }, '3_10': { clue: '4 down' }, '4_2': { clue: '8 across' },
+            '7_4': { clue: '11 across' }, '9_0': { clue: '10 down' }, '9_8': { clue: '9 across' },
+            '10_12':{ clue: '12 down'}, '11_0': { clue: '14 across' }, '11_12': {clue: '6 down'},
+            '13_0': { clue: '15 across'}, '13_11': {clue: '13 across'}
+        };
+
+        const stylesMatchData = [
+            { style: "Paternalistic", description: "after consultation, decisions are taken in the best interests of the workers" },
+            { style: "Autocratic", description: "communication is top-down and only one-way" },
+            { style: "Democratic", description: "power is delegated to the work-force" },
+            { style: "Democratic", description: "executives respond to feedback from the employees" },
+            { style: "Paternalistic", description: "decisions are made at the top, but take the welfare of employees into account" },
+            { style: "Autocratic", description: "staff do not always feel valued and can be demotivated" }
+        ];
+
+        const readingCompData = [
+            { question: "What is a frequent complaint about bosses?", answer: "They are poor listeners.", options: ["They are poor listeners.", "They give too much feedback.", "They delegate too much."] },
+            { question: "What is an immediate cost of demotivated personnel?", answer: "Higher staff turnover.", options: ["Higher salaries.", "Higher staff turnover.", "Better efficiency."] },
+            { question: "What do union members want?", answer: "Their voice to be heard.", options: ["Longer holidays.", "Fewer targets.", "Their voice to be heard."] },
+            { question: "What is likely to make problems worse in the current economic climate?", answer: "Old-fashioned top-down approaches.", options: ["Inspirational leaders.", "Frozen salaries.", "Old-fashioned top-down approaches."] }
+        ];
+
+        const grammarHabitsData = [
+            { sentence: "Unhappy staff complain about their bosses.", word: "will", answer: "Unhappy staff will complain about their bosses." },
+            { sentence: "Union officials continue to hear stories of harassment.", word: "keep", answer: "Union officials keep hearing stories of harassment." },
+            { sentence: "He talks about himself all the time.", word: "forever", answer: "He is forever talking about himself." },
+            { sentence: "Some managers do not delegate often enough.", word: "won't", answer: "Some managers won't delegate often enough." },
+            { sentence: "Some workers take time off too often.", word: "constantly", answer: "Some workers are constantly taking time off." },
+            { sentence: "They look for greater efficiency all the time.", word: "always", answer: "They are always looking for greater efficiency." }
+        ];
+        
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                
+                const targetButtonId = pageId.replace('page-','nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupVocabMatching();
+            setupSentenceMatching();
+            setupCrossword();
+            setupStylesMatch();
+            setupReadingComp();
+            setupGrammarHabits();
+        });
+
+        // --- Vocabulary Matching Game ---
+        function setupVocabMatching() {
+            const wordsContainer = document.getElementById('vocab-words-container');
+            const definitionsContainer = document.getElementById('vocab-definitions-container');
+            if (!wordsContainer || !definitionsContainer) return;
+
+            wordsContainer.innerHTML = '';
+            definitionsContainer.innerHTML = '';
+
+            const shuffledTerms = [...vocabMatchingData].sort(() => Math.random() - 0.5);
+            const shuffledDefs = [...vocabMatchingData].sort(() => Math.random() - 0.5);
+
+            shuffledTerms.forEach(item => {
+                wordsContainer.innerHTML += `<div id="vocab-word-${item.id}" data-id="${item.id}" draggable="true" class="draggable-item bg-white p-3 rounded-lg shadow-sm cursor-grab">${item.term}</div>`;
+            });
+
+            shuffledDefs.forEach(item => {
+                definitionsContainer.innerHTML += `<div class="bg-violet-100 p-2 rounded-lg flex items-center gap-2">
+                    <div class="drop-zone border-2 border-dashed border-violet-300 rounded-lg w-full flex items-center justify-center text-gray-400" data-id="${item.id}"></div>
+                    <span class="flex-1">${item.definition}</span>
+                </div>`;
+            });
+            addDragListeners('#page-vocab-match');
+        }
+
+        function checkVocabMatching() {
+            let allCorrect = true;
+            let answeredCount = 0;
+            document.querySelectorAll('#page-vocab-match .drop-zone').forEach(zone => {
+                const isCorrect = zone.children.length > 0 && zone.dataset.id === zone.children[0].dataset.id;
+                zone.classList.remove('bg-green-100', 'bg-red-100', 'border-green-400', 'border-red-400');
+                if (zone.children.length > 0) {
+                    answeredCount++;
+                    if (isCorrect) {
+                        zone.classList.add('bg-green-100', 'border-green-400');
+                    } else {
+                        zone.classList.add('bg-red-100', 'border-red-400');
+                        allCorrect = false;
+                    }
+                } else {
+                    allCorrect = false;
+                }
+            });
+            const feedbackEl = document.getElementById('vocab-matching-feedback');
+            if (answeredCount < vocabMatchingData.length) {
+                feedbackEl.textContent = "Please complete all matches.";
+                feedbackEl.className = "feedback incorrect text-center";
+            } else if (allCorrect) {
+                feedbackEl.textContent = "Excellent! All matched correctly.";
+                feedbackEl.className = "feedback correct text-center";
+            } else {
+                feedbackEl.textContent = "Some matches are incorrect. Please review.";
+                feedbackEl.className = "feedback incorrect text-center";
+            }
+        }
+
+        // --- Exercise 44.1: Sentence Matching Game ---
+        function setupSentenceMatching() {
+            const beginningsContainer = document.getElementById('beginnings-container');
+            const endingsContainer = document.getElementById('endings-container');
+            if (!beginningsContainer || !endingsContainer) return;
+
+            beginningsContainer.innerHTML = '';
+            endingsContainer.innerHTML = '';
+
+            const shuffledStarts = [...sentenceMatchingData].sort(() => Math.random() - 0.5);
+            const shuffledEnds = [...sentenceMatchingData].sort(() => Math.random() - 0.5);
+
+            shuffledStarts.forEach(item => {
+                beginningsContainer.innerHTML += `<div id="sentence-start-${item.id}" data-id="${item.id}" draggable="true" class="draggable-item bg-white p-3 rounded-lg shadow-sm cursor-grab">${item.start}...</div>`;
+            });
+
+            shuffledEnds.forEach(item => {
+                endingsContainer.innerHTML += `<div class="bg-violet-100 p-2 rounded-lg flex items-center gap-2">
+                    <div class="drop-zone border-2 border-dashed border-violet-300 rounded-lg w-full flex items-center justify-center text-gray-400" data-id="${item.id}"></div>
+                    <span class="flex-1">${item.end}</span>
+                </div>`;
+            });
+            addDragListeners('#page-sentence-match');
+        }
+        
+        function checkSentenceMatching() {
+             let allCorrect = true;
+            let answeredCount = 0;
+            document.querySelectorAll('#page-sentence-match .drop-zone').forEach(zone => {
+                const isCorrect = zone.children.length > 0 && zone.dataset.id === zone.children[0].dataset.id;
+                zone.classList.remove('bg-green-100', 'bg-red-100', 'border-green-400', 'border-red-400');
+                if (zone.children.length > 0) {
+                    answeredCount++;
+                    if (isCorrect) {
+                        zone.classList.add('bg-green-100', 'border-green-400');
+                    } else {
+                        zone.classList.add('bg-red-100', 'border-red-400');
+                        allCorrect = false;
+                    }
+                } else {
+                    allCorrect = false;
+                }
+            });
+            const feedbackEl = document.getElementById('sentence-matching-feedback');
+            if (answeredCount < sentenceMatchingData.length) {
+                feedbackEl.textContent = "Please complete all matches.";
+                feedbackEl.className = "feedback incorrect text-center";
+            } else if (allCorrect) {
+                feedbackEl.textContent = "Excellent! All matched correctly.";
+                feedbackEl.className = "feedback correct text-center";
+            } else {
+                feedbackEl.textContent = "Some matches are incorrect. Please review.";
+                feedbackEl.className = "feedback incorrect text-center";
+            }
+        }
+        
+        // --- Generic Drag-and-Drop Listeners ---
+        function addDragListeners(pageSelector) {
+            document.querySelectorAll(`${pageSelector} .draggable-item`).forEach(item => {
+                item.addEventListener('dragstart', e => {
+                    e.target.classList.add('dragging');
+                    e.dataTransfer.setData('text/plain', e.target.id);
+                });
+                item.addEventListener('dragend', e => e.target.classList.remove('dragging'));
+            });
+            document.querySelectorAll(`${pageSelector} .drop-zone`).forEach(zone => {
+                zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+                zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                zone.addEventListener('drop', e => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const draggedId = e.dataTransfer.getData('text');
+                    const draggedEl = document.getElementById(draggedId);
+                    if (draggedEl && zone.children.length === 0) {
+                        zone.appendChild(draggedEl);
+                        zone.classList.remove('text-gray-400');
+                    }
+                });
+            });
+        }
+
+        // --- Exercise 44.2: Crossword ---
+        function setupCrossword() {
+            const grid = document.getElementById('crossword-grid');
+            grid.innerHTML = '';
+            for (let r = 0; r < 15; r++) {
+                for (let c = 0; c < 15; c++) {
+                    const char = crosswordLayout[r] && crosswordLayout[r][c] ? crosswordLayout[r][c] : '.';
+                    const container = document.createElement('div');
+                    container.style.position = 'relative';
+
+                    const cell = document.createElement('input');
+                    cell.type = 'text';
+                    cell.maxLength = 1;
+                    cell.id = `cell-${r}-${c}`;
+                    cell.dataset.row = r;
+                    cell.dataset.col = c;
+
+                    if (char === '.') {
+                        cell.classList.add('crossword-cell', 'empty');
+                        cell.disabled = true;
+                    } else {
+                        cell.classList.add('crossword-cell');
+                        if (crosswordCluesMap[`${r}_${c}`]) {
+                            const number = crosswordCluesMap[`${r}_${c}`].clue.split(' ')[0];
+                            const numLabel = document.createElement('span');
+                            numLabel.textContent = number;
+                            numLabel.style.position = 'absolute';
+                            numLabel.style.top = '1px';
+                            numLabel.style.left = '2px';
+                            numLabel.style.fontSize = '8px';
+                            numLabel.style.color = '#4f46e5';
+                            numLabel.style.pointerEvents = 'none';
+                            container.appendChild(numLabel);
+                        }
+                    }
+                    container.appendChild(cell);
+                    grid.appendChild(container);
+                }
+            }
+            grid.addEventListener('keyup', handleCrosswordInput);
+        }
+
+        function handleCrosswordInput(e) {
+            const target = e.target;
+            if (!target.classList.contains('crossword-cell') || target.classList.contains('empty')) return;
+            const r = parseInt(target.dataset.row);
+            const c = parseInt(target.dataset.col);
+
+            if (e.key === 'ArrowRight' && c < 14) document.getElementById(`cell-${r}-${c+1}`)?.focus();
+            else if (e.key === 'ArrowLeft' && c > 0) document.getElementById(`cell-${r}-${c-1}`)?.focus();
+            else if (e.key === 'ArrowDown' && r < 14) document.getElementById(`cell-${r+1}-${c}`)?.focus();
+            else if (e.key === 'ArrowUp' && r > 0) document.getElementById(`cell-${r-1}-${c}`)?.focus();
+            else if (e.key.match(/^[a-zA-Z]$/)) {
+                let nextCell = document.getElementById(`cell-${r}-${c+1}`);
+                if(!nextCell || nextCell.classList.contains('empty')){
+                   nextCell = document.getElementById(`cell-${r+1}-${c}`);
+                }
+                nextCell?.focus();
+            }
+        }
+
+        function checkCrossword() {
+            let allCorrect = true;
+            document.querySelectorAll('.crossword-cell:not(.empty)').forEach(cell => {
+                 const r = parseInt(cell.dataset.row);
+                 const c = parseInt(cell.dataset.col);
+                 const correctChar = crosswordLayout[r][c];
+                 if (cell.value.toUpperCase() === correctChar) {
+                     cell.classList.remove('incorrect');
+                     cell.classList.add('correct');
+                 } else {
+                     cell.classList.remove('correct');
+                     cell.classList.add('incorrect');
+                     allCorrect = false;
+                 }
+            });
+            const feedbackEl = document.getElementById('crossword-feedback');
+            feedbackEl.textContent = allCorrect ? "Well done! The crossword is correct." : "Some letters are incorrect. Please review.";
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- New Activities ---
+        // Management Styles Match
+        function setupStylesMatch() {
+            const container = document.getElementById('styles-match-container');
+            const styles = ["Autocratic", "Democratic", "Paternalistic"];
+            container.innerHTML = stylesMatchData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.description}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${styles.map(style => `<button class="option-btn px-4 py-2 rounded-md font-medium text-gray-700 hover:bg-violet-100">${style}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkStylesMatch() {
+            let correctCount = 0;
+            const questionGroups = document.querySelectorAll('#styles-match-container .flex-wrap');
+            questionGroups.forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = stylesMatchData[index].style;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                     if(btn.textContent === correctAnswer) {
+                        btn.classList.add('correct');
+                     }
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('styles-match-feedback');
+            const allCorrect = correctCount === stylesMatchData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! Well done." : `You got ${correctCount} out of ${stylesMatchData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+        
+        // Reading Comprehension
+        function setupReadingComp() {
+            const container = document.getElementById('reading-questions-container');
+            container.innerHTML = readingCompData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="space-y-2" data-question-index="${index}">
+                        ${item.options.map(opt => `<button class="option-btn text-left w-full p-3 rounded-md font-medium text-gray-700 hover:bg-violet-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+             container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkReadingComp() {
+            let correctCount = 0;
+            const questionGroups = document.querySelectorAll('#reading-questions-container .space-y-2');
+            questionGroups.forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = readingCompData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                     if(btn.textContent === correctAnswer) {
+                        btn.classList.add('correct');
+                     }
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('reading-comp-feedback');
+            const allCorrect = correctCount === readingCompData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! All answers are correct." : `You got ${correctCount} out of ${readingCompData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // Grammar Habits
+        function setupGrammarHabits() {
+            const container = document.getElementById('grammar-habits-container');
+            container.innerHTML = grammarHabitsData.map((item, index) => `
+                <div class="p-4 border-b">
+                    <p class="text-gray-600">${index + 1}. ${item.sentence} <span class="font-bold">(${item.word})</span></p>
+                    <input type="text" id="grammar-input-${index}" class="mt-2 w-full p-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500" placeholder="Rewrite the sentence here...">
+                </div>
+            `).join('');
+        }
+
+        function checkGrammarHabits() {
+            let correctCount = 0;
+            grammarHabitsData.forEach((item, index) => {
+                const inputEl = document.getElementById(`grammar-input-${index}`);
+                const userAnswer = inputEl.value.trim().replace(/\.$/, ''); // Remove trailing period
+                const correctAnswer = item.answer.replace(/\.$/, ''); // Remove trailing period
+                
+                inputEl.classList.remove('border-green-500', 'border-red-500');
+                if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    correctCount++;
+                    inputEl.classList.add('border-green-500');
+                } else {
+                    inputEl.classList.add('border-red-500');
+                    // Show correct answer
+                    let feedback = document.createElement('p');
+                    feedback.className = 'text-sm text-green-600 mt-1';
+                    feedback.textContent = `Correct answer: ${item.answer}`;
+                    // Avoid adding multiple correct answers
+                    if (!inputEl.nextElementSibling || !inputEl.nextElementSibling.classList.contains('text-green-600')) {
+                       inputEl.after(feedback);
+                    }
+                }
+                inputEl.disabled = true;
+            });
+            const feedbackEl = document.getElementById('grammar-habits-feedback');
+            const allCorrect = correctCount === grammarHabitsData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! All sentences are correct." : `You rewrote ${correctCount} out of ${grammarHabitsData.length} correctly.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+
+</body>
+</html>
+
