@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Stress Reading Comprehension</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Light blue theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a; /* green-600 */
+        }
+        .incorrect {
+            color: #dc2626; /* red-600 */
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #0ea5e9; /* sky-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .reading-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+        }
+        .option-btn {
+            border: 1px solid #d4d4d8;
+            background-color: #fafafa;
+            transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #e0f2fe; /* sky-100 */
+            border-color: #0ea5e9; /* sky-500 */
+            color: #0369a1; /* sky-800 */
+        }
+        .option-btn.correct {
+            background-color: #dcfce7; /* green-100 */
+            border-color: #22c55e; /* green-500 */
+            color: #166534; /* green-800 */
+        }
+        .option-btn.incorrect {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #ef4444; /* red-500 */
+            color: #991b1b; /* red-800 */
+        }
+        .input-field {
+             border-bottom: 2px solid #e5e7eb;
+             background: transparent;
+        }
+        .input-field.correct {
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .input-field.incorrect {
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-sky-700 text-center">Get Stressed, Stay Young</h1>
+            <p class="text-center text-gray-500 mt-2">Reading Comprehension Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-reading" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Reading</button>
+            <button id="nav-ex-b" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Exercise B</button>
+            <button id="nav-ex-c" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Exercise C</button>
+            <button id="nav-ex-d" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Exercise D</button>
+            <button id="nav-ex-e" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Exercise E</button>
+        </nav>
+
+        <main class="bg-sky-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Reading Text -->
+            <div id="page-reading" class="page active">
+                <div class="reading-card prose max-w-none">
+                    <h2 class="text-2xl font-bold text-sky-800">Reading Text</h2>
+                    <p><b>1.</b> For decades doctors have warned us about the dangers of stress and have given us advice about how to cut down our stress levels. Everyone agrees that long-term stress, for example having to look after someone who has a chronic illness, or stressful situations where there is nothing we can do, for example being stuck in a traffic jam, is bad for our health and should be avoided whenever possible. However, some medical experts now believe that certain kinds of stress may actually be good for us.</p>
+                    <p><b>2.</b> Dr Marios Kyriazis, an anti-ageing expert, claims that what he calls 'good stress' is beneficial to our health and may, in fact, help us stay young and attractive and even live longer. Dr Kyriazis says that 'good stress' can strengthen our natural defences which protect us from illnesses common among older people, such as Alzheimer's, arthritis, and heart problems. He believes that 'good stress' can increase the production of the proteins that help to repair the body's cells, including brain cells.</p>
+                    <p><b>3.</b> According to Dr Kyriazis, running for a bus or having to work to a deadline are examples of 'good stress', that is situations with short-term, low or moderate stress. The stress usually makes us react quickly and efficiently, and gives us a sense of achievement - we did it! However, in both these situations, the stress damages the cells in our body or brain and they start to break down. But then the cells' own repair mechanism 'switches on' and it produces proteins which repair the damaged cells and remove harmful chemicals that can gradually cause disease. In fact, the body's response is greater than is needed to repair the damage, so it actually makes the cells stronger than they were before.</p>
+                    <p><b>4.</b> 'As the body gets older, this self-repair mechanism of the cells starts to slow down,' says Dr Kyriazis. 'The best way to keep the process working efficiently is to 'exercise' it, in the same way you would exercise your muscles to keep them strong. This means having a certain amount of stress in our lives.' Other stressful activities that Kyriazis recommends as being good stress include redecorating a room in your house over a weekend, packing your suitcase in a hurry to reach the airport on time, shopping for a dinner party during your lunch break or programming your DVD player by following the instruction manual.</p>
+                    <p><b>5.</b> So next time your boss tells you that she wants to see that report finished and on her desk in 45 minutes, don't panic; just think of it as 'good stress' which will have benefits for your long-term health!</p>
+                </div>
+            </div>
+
+            <!-- Page 2: Exercise B -->
+            <div id="page-ex-b" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise B: What's Most Stressful?</h2>
+                <p class="text-gray-500 mb-6">Which three of these things do you think are the most stressful? Select up to three options.</p>
+                <div id="ex-b-container" class="space-y-3"></div>
+                <p class="mt-6 text-sm text-gray-500 text-center">This is for self-reflection. There are no right or wrong answers.</p>
+            </div>
+
+            <!-- Page 3: Exercise C -->
+            <div id="page-ex-c" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise C: Good Stress vs. Bad Stress</h2>
+                <p class="text-gray-500 mb-6">Based on the article, tick the activities that are bad for your health.</p>
+                <div id="ex-c-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkExerciseC()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Answer</button>
+                    <p id="ex-c-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Exercise D -->
+            <div id="page-ex-d" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise D: Main Ideas</h2>
+                <p class="text-gray-500 mb-6">Read the article again more slowly. Circle the correct main idea for each paragraph.</p>
+                <div id="ex-d-container" class="space-y-6"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkExerciseD()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="ex-d-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 5: Exercise E -->
+            <div id="page-ex-e" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise E: Complete the Sentences</h2>
+                <p class="text-gray-500 mb-6">Complete the sentences using words from the article.</p>
+                <div id="ex-e-container" class="space-y-5 bg-white p-6 rounded-lg shadow"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkExerciseE()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="ex-e-feedback" class="feedback"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const exBOptions = [
+            "Packing for a trip at the last minute.",
+            "Being stuck in a traffic jam when you have an appointment.",
+            "Writing a report for your boss when you don't have much time to finish it.",
+            "Running for a bus or train.",
+            "Looking after a family member who has a chronic illness.",
+            "Shopping in your lunch break.",
+            "Programming a DVD player using the instruction manual."
+        ];
+
+        const exDQuestions = [
+            { question: "Paragraph 1:", options: ["Being in traffic jams is bad for our health.", "Some people think that not all kinds of stress are bad for us.", "Doctors don't agree how we can reduce our levels of stress."], answer: "Some people think that not all kinds of stress are bad for us." },
+            { question: "Paragraph 2:", options: ["Young people suffer more from stress than older people.", "Alzheimer's is one of the illnesses many old people suffer from.", "Good stress stops us from getting ill."], answer: "Good stress stops us from getting ill." },
+            { question: "Paragraph 3:", options: ["Situations which produce good stress are always short term.", "Some stress can make our cells stronger.", "Too much protein can make us ill."], answer: "Some stress can make our cells stronger." },
+            { question: "Paragraph 4:", options: ["We need some stress to exercise our cells' self-repair mechanism.", "Doing physical exercise makes us feel less stressed.", "Packing your suitcase in a hurry is an example of good stress."], answer: "We need some stress to exercise our cells' self-repair mechanism." }
+        ];
+
+        const exEQuestions = [
+            { sentence: "When we try to do less of something, we try to c____ d____.", answer: ["cut", "down"] },
+            { sentence: "An illness that you have for a very long time is called a c________ illness.", answer: ["chronic"] },
+            { sentence: "Something which is good for us is b__________.", answer: ["beneficial"] },
+            { sentence: "The verb to make something stronger is s__________.", answer: ["strengthen"] },
+            { sentence: "Our body is made up of millions of c____.", answer: ["cells"] },
+            { sentence: "When we treat our body badly we d______ it.", answer: ["damage"] },
+            { sentence: "Another word for illness is d_______.", answer: ["disease"] },
+            { sentence: "Something which is bad for us is h_______.", answer: ["harmful"] },
+            { sentence: "Doing exercise helps to make our m_______ bigger and stronger.", answer: ["muscles"] }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                document.getElementById(`nav-${pageId.split('-')[1]}`)?.classList.add('active');
+            }
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = button.id.replace('nav-', 'page-');
+                    showPage(pageName);
+                });
+            });
+
+            setupExerciseB();
+            setupExerciseC();
+            setupExerciseD();
+            setupExerciseE();
+        });
+
+        // --- Setup Functions ---
+        function setupExerciseB() {
+            const container = document.getElementById('ex-b-container');
+            container.innerHTML = exBOptions.map((opt, i) => `
+                <label class="flex items-center p-3 bg-white rounded-lg shadow-sm cursor-pointer hover:bg-gray-50">
+                    <input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-sky-600 focus:ring-sky-500">
+                    <span class="ml-3 text-gray-700">${opt}</span>
+                </label>`).join('');
+
+            container.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const checkedCount = container.querySelectorAll('input[type="checkbox"]:checked').length;
+                    if (checkedCount > 3) {
+                        checkbox.checked = false;
+                    }
+                });
+            });
+        }
+
+        function setupExerciseC() {
+            const container = document.getElementById('ex-c-container');
+            container.innerHTML = exBOptions.map((opt, i) => `
+                <label class="flex items-center p-3 bg-white rounded-lg shadow-sm cursor-pointer hover:bg-gray-50">
+                    <input type="checkbox" name="ex-c-option" class="h-5 w-5 rounded border-gray-300 text-sky-600 focus:ring-sky-500">
+                    <span class="ml-3 text-gray-700">${opt}</span>
+                </label>`).join('');
+        }
+
+        function setupExerciseD() {
+            const container = document.getElementById('ex-d-container');
+            container.innerHTML = exDQuestions.map((q, i) => `
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <p class="font-semibold mb-3 text-gray-700">${q.question}</p>
+                    <div class="space-y-2" data-question-index="${i}">
+                        ${q.options.map(opt => `<button class="option-btn text-left w-full px-4 py-2 rounded-md font-medium hover:bg-gray-100">${opt}</button>`).join('')}
+                    </div>
+                </div>`).join('');
+            
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function setupExerciseE() {
+            const container = document.getElementById('ex-e-container');
+            container.innerHTML = exEQuestions.map((q, i) => {
+                let count = 0;
+                const sentenceWithInputs = q.sentence.replace(/c____ d____|c________|b__________|s__________|c____|d______|d_______|h_______|m_______/g, match => {
+                    const input = `<input type="text" data-q-index="${i}" data-a-index="${count}" class="input-field text-center mx-1 focus:outline-none" style="width: ${match.length * 1.1}ch;">`;
+                    count++;
+                    return input;
+                });
+                return `<p class="text-gray-700 text-lg">${i + 1}. ${sentenceWithInputs}</p>`;
+            }).join('');
+        }
+
+        // --- Check Functions ---
+        function checkExerciseC() {
+            const feedbackEl = document.getElementById('ex-c-feedback');
+            const labels = document.querySelectorAll('#ex-c-container label');
+            let correct = true;
+
+            labels.forEach((label, index) => {
+                const checkbox = label.querySelector('input');
+                const isBadForHealth = exBOptions[index].includes("chronic illness");
+                if (checkbox.checked !== isBadForHealth) {
+                    correct = false;
+                }
+            });
+
+            if (correct) {
+                feedbackEl.textContent = "Correct! Long-term stress is bad for our health.";
+                feedbackEl.className = "feedback correct text-center";
+            } else {
+                feedbackEl.textContent = "Not quite. According to the text, only long-term stress is bad.";
+                feedbackEl.className = "feedback incorrect text-center";
+            }
+        }
+
+        function checkExerciseD() {
+            let score = 0;
+            const feedbackEl = document.getElementById('ex-d-feedback');
+            document.querySelectorAll('#ex-d-container [data-question-index]').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = exDQuestions[index].answer;
+                
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) {
+                        btn.classList.add('correct');
+                    }
+                });
+
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        score++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+
+            feedbackEl.textContent = `You scored ${score} out of ${exDQuestions.length}.`;
+            feedbackEl.className = `feedback ${score === exDQuestions.length ? 'correct' : 'incorrect'} text-center`;
+        }
+        
+        function checkExerciseE() {
+            let allCorrect = true;
+            const feedbackEl = document.getElementById('ex-e-feedback');
+            document.querySelectorAll('#ex-e-container input').forEach(input => {
+                const qIndex = input.dataset.qIndex;
+                const aIndex = input.dataset.aIndex;
+                const correctAnswer = exEQuestions[qIndex].answer[aIndex];
+                
+                if (input.value.trim().toLowerCase() === correctAnswer) {
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                    allCorrect = false;
+                }
+                input.disabled = true;
+            });
+            
+            if (allCorrect) {
+                feedbackEl.textContent = "Excellent! All sentences are correct.";
+                feedbackEl.className = "feedback correct text-center";
+            } else {
+                feedbackEl.textContent = "Some answers are incorrect. Please review.";
+                feedbackEl.className = "feedback incorrect text-center";
+            }
+        }
+
+    </script>
+</body>
+</html>
