@@ -145,9 +145,9 @@
             <div id="page-vocab-match" class="page">
                 <h2 class="text-2xl font-bold text-violet-800 mb-2">Vocabulary Match</h2>
                 <p class="text-gray-500 mb-6">Match the vocabulary words with their correct definitions.</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div id="vocab-words-container" class="space-y-4"></div>
-                    <div id="vocab-definitions-container" class="space-y-4"></div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div id="vocab-words-container" class="space-y-4 md:col-span-1"></div>
+                    <div id="vocab-definitions-container" class="space-y-4 md:col-span-2"></div>
                 </div>
                 <div class="mt-8 text-center">
                     <button onclick="checkVocabMatching()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Vocabulary</button>
@@ -376,9 +376,9 @@
             });
 
             shuffledDefs.forEach(item => {
-                definitionsContainer.innerHTML += `<div class="bg-violet-100 p-2 rounded-lg flex items-center gap-2">
-                    <div class="drop-zone border-2 border-dashed border-violet-300 rounded-lg w-full flex items-center justify-center text-gray-400" data-id="${item.id}"></div>
-                    <span class="flex-1">${item.definition}</span>
+                definitionsContainer.innerHTML += `<div class="bg-violet-100 p-2 rounded-lg flex items-center gap-4">
+                    <div class="drop-zone border-2 border-dashed border-violet-300 rounded-lg w-40 h-16 flex-shrink-0 flex items-center justify-center text-gray-400 text-sm p-2" data-id="${item.id}"></div>
+                    <span class="flex-grow">${item.definition}</span>
                 </div>`;
             });
             addDragListeners('#page-vocab-match');
@@ -432,9 +432,9 @@
             });
 
             shuffledEnds.forEach(item => {
-                endingsContainer.innerHTML += `<div class="bg-violet-100 p-2 rounded-lg flex items-center gap-2">
+                endingsContainer.innerHTML += `<div class="bg-violet-100 p-3 rounded-lg space-y-2">
+                    <p class="font-semibold text-gray-700 text-center">${item.end}</p>
                     <div class="drop-zone border-2 border-dashed border-violet-300 rounded-lg w-full flex items-center justify-center text-gray-400" data-id="${item.id}"></div>
-                    <span class="flex-1">${item.end}</span>
                 </div>`;
             });
             addDragListeners('#page-sentence-match');
