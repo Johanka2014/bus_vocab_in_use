@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Business Across Cultures</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Light blue theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a; /* green-600 */
+        }
+        .incorrect {
+            color: #dc2626; /* red-600 */
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #0ea5e9; /* sky-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #38bdf8; /* sky-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #e0f2fe;
+            border-color: #0ea5e9;
+            color: #0369a1;
+        }
+         .option-btn.correct { background-color: #dcfce7; border-color: #22c55e;}
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444;}
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-sky-700 text-center">Business Across Cultures</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Vocabulary</button>
+            <button id="nav-culture-types" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Culture Types (45.1)</button>
+            <button id="nav-company-comparison" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Company Comparison (45.2)</button>
+        </nav>
+
+        <main class="bg-sky-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-sky-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Cultures and Culture</h3>
+                        <p class="text-gray-600 mb-4"><strong>Culture</strong> is "the way we do things here." This can refer to a country, a region, or an organization. Key terms include:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Company or corporate culture:</strong> The way a company works and its values.</li>
+                            <li><strong>Canteen culture:</strong> Unofficial ways of thinking and talking within an organization, not approved by leadership.</li>
+                            <li><strong>Long-hours culture:</strong> The expectation that employees work long days.</li>
+                            <li><strong>Macho culture:</strong> Ideas associated with men, like aggressiveness and strength.</li>
+                        </ul>
+                         <p class="mt-4 text-sm text-gray-500 italic">Be careful of <strong>stereotypes</strong>: fixed ideas that may not be true.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Distance and Familiarity</h3>
+                        <p class="text-gray-600">The relationship between managers and employees varies across cultures. Some are informal, where managers are <strong>accessible</strong> and <strong>approachable</strong>. Others are more formal, where managers are <strong>distant</strong> and <strong>remote</strong>, and employees show a lot of <strong>deference</strong> (accepting decisions without participating). This often relates to how <strong>hierarchical</strong> a company is, meaning how many management <strong>layers</strong> it has.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Culture Types (45.1) -->
+            <div id="page-culture-types" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise 45.1: Culture Types</h2>
+                <p class="text-gray-500 mb-6">Which word combination with 'culture' describes each of the following situations?</p>
+                <div id="culture-types-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkCultureTypes()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="culture-types-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Company Comparison (45.2) -->
+            <div id="page-company-comparison" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise 45.2: Company Comparison</h2>
+                <p class="text-gray-500 mb-6">Read about the two companies and answer the questions.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <article class="prose max-w-none bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-bold">Two Box Companies</h3>
+                        <p>The Associated Box Company (ABC) and the Superior Box Corporation (SBC) both make cardboard boxes.</p>
+                        <p>At ABC there are three levels of management between the CEO and the factory workers. At SBC, there is only one.</p>
+                        <p>Managers at ABC are very distant. They rarely leave their offices, use an executive restaurant, and are hardly ever seen by employees. Employees are never consulted. At SBC, managers share the same canteen and have long meetings with employees before taking important decisions.</p>
+                        <p>SBC has an open-door policy where any employee can see a manager. At ABC, employees must solve problems only with their immediate manager.</p>
+                        <p>At ABC, employees call managers 'sir'. At SBC, everyone uses first names.</p>
+                    </article>
+                    <div id="company-comparison-container" class="space-y-4"></div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkCompanyComparison()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="company-comparison-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const cultureTypesData = [
+            { question: "The men really dominate in this company; they don't make life easy for women at all. All they talk about is football.", answer: "Macho culture" },
+            { question: "Among the management here we try to be fair to people from different minorities, but there are still elements of racism among the workforce.", answer: "Canteen culture" },
+            { question: "Of course, the quality of the work you do after you've been at it for ten hours is not good.", answer: "Long-hours culture" },
+            { question: "There was a time when managers could only wear white shirts in this company - things are a bit less formal now.", answer: "Company/corporate culture" },
+            { question: "Here the male managers talk about the market as if it was some kind of battlefield.", answer: "Macho culture" },
+            { question: "They say that if you go home at 5.30, you can't be doing your job properly, but I'm going anyway.", answer: "Long-hours culture" }
+        ];
+
+        const companyComparisonData = [
+            { question: "Which company is more hierarchical?", answer: "ABC", options: ["ABC", "SBC"] },
+            { question: "Which company is more informal in how people talk to each other?", answer: "SBC", options: ["ABC", "SBC"] },
+            { question: "In which company are managers more approachable?", answer: "SBC", options: ["ABC", "SBC"] },
+            { question: "In which company are managers more remote?", answer: "ABC", options: ["ABC", "SBC"] },
+            { question: "In which company are employees more deferential?", answer: "ABC", options: ["ABC", "SBC"] },
+            { question: "In which company are employees on more equal terms with their bosses?", answer: "SBC", options: ["ABC", "SBC"] }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupCultureTypes();
+            setupCompanyComparison();
+        });
+
+        // --- Exercise 45.1: Culture Types ---
+        function setupCultureTypes() {
+            const container = document.getElementById('culture-types-container');
+            const options = ["Macho culture", "Canteen culture", "Long-hours culture", "Company/corporate culture"];
+            container.innerHTML = cultureTypesData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-sky-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkCultureTypes() {
+            let correctCount = 0;
+            const questionGroups = document.querySelectorAll('#culture-types-container .flex-wrap');
+            questionGroups.forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = cultureTypesData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) {
+                        btn.classList.add('correct');
+                    }
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('culture-types-feedback');
+            const allCorrect = correctCount === cultureTypesData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! Well done." : `You got ${correctCount} out of ${cultureTypesData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 45.2: Company Comparison ---
+        function setupCompanyComparison() {
+            const container = document.getElementById('company-comparison-container');
+            container.innerHTML = companyComparisonData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                        ${item.options.map(opt => `<button class="option-btn px-4 py-2 rounded-md font-medium text-gray-700 hover:bg-sky-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkCompanyComparison() {
+            let correctCount = 0;
+            const questionGroups = document.querySelectorAll('#company-comparison-container .flex-wrap');
+            questionGroups.forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = companyComparisonData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                     if(btn.textContent === correctAnswer) {
+                        btn.classList.add('correct');
+                     }
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('company-comparison-feedback');
+            const allCorrect = correctCount === companyComparisonData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! All answers are correct." : `You got ${correctCount} out of ${companyComparisonData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
