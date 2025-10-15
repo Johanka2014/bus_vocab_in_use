@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Business Across Cultures 2</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Light purple theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a;
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #8b5cf6; /* violet-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #a78bfa; /* violet-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #ede9fe;
+            border-color: #8b5cf6;
+            color: #5b21b6;
+        }
+        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; }
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-violet-700 text-center">Business Across Cultures 2</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Vocabulary</button>
+            <button id="nav-names-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Names Quiz (46.1)</button>
+            <button id="nav-dress-code-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Dress Code Quiz (46.2)</button>
+        </nav>
+
+        <main class="bg-violet-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-violet-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Names</h3>
+                        <p class="text-gray-600">How names are used in business can reveal a lot about a company's culture. In the English-speaking world, it's common to use <strong>first names</strong> (e.g., Tom) even with new acquaintances. However, it's always safest to start with a formal title like <strong>Mr</strong>, <strong>Mrs</strong>, or <strong>Miss</strong>, plus the <strong>family name / surname</strong> (e.g., Mr Brewster). The title <strong>Ms</strong> is a neutral option for women. Remember, titles are never used with first names alone (e.g., "Mr Tom" is incorrect).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Business Cards</h3>
+                        <p class="text-gray-600">A business card typically includes your full name, <strong>job title</strong> (e.g., Sales Director, Senior Partner), and contact information. It's also a place to list professional <strong>qualifications</strong> or certifications after your name (e.g., B.S., C.P.A.).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Dress Code</h3>
+                        <p class="text-gray-600">Workplace attire varies widely. A <strong>business suit</strong> is standard formal wear. For less formal situations, a jacket and trousers that don't match is acceptable. Some companies adopt a <strong>smart casual</strong> look, where suits and ties are less common. A growing trend is <strong>casual Fridays</strong> or <strong>dress-down Fridays</strong>, allowing less formal clothing at the end of the week. Finally, many customer-facing roles require a <strong>uniform</strong> to ensure a consistent appearance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Names Quiz (46.1) -->
+            <div id="page-names-quiz" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 46.1: Names Quiz</h2>
+                <p class="text-gray-500 mb-6">Are these pieces of advice about the English-speaking business world true or false?</p>
+                <div id="names-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkNamesQuiz()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="names-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Dress Code Quiz (46.2) -->
+            <div id="page-dress-code-quiz" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 46.2: Dress Code Quiz</h2>
+                <p class="text-gray-500 mb-6">Which country does each of these people come from, based on the dress code descriptions?</p>
+                <div id="dress-code-quiz-container" class="grid md:grid-cols-2 gap-6"></div>
+                 <div class="mt-8 text-center">
+                    <button onclick="checkDressCodeQuiz()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="dress-code-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const namesQuizData = [
+            { question: "It's possible to introduce yourself by saying your family name then your first name.", answer: "False" },
+            { question: "It's possible to use Mr, Mrs or Miss on its own, or with a first name.", answer: "False" },
+            { question: "British people use Sr and Jr to refer to a father and his son.", answer: "False" },
+            { question: "Americans often show their middle name with an initial.", answer: "True" },
+            { question: "You can always use someone's first name to talk to them, even if you don't know them very well.", answer: "False" },
+            { question: "Ms is being used more and more as a title for women.", answer: "True" },
+            { question: "You can show your qualifications after your name on your business card.", answer: "True" }
+        ];
+
+        const dressCodeQuizData = [
+            { image: "https://johanka2014.github.io/bus_vocab_in_use/1.png", description: "A busy office on a Friday afternoon. People are dressed in casual shirts and trousers.", answer: "Gammaria" },
+            { image: "https://johanka2014.github.io/bus_vocab_in_use/2.png", description: "Two men in very formal, dark business suits are talking.", answer: "Betatania" },
+            { image: "https://johanka2014.github.io/bus_vocab_in_use/3.png", description: "A man in a shirt with no tie and a woman in smart trousers and a blouse.", answer: "Deltatonia" },
+            { image: "https://johanka2014.github.io/bus_vocab_in_use/4.png", description: "A man and woman in business suits, but the suits are patterned and have some color.", answer: "Alphaland" }
+        ];
+        const dressCodeOptions = ["Alphaland", "Betatania", "Gammaria", "Deltatonia"];
+
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupNamesQuiz();
+            setupDressCodeQuiz();
+        });
+
+        // --- Exercise 46.1: Names Quiz ---
+        function setupNamesQuiz() {
+            const container = document.getElementById('names-quiz-container');
+            container.innerHTML = namesQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       <button class="option-btn px-4 py-2 rounded-md font-medium text-gray-700 hover:bg-violet-100">True</button>
+                       <button class="option-btn px-4 py-2 rounded-md font-medium text-gray-700 hover:bg-violet-100">False</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkNamesQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#names-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = namesQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('names-quiz-feedback');
+            const allCorrect = correctCount === namesQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! Well done." : `You got ${correctCount} out of ${namesQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 46.2: Dress Code Quiz ---
+        function setupDressCodeQuiz() {
+            const container = document.getElementById('dress-code-quiz-container');
+            container.innerHTML = dressCodeQuizData.map((item, index) => `
+                <div class="activity-card p-4 flex flex-col">
+                    <img src="${item.image}" alt="${item.description}" class="w-full h-48 object-cover rounded-md mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ede9fe/5b21b6?text=Image+not+found';">
+                    <p class="font-semibold text-gray-700 mb-3 flex-grow">${index + 1}. ${item.description}</p>
+                    <div class="flex flex-wrap gap-2 mt-auto" data-question-index="${index}">
+                        ${dressCodeOptions.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-violet-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkDressCodeQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#dress-code-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = dressCodeQuizData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                 });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('dress-code-quiz-feedback');
+            const allCorrect = correctCount === dressCodeQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! All answers are correct." : `You got ${correctCount} out of ${dressCodeQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+    </script>
+</body>
+</html>
+
