@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Business Across Cultures 3</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefce8; /* Light yellow theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a;
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #eab308; /* yellow-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #facc15; /* yellow-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #fef9c3;
+            border-color: #eab308;
+            color: #854d0e;
+        }
+        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; }
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header --><header class="mb-8">
+            <h1 class="text-4xl font-bold text-yellow-700 text-center">Business Across Cultures 3</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation --><nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-yellow-100">Vocabulary</button>
+            <button id="nav-entertainment-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-yellow-100">Entertainment (47.1)</button>
+            <button id="nav-time-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-yellow-100">Time (47.2)</button>
+            <button id="nav-communication-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-yellow-100">Communication (47.3)</button>
+        </nav>
+
+        <main class="bg-yellow-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary --><div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-yellow-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Entertainment and Hospitality</h3>
+                        <p class="text-gray-600">Different cultures have unique approaches to mixing business with pleasure. This can range from formal <strong>business lunches</strong> where deals are made, to more relaxed evenings at a bar with colleagues. In some cultures, <strong>corporate hospitality</strong> at major sports events is common, while in others, being invited to a colleague's home for dinner is the highest form of respect.</p>
+                    </div>
+                    <!-- New box for Entertainment Across Cultures --><div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">Entertainment Across Cultures</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>In Alphaland:</strong> Entertaining is important. There are long <strong>business lunches</strong> in restaurants, where deals are discussed. Professional and private life are separate, and clients are never invited home.</li>
+                            <li><strong>In Betatania:</strong> Evenings are spent drinking and singing in bars with colleagues and clients.</li>
+                            <li><strong>In Gammaria:</strong> Lunch can be important, but less so than in Alphaland. Important contacts may be invited to dinner at home. <strong>Corporate hospitality</strong> is a big industry, with clients invited to big sports events.</li>
+                            <li><strong>In Deltatonia:</strong> Restaurants are rare outside the capital. Some entertainment takes place when important clients are invited to people's houses for dinner, or go sailing or to country houses for the weekend, etc.</li>
+                        </ul>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="2xl font-semibold text-gray-700 mb-2">B: Time</h3>
+                        <p class="text-gray-600">Attitudes to time are a key cultural variable. This includes working hours, the importance of <strong>punctuality</strong>, and the concept of <strong>presenteeism</strong> (being at work just for the sake of it). Even meal times, like the preference for a long lunch over a <strong>working breakfast</strong>, can differ. Views on <strong>public holidays</strong> and annual leave also vary significantly from country to country.</p>
+                    </div>
+                    <!-- New box for Time in Busyville --><div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">Time in Busyville</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li>People start work at eight, and officially finish at six, though many managers stay much longer. There is a culture of <strong>presenteeism</strong>: being at work when you don't need to be.</li>
+                            <li>There is a two-hour lunch break, and a lot of business is done over restaurant lunches. (Lunch is the main meal. The <strong>working breakfast</strong> is rare.) There are no snacks between meals, just coffee, so eat properly at meal times.</li>
+                            <li>As for <strong>punctuality</strong>, you can arrive up to 15 minutes 'late' for meetings. If invited to someone's house (unusual in business), arrive 15–30 minutes after the time given.</li>
+                            <li>Don't phone people at home about work, and don't phone them at all after 9 pm.</li>
+                            <li>There are a lot of <strong>public holidays</strong> (about 15) during the year. Busyville is empty in August, as many companies close completely for four weeks. Employees have five weeks' <strong>holiday</strong> a year and they usually take four of them in August. (BrE: holiday, AmE: vacation)</li>
+                        </ul>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Cross-cultural Communication</h3>
+                        <p class="text-gray-600">Beyond words, communication involves many non-verbal cues that can lead to misunderstandings. These include personal space (<strong>distance</strong>), <strong>eye contact</strong>, the use of <strong>gestures</strong>, forms of <strong>greetings</strong>, the role of <strong>humour</strong>, comfort with <strong>physical contact</strong>, traditions around giving <strong>presents</strong>, and even the role of <strong>silence</strong> in conversations.</p>
+                    </div>
+                    <!-- New box for Other Areas of Potential Cultural Misunderstanding --><div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">Other Areas of Potential Cultural Misunderstanding</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>a) distance when talking to people:</strong> what is comfortable?</li>
+                            <li><strong>b) eye contact:</strong> how much of the time do people look directly at each other?</li>
+                            <li><strong>c) gesture:</strong> do people make lots of facial gestures? How much do they move their arms and hands?</li>
+                            <li><strong>d) greetings/goodbyes:</strong> do people shake hands every time? Are there fixed phrases to say?</li>
+                            <li><strong>e) humour:</strong> is this a good way of relaxing people? Or is it out of place in some contexts?</li>
+                            <li><strong>f) physical contact:</strong> how much do people touch each other?</li>
+                            <li><strong>g) presents:</strong> when should you give them? When should you open them? What should you say when you receive one?</li>
+                            <li><strong>h) rules of conversation and the role of silence:</strong> how long can people be silent before they feel uncomfortable? Is it acceptable to interrupt when others are speaking?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Entertainment Quiz (47.1) --><div id="page-entertainment-quiz" class="page">
+                <h2 class="text-2xl font-bold text-yellow-800 mb-2">Exercise 47.1: Entertainment Quiz</h2>
+                <p class="text-gray-500 mb-6">In which country might you hear these things?</p>
+                <div id="entertainment-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkEntertainmentQuiz()" class="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="entertainment-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Time Quiz (47.2) --><div id="page-time-quiz" class="page">
+                <h2 class="text-2xl font-bold text-yellow-800 mb-2">Exercise 47.2: Time Quiz</h2>
+                <p class="text-gray-500 mb-6">Tick the things this visitor to Busyville does right, and put a cross by her mistakes.</p>
+                <div id="time-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkTimeQuiz()" class="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="time-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+            
+            <!-- Page 4: Communication Quiz (47.3) --><div id="page-communication-quiz" class="page">
+                <h2 class="text-2xl font-bold text-yellow-800 mb-2">Exercise 47.3: Communication Quiz</h2>
+                <p class="text-gray-500 mb-6">Which points about cross-cultural communication are referred to in this story?</p>
+                 <div class="activity-card mb-6">
+                    <p class="italic text-gray-600">Sally, a student, is working for a company abroad for work experience. The company has employees from all over the world. The head of the company, Henrik, invites Sally to a barbecue for his employees at his home, at 3 pm on Saturday...</p>
+                </div>
+                <div id="communication-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkCommunicationQuiz()" class="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="communication-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const entertainmentQuizData = [
+            { question: "How about a trip out tomorrow afternoon? We could see some horse racing and have a glass of champagne.", answer: "Gammaria" },
+            { question: "Do come out with us this evening! I know some great bars. How's your singing?", answer: "Betatania" },
+            { question: "What are you doing this weekend? You could come to our summer cottage. You'll meet my family and we can take the boat out.", answer: "Deltatonia" },
+            { question: "Let's get out of the office to discuss the deal. I know a nice restaurant near here, with some very good local dishes.", answer: "Alphaland" }
+        ];
+        const entertainmentOptions = ["Alphaland", "Betatania", "Gammaria", "Deltatonia"];
+
+        const timeQuizData = [
+            { statement: "I phoned my contact in her office at 7.30 pm.", answer: "Mistake" },
+            { statement: "I suggested a working breakfast the next morning.", answer: "Mistake" },
+            { statement: "She wasn't keen, so I suggested lunch.", answer: "Right" },
+            { statement: "We arranged to meet at her office at 12.30. I arrived at 12.45.", answer: "Right" }, 
+            { statement: "That evening I wanted to check something, so I found her name in the phone book and phoned her at home.", answer: "Mistake" },
+            { statement: "I said I would be back in Busyville in mid-August.", answer: "Mistake" },
+            { statement: "Not a good time, she said, so I suggested September.", answer: "Right" }
+        ];
+
+        const communicationQuizData = [
+            { scenario: "She is the first to arrive, at exactly 3 o'clock. When the others arrive, some shake hands with each other. Some kiss on one cheek, others on both cheeks. Others arrive and say hello without kissing or shaking hands.", answer: "greetings/goodbyes" },
+            { scenario: "Some bring wine or flowers, which the host does not open and puts to one side. Others bring nothing.", answer: "presents" },
+            { scenario: "In conversations, some people move their arms around a lot and seem to make signs with their hands, others keep their hands by their sides.", answer: "gesture" },
+            { scenario: "Some people do not let others finish what they are saying, and others say almost nothing; the people with them seem upset and move away when they can.", answer: "rules of conversation and the role of silence" },
+            { scenario: "Some people look directly at the person they are talking to. Others look away more.", answer: "eye contact" },
+            { scenario: "Some touch the arm of the other person whenever they are speaking to them.", answer: "physical contact" },
+            { scenario: "She notices that some people seem to be slowly moving backwards across the garden as the conversation goes on, while the person with them is moving forward.", answer: "distance when talking to people" },
+            { scenario: "Later, somebody makes a joke but nobody laughs. Everyone goes quiet.", answer: "humour" }
+        ];
+        const communicationOptions = ["distance when talking to people", "eye contact", "gesture", "greetings/goodbyes", "humour", "physical contact", "presents", "rules of conversation and the role of silence"];
+
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupEntertainmentQuiz();
+            setupTimeQuiz();
+            setupCommunicationQuiz();
+        });
+
+        // --- Exercise 47.1: Entertainment Quiz ---
+        function setupEntertainmentQuiz() {
+            const container = document.getElementById('entertainment-quiz-container');
+            container.innerHTML = entertainmentQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${entertainmentOptions.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-yellow-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+        
+        function checkEntertainmentQuiz() {
+             let correctCount = 0;
+            document.querySelectorAll('#entertainment-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = entertainmentQuizData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('entertainment-quiz-feedback');
+            const allCorrect = correctCount === entertainmentQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! Well done." : `You got ${correctCount} out of ${entertainmentQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 47.2: Time Quiz ---
+        function setupTimeQuiz() {
+             const container = document.getElementById('time-quiz-container');
+            container.innerHTML = timeQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.statement}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       <button class="option-btn px-4 py-2 rounded-md font-medium text-gray-700 hover:bg-yellow-100">Right</button>
+                       <button class="option-btn px-4 py-2 rounded-md font-medium text-gray-700 hover:bg-yellow-100">Mistake</button>
+                    </div>
+                </div>
+            `).join('');
+             container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkTimeQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#time-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = timeQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('time-quiz-feedback');
+            const allCorrect = correctCount === timeQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! All answers are correct." : `You got ${correctCount} out of ${timeQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+        
+        // --- Exercise 47.3: Communication Quiz ---
+        function setupCommunicationQuiz() {
+            const container = document.getElementById('communication-quiz-container');
+            container.innerHTML = communicationQuizData.map((item, index) => `
+                 <div class="activity-card p-4">
+                    <p class="italic text-gray-700 mb-3">${index + 1}. ${item.scenario}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                        ${communicationOptions.map(opt => `<button class="option-btn px-3 py-2 text-xs rounded-md font-medium text-gray-700 hover:bg-yellow-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            container.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        }
+
+        function checkCommunicationQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#communication-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = communicationQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('communication-quiz-feedback');
+            const allCorrect = correctCount === communicationQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! You've identified all the cultural points." : `You got ${correctCount} out of ${communicationQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
+
