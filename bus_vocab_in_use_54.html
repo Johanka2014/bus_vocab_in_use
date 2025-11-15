@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Meetings 1</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdf4; /* Light green theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a;
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #22c55e; /* green-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #4ade80; /* green-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #f0fdf4;
+            border-color: #22c55e;
+            color: #15803d;
+        }
+        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; }
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-green-700 text-center">Meetings 1: Types of Meeting</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Vocabulary</button>
+            <button id="nav-verbs-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Meeting Verbs (54.1)</button>
+            <button id="nav-types-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Meeting Types (54.2)</button>
+            <button id="nav-feedback-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-green-100">Meeting Feedback (54.3)</button>
+        </nav>
+
+        <main class="bg-green-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-green-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Word Combinations with 'Meeting'</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>arrange / set up / fix:</strong> To organize a meeting.</li>
+                            <li><strong>bring forward:</strong> To make a meeting earlier than planned.</li>
+                            <li><strong>put back / postpone:</strong> To make a meeting later than planned.</li>
+                            <li><strong>cancel:</strong> To decide not to have a meeting.</li>
+                            <li><strong>run / chair:</strong> To be in charge of a meeting.</li>
+                            <li><strong>attend:</strong> To go to a meeting.</li>
+                            <li><strong>miss:</strong> To not go to a meeting.</li>
+                        </ul>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Types of Meeting</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>chat:</strong> An informal discussion.</li>
+                            <li><strong>brainstorming:</strong> A meeting to produce as many ideas as possible.</li>
+                            <li><strong>project/team meeting:</strong> A meeting for employees on a specific activity.</li>
+                            <li><strong>departmental meeting:</strong> A meeting for a specific department.</li>
+                            <li><strong>meeting with suppliers/customers:</strong> To negotiate prices or discuss contracts.</li>
+                            <li><strong>board meeting:</strong> A formal meeting of a company's directors.</li>
+                            <li><strong>AGM (Annual General Meeting):</strong> Where shareholders discuss the annual report.</li>
+                            <li><strong>EGM (Extraordinary General Meeting):</strong> A special shareholders' meeting for an important issue (e.g., a merger).</li>
+                        </ul>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: How was the meeting?</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>Positive:</strong> productive, useful discussions, reached an agreement, covered a lot of ground, got through a lot, kept things moving, stick to the point, achieved a lot.</li>
+                            <li><strong>Negative:</strong> a waste of time, digressions, rambling, wandering off the point, show off.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Meeting Verbs Quiz (54.1) -->
+            <div id="page-verbs-quiz" class="page">
+                <h2 class="text-2xl font-bold text-green-800 mb-2">Exercise 54.1: Meeting Verbs Quiz</h2>
+                <p class="text-gray-500 mb-6">Choose the correct verb to complete the sentences.</p>
+                <div id="verbs-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkVerbsQuiz()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="verbs-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Meeting Types Quiz (54.2) -->
+            <div id="page-types-quiz" class="page">
+                <h2 class="text-2xl font-bold text-green-800 mb-2">Exercise 54.2: Meeting Types Quiz</h2>
+                <p class="text-gray-500 mb-6">At which type of meeting would you be most likely to hear each of these things?</p>
+                <div id="types-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkTypesQuiz()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="types-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+            
+            <!-- Page 4: Meeting Feedback Quiz (54.3) -->
+            <div id="page-feedback-quiz" class="page">
+                <h2 class="text-2xl font-bold text-green-800 mb-2">Exercise 54.3: Meeting Feedback Quiz</h2>
+                <p class="text-gray-500 mb-6">Choose the correct word or phrase to complete the consultant's advice.</p>
+                <div id="feedback-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkFeedbackQuiz()" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="feedback-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const verbsQuizData = [
+            { question: "A meeting of the Tennis Club Committee was (1) ___ for 1 March...", options: ["arranged/set up", "attended", "missed"], answer: "arranged/set up" },
+            { question: "...but not everyone could (2) ___ it...", options: ["attend", "cancel", "run"], answer: "attend" },
+            { question: "...so it was (3) ___ until March 31.", options: ["put back/postponed", "brought forward", "chaired"], answer: "put back/postponed" },
+            { question: "...eventually we (4) ___ it to March 15.", options: ["brought it forward", "missed", "canceled"], answer: "brought it forward" },
+            { question: "The chairperson (5) ___ it very efficiently...", options: ["chaired/ran", "attended", "missed"], answer: "chaired/ran" },
+            { question: "Only one committee member (6) ___ the meeting.", options: ["missed", "attended", "postponed"], answer: "missed" }
+        ];
+
+        const typesQuizData = [
+            { question: "I'm pleased to announce another good year for shareholders of this company.", answer: "AGM" },
+            { question: "I know this sounds crazy, but how about giving away 100,000 free samples?", answer: "brainstorming" },
+            { question: "Things in the sales department are getting out of control. We should all start making a real effort.", answer: "departmental meeting" },
+            { question: "So, you think you can provide 10,000 a month at a unit cost of £4.90?", answer: "meeting with suppliers" },
+            { question: "Have you heard? Suzanne is being fired: apparently her sales figures aren't good enough.", answer: "chat" },
+            { question: "That's a deal then. Looking forward to working with you. I'm sure you won't be disappointed.", answer: "meeting with a customer" },
+            { question: "Amazingly, we're ahead of schedule on this project.", answer: "project meeting" },
+            { question: "I recommend to shareholders that you accept Megabook's offer for our company.", answer: "EGM" },
+            { question: "As you know, Megabook wants to buy this company. As chief financial officer, what do you think of their offer, Saleem?", answer: "board meeting" }
+        ];
+        const typesOptions = ["chat", "brainstorming", "project meeting", "departmental meeting", "meeting with suppliers", "meeting with a customer", "board meeting", "AGM", "EGM"];
+        
+        const feedbackQuizData = [
+            { question: "Of course, everyone wants meetings to be ___ and achieve results.", options: ["productive", "a waste of time", "rambling"], answer: "productive" },
+            { question: "But from personal experience, we know that a lot of them are a ___ of time, and nothing is achieved.", options: ["waste", "digression", "ground"], answer: "waste" },
+            { question: "In order for discussion to be useful, people should not go off on ___...", options: ["digressions", "a point", "a meeting"], answer: "digressions" },
+            { question: "...they should ___ to the point.", options: ["stick", "wander", "ramble"], answer: "stick" },
+            { question: "And we've all seen those annoying people who keep on ___ off the point and ___.", options: ["wandering / rambling", "sticking / achieving", "showing / moving"], answer: "wandering / rambling" },
+            { question: "And then there are those who want to ___ off: to show how important and clever they are.", options: ["show", "cover", "keep"], answer: "show" },
+            { question: "The chair should keep things ___.", options: ["moving", "rambling", "off"], answer: "moving" },
+            { question: "If they do this, it's amazing how much ___ you can cover.", options: ["ground", "time", "digressions"], answer: "ground" }
+        ];
+
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupVerbsQuiz();
+            setupTypesQuiz();
+            setupFeedbackQuiz();
+        });
+
+        // --- Generic Button Click Handler ---
+        function handleOptionClick(event) {
+            const button = event.target;
+            const group = button.parentElement;
+            group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+
+        // --- Exercise 54.1: Verbs Quiz ---
+        function setupVerbsQuiz() {
+            const container = document.getElementById('verbs-quiz-container');
+            container.innerHTML = verbsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-green-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+        
+        function checkVerbsQuiz() {
+             let correctCount = 0;
+            document.querySelectorAll('#verbs-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = verbsQuizData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('verbs-quiz-feedback');
+            const allCorrect = correctCount === verbsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! Well done." : `You got ${correctCount} out of ${verbsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 54.2: Types Quiz ---
+        function setupTypesQuiz() {
+             const container = document.getElementById('types-quiz-container');
+            container.innerHTML = typesQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${typesOptions.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-green-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+             container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+
+        function checkTypesQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#types-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = typesQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('types-quiz-feedback');
+            const allCorrect = correctCount === typesQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! All answers are correct." : `You got ${correctCount} out of ${typesQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+        
+        // --- Exercise 54.3: Feedback Quiz ---
+        function setupFeedbackQuiz() {
+            const container = document.getElementById('feedback-quiz-container');
+            container.innerHTML = feedbackQuizData.map((item, index) => `
+                 <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${index + 1}. ${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                        ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-green-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+
+        function checkFeedbackQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#feedback-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = feedbackQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('feedback-quiz-feedback');
+            const allCorrect = correctCount === feedbackQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! You've got all the feedback vocabulary correct." : `You got ${correctCount} out of ${feedbackQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
