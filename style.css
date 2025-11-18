@@ -1,0 +1,182 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8f0; /* Light green background */
+    color: #333;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center; /* This centers the header block */
+}
+
+/* Header Styling */
+.header {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 15px;
+    border-radius: 8px; /* ADDED: Rounds the corners of the header container */
+}
+
+/* --- CHANGE: Rounding the header image corners --- */
+.header img {
+    max-width: 650px;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* ADDED: Rounds the corners of the image itself */
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-content img {
+    max-width: 650px;
+    height: auto;
+    border-radius: 8px; /* This was already here, so the style will now match */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Navigation Buttons Container */
+.navigation {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Button Styling */
+.nav-button {
+    background-color: #4CAF50; /* A pleasant green */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Hide the back button specifically on the first page */
+#back-button.hidden {
+    display: none;
+}
+
+/* --- STYLES FOR PAGE 2 INTERACTIVE LAYOUT --- */
+
+/* Two-Column Container */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px; /* Space between the columns */
+    width: 100%;
+    max-width: 1200px; /* Limit the max width of the layout */
+    margin: 0 auto; /* Center the layout */
+}
+
+/* Individual Column Styling */
+.column {
+    flex: 1; /* Each column will try to take up equal space */
+    min-width: 300px; /* Minimum width before stacking */
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.column img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Matching Game Styles */
+.matching-game h3 {
+    text-align: center;
+    color: #333;
+}
+
+.word-lists {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.word-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 48%;
+}
+
+.word-list li {
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #e9f5e9;
+    border: 1px solid #d0e0d0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.word-list li:hover {
+    background-color: #d4ead4;
+    transform: scale(1.02);
+}
+
+/* Styles for interactive states */
+.word-list li.selected {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.word-list li.correct {
+    background-color: #a3d9a5;
+    color: #2e7d32;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.word-list li.incorrect {
+    background-color: #ffcdd2;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Feedback and Controls */
+.activity-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#feedback-message {
+    margin-top: 15px;
+    font-weight: bold;
+    height: 20px;
+}
