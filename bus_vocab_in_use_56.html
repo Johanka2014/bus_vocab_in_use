@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Meetings 3</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ff; /* Light indigo theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a;
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #6366f1; /* indigo-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #818cf8; /* indigo-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #e0e7ff;
+            border-color: #6366f1;
+            color: #3730a3;
+        }
+        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; }
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-indigo-700 text-center">Meetings 3: Points of View</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Vocabulary</button>
+            <button id="nav-expressions-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Correct Expressions (56.1)</button>
+            <button id="nav-polite-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Polite Invitations (56.2)</button>
+            <button id="nav-opinion-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Making Your Point (56.3)</button>
+        </nav>
+
+        <main class="bg-indigo-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-indigo-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Opening the Meeting</h3>
+                        <p class="text-gray-600 mb-2">There are several standard ways to start a meeting and state its purpose:</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>Getting started:</strong></li>
+                            <p>"Let's get down to business."</p>
+                            <p>"Shall we make a start?"</p>
+                            <p>"Let's begin, shall we?"</p>
+                            <p>"It's about time we got started."</p>
+                            <li><strong>Stating purpose:</strong></li>
+                        <p>"As you know / As you are aware..."</p>
+                        <p>"I've called/arranged this meeting to..."</p>
+                        <p>"The main objective/purpose is to..."</p>
+                        </ul>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Inviting People to Speak</h3>
+                        <p class="text-gray-600 mb-2">To encourage participation, you can use these phrases:</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>To start the discussion:</strong> </p>
+                            <p>"Would you like to open the discussion / kick off?"</p>
+                            <p>"Perhaps you'd like to get the ball rolling."</li>
+                            <li><strong>Asking for specific opinion:</strong></li>
+                            <p>"What about you?"</p>
+                            <p>"What are your feelings/views on this?"</p>
+                            <p>"What do you think?"</p>
+                            <li><strong>Asking the group:</strong> "What's the general feeling on this?"</li>
+                        </ul>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Making Your Point</h3>
+                        <p class="text-gray-600 mb-2">When expressing opinions, clarity is key. Note that <em>"Of course"</em> and <em>"Obviously"</em> imply others should already know the fact, so use them carefully to avoid sounding rude.</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <p>"I believe..."</p>
+                            <p>"In my opinion..."</p>
+                            <p>"Personally, I think..."</p>
+                            <p>"The way I see it..."</p>
+                            <p>"As I see it..."</p>
+                            <p>"It's clear to me that..."</p>
+                            <p>"It looks to me as if..."</p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Correct Expressions Quiz (56.1) -->
+            <div id="page-expressions-quiz" class="page">
+                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 56.1: Correct Expressions</h2>
+                <p class="text-gray-500 mb-6">Identify the correct version of the expression used in meetings.</p>
+                <div id="expressions-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkExpressionsQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="expressions-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Polite Invitations Quiz (56.2) -->
+            <div id="page-polite-quiz" class="page">
+                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 56.2: Polite Invitations</h2>
+                <p class="text-gray-500 mb-6">The commands on the left are too aggressive. Choose the more natural and polite way to invite someone to speak.</p>
+                <div id="polite-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkPoliteQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="polite-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Making Your Point Quiz (56.3) -->
+            <div id="page-opinion-quiz" class="page">
+                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 56.3: Making Your Point</h2>
+                <p class="text-gray-500 mb-6">Match the sentence beginning to the correct ending to form a logical opinion.</p>
+                <div id="opinion-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkOpinionQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="opinion-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const expressionsQuizData = [
+            { question: "1. It's about time we ______ started.", options: ["get", "got"], answer: "got" },
+            { question: "2. Let's begin, ______ we?", options: ["let", "shall"], answer: "shall" },
+            { question: "3. Shall we ______ a start?", options: ["do", "make"], answer: "make" },
+            { question: "4. Let's get ______ to business.", options: ["up", "down"], answer: "down" },
+            { question: "5. I've ______ this meeting to...", options: ["call", "called"], answer: "called" },
+            { question: "6. The main ______ is to...", options: ["subject", "objective"], answer: "objective" },
+            { question: "7. As you are ______...", options: ["beware", "aware"], answer: "aware" }
+        ];
+
+        const politeQuizData = [
+            { question: "John, kick off.", options: ["John, start now.", "John, would you like to kick off?"], answer: "John, would you like to kick off?" },
+            { question: "Kay, open the discussion.", options: ["Kay, would you like to open the discussion?", "Kay, open it."], answer: "Kay, would you like to open the discussion?" },
+            { question: "Len, get the ball rolling.", options: ["Len, perhaps you'd like to get the ball rolling?", "Len, roll the ball."], answer: "Len, perhaps you'd like to get the ball rolling?" },
+            { question: "Monica, tell us what you think.", options: ["Monica, say something.", "Monica, what do you think?"], answer: "Monica, what do you think?" },
+            { question: "Nigel, give us your views.", options: ["Nigel, what are your views on this?", "Nigel, speak up."], answer: "Nigel, what are your views on this?" },
+            { question: "Olive, what do you feel?", options: ["Olive, your feelings?", "Olive, what are your feelings on this?"], answer: "Olive, what are your feelings on this?" }
+        ];
+
+        const opinionQuizData = [
+            { question: "1. The way...", options: ["...personally, I think.", "...I see it, you should look at what we produce."], answer: "...I see it, you should look at what we produce." },
+            { question: "2. Personally,...", options: ["...I think that the prizes we win help us.", "...as if design people live on another planet."], answer: "...I think that the prizes we win help us." },
+            { question: "3. It looks to me...", options: ["...as if the design people think of themselves as living on another planet.", "...opinion, we have to think of the needs."], answer: "...as if the design people think of themselves as living on another planet." },
+            { question: "4. It's clear to...", options: ["...me that they set a very bad example.", "...I see it, costs are high."], answer: "...me that they set a very bad example." },
+            { question: "5. In my...", options: ["...view, prizes are good.", "...opinion, we have to think of the needs of each department."], answer: "...opinion, we have to think of the needs of each department." }
+        ];
+
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupExpressionsQuiz();
+            setupPoliteQuiz();
+            setupOpinionQuiz();
+        });
+
+        // --- Generic Button Click Handler ---
+        function handleOptionClick(event) {
+            const button = event.target;
+            const group = button.parentElement;
+            group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+
+        // --- Exercise 56.1: Expressions Quiz ---
+        function setupExpressionsQuiz() {
+            const container = document.getElementById('expressions-quiz-container');
+            container.innerHTML = expressionsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-indigo-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+        
+        function checkExpressionsQuiz() {
+             let correctCount = 0;
+            document.querySelectorAll('#expressions-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = expressionsQuizData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('expressions-quiz-feedback');
+            const allCorrect = correctCount === expressionsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! Well done." : `You got ${correctCount} out of ${expressionsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 56.2: Polite Quiz ---
+        function setupPoliteQuiz() {
+             const container = document.getElementById('polite-quiz-container');
+            container.innerHTML = politeQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3 text-red-500">Aggressive: "${item.question}"</p>
+                    <p class="text-sm text-gray-600 mb-2">Choose the polite version:</p>
+                    <div class="flex flex-col gap-2" data-question-index="${index}">
+                       ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-indigo-100 text-left">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+             container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+
+        function checkPoliteQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#polite-quiz-container .flex-col').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = politeQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('polite-quiz-feedback');
+            const allCorrect = correctCount === politeQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! You are very diplomatic." : `You got ${correctCount} out of ${politeQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+        
+        // --- Exercise 56.3: Opinion Quiz ---
+        function setupOpinionQuiz() {
+            const container = document.getElementById('opinion-quiz-container');
+            container.innerHTML = opinionQuizData.map((item, index) => `
+                 <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${item.question}</p>
+                    <div class="flex flex-col gap-2" data-question-index="${index}">
+                        ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-indigo-100 text-left">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+
+        function checkOpinionQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#opinion-quiz-container .flex-col').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = opinionQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('opinion-quiz-feedback');
+            const allCorrect = correctCount === opinionQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! You matched all the opinions correctly." : `You got ${correctCount} out of ${opinionQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
