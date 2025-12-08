@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Meetings 5</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdfa; /* Light teal theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #0f766e; /* teal-700 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #14b8a6; /* teal-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #2dd4bf; /* teal-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #ccfbf1;
+            border-color: #14b8a6;
+            color: #115e59;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-teal-700 text-center">Meetings 5: Discussion Techniques</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-teal-100">Vocabulary</button>
+            <button id="nav-dialogue-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-teal-100">Dialogue (58.1)</button>
+            <button id="nav-ordering-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-teal-100">Report Ordering (58.2)</button>
+        </nav>
+
+        <main class="bg-teal-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-teal-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Hedging</h3>
+                        <p class="text-gray-600 mb-2"><strong>Hedging</strong> is when you avoid disagreeing directly to be polite or diplomatic. Common phrases include:</p>
+                        <ul class="list-disc list-outside space-y-1 text-gray-700 ml-5 text-sm">
+                            <li>"I <strong>take your point</strong> about punctuality, but..."</li>
+                            <li>"I <strong>understand what you're saying</strong> about..., but..."</li>
+                            <li>"I <strong>see/know what you mean</strong>, but..."</li>
+                            <li>"I <strong>hear where you're coming from</strong> on this, but..."</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Controlling the Discussion</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-teal-600">Interrupting Politely</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>"Can I come in here?"</li>
+                                    <li>"If I can just stop you for a moment..."</li>
+                                    <li>"Sorry to interrupt you, but..."</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-teal-600">Checking Understanding</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>"Are you saying/suggesting that...?"</li>
+                                    <li>"Are you implying that...?"</li>
+                                    <li>"If I understand you correctly..."</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-teal-600">Referring Back</h4>
+                            <p class="text-sm text-gray-700">"As we were saying earlier...", "To go back to what I was just saying..."</p>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Outcomes & Conclusions</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>Consensus:</strong> Something most people can agree with.</li>
+                            <li><strong>Compromise:</strong> An agreement where people accept less than they originally wanted.</li>
+                            <li><strong>Agree to disagree:</strong> Accepting that a disagreement cannot be resolved.</li>
+                            <li><strong>Concluding phrases:</strong> "I'm afraid we're running out of time...", "To go over what's been said...", "I think that's it."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Dialogue Quiz (58.1) -->
+            <div id="page-dialogue-quiz" class="page">
+                <h2 class="text-2xl font-bold text-teal-800 mb-2">Exercise 58.1: Discussion Techniques</h2>
+                <p class="text-gray-500 mb-6">Complete the dialogue using the correct techniques (Hedging, Interrupting, Referring back, Checking).</p>
+                <div id="dialogue-quiz-container" class="space-y-6"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkDialogueQuiz()" class="px-6 py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="dialogue-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Ordering Quiz (58.2) -->
+            <div id="page-ordering-quiz" class="page">
+                <h2 class="text-2xl font-bold text-teal-800 mb-2">Exercise 58.2: Meeting Report</h2>
+                <p class="text-gray-500 mb-6">Reorder the extracts to form a logical newspaper report about a public meeting. Assign a position (1-6) to each text block.</p>
+                <div id="ordering-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkOrderingQuiz()" class="px-6 py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600 font-semibold shadow-sm">Check Order</button>
+                    <p id="ordering-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const dialogueQuizData = [
+            { 
+                speaker: "B", 
+                prompt: "(hedge: coming)", 
+                textBefore: "", 
+                textAfter: " but there are limits to how much we can ask of each individual employee.", 
+                options: ["I hear where you're coming from on this,", "I'm coming to the point,", "Coming from my perspective,"], 
+                answer: "I hear where you're coming from on this," 
+            },
+            { 
+                speaker: "A", 
+                prompt: "(interrupt: stop)", 
+                textBefore: "", 
+                textAfter: " you have to admit things were different then. That was in the 1980s.", 
+                options: ["Stop talking right now,", "If I can just stop you there,", "Please stop saying that,"], 
+                answer: "If I can just stop you there," 
+            },
+            { 
+                speaker: "B", 
+                prompt: "(hedge: understand)", 
+                textBefore: "", 
+                textAfter: " but that's not so long ago. The pressures were the same.", 
+                options: ["I understand your words,", "I understand what you're saying,", "I understand the concept,"], 
+                answer: "I understand what you're saying," 
+            },
+            { 
+                speaker: "C", 
+                prompt: "(refer back: go back)", 
+                textBefore: "", 
+                textAfter: " there are limits as to what we can ask from the creatives.", 
+                options: ["To go back to what I was just saying,", "Going back to the start,", "To go backwards,"], 
+                answer: "To go back to what I was just saying," 
+            },
+            { 
+                speaker: "A", 
+                prompt: "(interrupt: interrupt)", 
+                textBefore: "", 
+                textAfter: " I hate that word 'creative'. A lot of them haven't created anything except chaos.", 
+                options: ["I must interrupt,", "Sorry to interrupt you, but", "Interrupting you now,"], 
+                answer: "Sorry to interrupt you, but" 
+            },
+            { 
+                speaker: "C", 
+                prompt: "(check: imply)", 
+                textBefore: "", 
+                textAfter: " that the creative department has people who shouldn't be there?", 
+                options: ["Are you implying", "Do you imply", "Is your implication"], 
+                answer: "Are you implying" 
+            }
+        ];
+
+        // The sequence is 4, 5, 6, 1, 2, 3 based on the logical flow of the meeting report.
+        const orderingQuizData = [
+            { id: 1, text: "...a compromise or a consensus. There was total disagreement. After four hours of heated discussion, Ms Johns said, 'It's been a very interesting discussion but we're running...", position: 4 },
+            { id: 2, text: "...out of time and we're going to have to stop there. I'll let you know the committee's decision about the solution to this problem by the end of the month...", position: 5 },
+            { id: 3, text: "...So unless anyone has anything else to add, I think that's it. A very useful meeting. Thank you all for coming.'", position: 6 },
+            { id: 4, text: "There were strong differences of opinion at last night's meeting to discuss banning cars from the centre of Newtown. The chair, Ms Yolanda Johns...", position: 1 },
+            { id: 5, text: "...of the town council's transport committee, organized the meeting well. A lot of ground was covered and both sides of the argument were heard. To sum up...", position: 2 },
+            { id: 6, text: "...the arguments, there were those who thought that banning cars would damage shops... Others disagreed, saying it would improve the quality of life. It was not possible to come to...", position: 3 }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupDialogueQuiz();
+            setupOrderingQuiz();
+        });
+
+        // --- Exercise 58.1: Dialogue Quiz ---
+        function setupDialogueQuiz() {
+            const container = document.getElementById('dialogue-quiz-container');
+            container.innerHTML = dialogueQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-bold text-teal-800 mb-1">Speaker ${item.speaker}:</p>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                        <span class="text-gray-700">${item.textBefore}</span>
+                        <select id="dialogue-${index}" class="border-2 border-teal-200 rounded-md p-2 text-sm bg-white focus:border-teal-500 outline-none">
+                            <option value="">Select expression...</option>
+                            ${item.options.sort(() => Math.random() - 0.5).map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                        <span class="text-gray-700">${item.textAfter}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function checkDialogueQuiz() {
+            let correctCount = 0;
+            dialogueQuizData.forEach((item, index) => {
+                const select = document.getElementById(`dialogue-${index}`);
+                const parent = select.closest('.activity-card');
+                
+                // Reset styling
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                
+                if (select.value === item.answer) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedbackEl = document.getElementById('dialogue-quiz-feedback');
+            const allCorrect = correctCount === dialogueQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! You've mastered the discussion techniques." : `You got ${correctCount} out of ${dialogueQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 58.2: Ordering Quiz ---
+        function setupOrderingQuiz() {
+            const container = document.getElementById('ordering-quiz-container');
+            // Shuffle display for the user initially
+            const shuffledData = [...orderingQuizData].sort(() => Math.random() - 0.5);
+            
+            container.innerHTML = shuffledData.map((item, index) => `
+                <div class="activity-card p-3 flex items-start gap-4" data-id="${item.id}">
+                    <div class="flex-shrink-0">
+                        <label class="block text-xs font-bold text-gray-500 mb-1">Order</label>
+                        <select class="order-select w-16 border-2 border-teal-200 rounded-md p-1 text-center font-bold text-teal-700 focus:border-teal-500 outline-none">
+                            <option value="">-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                    <p class="text-sm text-gray-700 leading-relaxed pt-1">${item.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function checkOrderingQuiz() {
+            let correctCount = 0;
+            const container = document.getElementById('ordering-quiz-container');
+            const cards = container.querySelectorAll('.activity-card');
+            
+            cards.forEach(card => {
+                const id = parseInt(card.getAttribute('data-id'));
+                const select = card.querySelector('.order-select');
+                const userVal = parseInt(select.value);
+                const correctPos = orderingQuizData.find(d => d.id === id).position;
+
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+
+                if (userVal === correctPos) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedbackEl = document.getElementById('ordering-quiz-feedback');
+            const allCorrect = correctCount === orderingQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! The report makes sense now." : `You have ${correctCount} out of 6 in the correct position.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
