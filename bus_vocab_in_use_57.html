@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Meetings 4</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff1f2; /* Light rose theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a;
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #e11d48; /* rose-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #fb7185; /* rose-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #ffe4e6;
+            border-color: #e11d48;
+            color: #881337;
+        }
+        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; }
+        .option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-rose-700 text-center">Meetings 4: Agreement & Disagreement</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-rose-100">Vocabulary</button>
+            <button id="nav-definitions-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-rose-100">Definitions (57.1)</button>
+            <button id="nav-agreeing-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-rose-100">Agreeing (57.2)</button>
+            <button id="nav-disagreeing-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-rose-100">Disagreeing (57.3)</button>
+        </nav>
+
+        <main class="bg-rose-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-rose-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Discussion without Argument?</h3>
+                        <p class="text-gray-600 mb-2">In a meeting, you <strong>discuss</strong> things. People may have a <strong>difference of opinion</strong>, but it is vital to remain <strong>courteous</strong> (polite).</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li>It is NOT OK to be <strong>impolite</strong>, <strong>rude</strong>, or to <strong>lose your temper</strong> (become angry).</li>
+                            <li>An <strong>argument</strong> is when people disagree, often with anger.</li>
+                            <li>To <strong>prove your point</strong> is to show that your idea is true.</li>
+                        </ul>
+                        <p class="mt-2 text-sm text-rose-600 bg-rose-50 p-2 rounded"><strong>Note:</strong> <em>Agree</em> and <em>Disagree</em> are verbs. Say "I agree with you", NOT "I am agree".</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Agreeing</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-rose-600">Strong Agreement</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>"You're perfectly right."</li>
+                                    <li>"I couldn't agree more."</li>
+                                    <li>"Precisely."</li>
+                                    <li>"Exactly."</li>
+                                    <li>"Absolutely."</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-rose-600">Mild Agreement</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>"You may be right there."</li>
+                                    <li>"That's true, I suppose."</li>
+                                    <li>"I suppose so."</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Disagreeing</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-rose-600">Mild Disagreement</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>"That's not really how I see it."</li>
+                                    <li>"I don't really agree."</li>
+                                    <li>"I can't really go along with you there."</li>
+                                    <li>"I think you're mistaken."</li>
+                                    <li>"I'm afraid I can't agree with you there."</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-rose-600">Strong Disagreement</h4>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>"I'm sorry, but that's out of the question."</li>
+                                    <li>"I think you're wrong."</li>
+                                    <li>"Of course not."</li>
+                                    <li>"That's absurd."*</li>
+                                    <li>"That's ridiculous."*</li>
+                                </ul>
+                                <p class="text-xs text-gray-500 mt-1">*Be careful: these are very strong and can be offensive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Definitions Quiz (57.1) -->
+            <div id="page-definitions-quiz" class="page">
+                <h2 class="text-2xl font-bold text-rose-800 mb-2">Exercise 57.1: Vocabulary Definitions</h2>
+                <p class="text-gray-500 mb-6">Complete the sentences with the correct word form from Section A.</p>
+                <div id="definitions-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkDefinitionsQuiz()" class="px-6 py-3 bg-rose-500 text-white rounded-lg hover:bg-rose-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="definitions-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Agreeing Quiz (57.2) -->
+            <div id="page-agreeing-quiz" class="page">
+                <h2 class="text-2xl font-bold text-rose-800 mb-2">Exercise 57.2: Agreeing</h2>
+                <p class="text-gray-500 mb-6">Read the statement and choose the most appropriate <strong>agreement</strong> response.</p>
+                <div id="agreeing-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkAgreeingQuiz()" class="px-6 py-3 bg-rose-500 text-white rounded-lg hover:bg-rose-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="agreeing-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Disagreeing Quiz (57.3) -->
+            <div id="page-disagreeing-quiz" class="page">
+                <h2 class="text-2xl font-bold text-rose-800 mb-2">Exercise 57.3: Disagreeing</h2>
+                <p class="text-gray-500 mb-6">Read the statement and choose the most appropriate <strong>disagreement</strong> response.</p>
+                <div id="disagreeing-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkDisagreeingQuiz()" class="px-6 py-3 bg-rose-500 text-white rounded-lg hover:bg-rose-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="disagreeing-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const definitionsQuizData = [
+            { question: "1. The opposite of 'agree' is...", options: ["discuss", "disagree", "argue"], answer: "disagree" },
+            { question: "2. If you are pleasant and unaggressive, you are...", options: ["courteous", "rude", "quiet"], answer: "courteous" },
+            { question: "3. If you become angry, you lose your...", options: ["temper", "calm", "argument"], answer: "temper" },
+            { question: "4. Another word for 'impolite' is...", options: ["courteous", "rude", "absurd"], answer: "rude" },
+            { question: "5. The noun corresponding to 'angry' is...", options: ["anger", "argument", "temper"], answer: "anger" },
+            { question: "6. Whatever you do, keep...", options: ["calm", "rude", "angry"], answer: "calm" },
+            { question: "7. When people disagree, they have an...", options: ["opinion", "argument", "agreement"], answer: "argument" },
+            { question: "8. If you want to show you are right, you try to ___ your point.", options: ["prove", "lose", "discuss"], answer: "prove" },
+            { question: "9. If you talk about something, you ___ it.", options: ["discuss", "prove", "argue"], answer: "discuss" },
+            { question: "10. If you do not agree, you have a ___ of opinion.", options: ["difference", "mistake", "point"], answer: "difference" }
+        ];
+
+        const agreeingQuizData = [
+            { question: "\"And another thing: you should be looking at what we produce, not at the time of day we produce it.\"", options: ["Absolutely. It's the output, not the input, that counts.", "Precisely. Creativity comes in the middle of the night.", "Exactly. We have to look at the company as one unit."], answer: "Absolutely. It's the output, not the input, that counts." },
+            { question: "\"Apart from that, if you try to control our working time, we'll lose our creativity.\"", options: ["Absolutely. It's the output that counts.", "Precisely. Creativity comes to some of our people in the middle of the night.", "You're perfectly right. The costs are incredible."], answer: "Precisely. Creativity comes to some of our people in the middle of the night." },
+            { question: "\"Besides that, the prizes help us to attract and keep the best designers.\"", options: ["I suppose so.", "I couldn't agree more. We got recruits after winning the award.", "That's true, I suppose."], answer: "I couldn't agree more. We got recruits after winning the award." },
+            { question: "\"Even so, I agree that some limits should be set...\"", options: ["That's true, I suppose. There must be some limits on when they work.", "You're perfectly right.", "Exactly."], answer: "That's true, I suppose. There must be some limits on when they work." },
+            { question: "\"Not only do we have these very high costs, but it also sets a very bad example...\"", options: ["You're perfectly right. The costs involved must be incredible.", "I suppose so.", "Precisely."], answer: "You're perfectly right. The costs involved must be incredible." },
+            { question: "\"On the one hand, we have to think of the needs of each department...\"", options: ["Exactly. We have to look at the company as one unit.", "You may be right there.", "Absolutely."], answer: "Exactly. We have to look at the company as one unit." }
+        ];
+
+        const disagreeingQuizData = [
+            { question: "\"And another thing: you should be looking at what we produce, not at the time of day we produce it.\"", options: ["I can't really go along with you there. I think we need to see people at their desks working.", "I think you're wrong.", "That's ridiculous."], answer: "I can't really go along with you there. I think we need to see people at their desks working." },
+            { question: "\"Apart from that, if you try to control our working time, we'll lose our creativity.\"", options: ["That's absurd. There must be some sort of control on when people work.", "I don't really agree.", "I think you're mistaken."], answer: "That's absurd. There must be some sort of control on when people work." },
+            { question: "\"Besides that, the prizes help us to attract and keep the best designers.\"", options: ["I don't really agree. The prizes are important, but people would come anyway.", "That's absurd.", "Of course not."], answer: "I don't really agree. The prizes are important, but people would come anyway." },
+            { question: "\"Even so, I agree that some limits should be set, even if my designers are different...\"", options: ["That's ridiculous. Each department has very specific needs.", "I think you're wrong.", "I can't really go along with you there."], answer: "That's ridiculous. Each department has very specific needs." },
+            { question: "\"Not only do we have these very high costs, but it also sets a very bad example...\"", options: ["I think you're wrong. The design department's costs are justified.", "That's not really how I see it.", "That's absurd."], answer: "I think you're wrong. The design department's costs are justified." },
+            { question: "\"In addition, our biggest current project looks as though it will be over budget too.\"", options: ["Of course not. The latest figures show the project is within budget.", "I think you're mistaken.", "I don't really agree."], answer: "Of course not. The latest figures show the project is within budget." }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupDefinitionsQuiz();
+            setupAgreeingQuiz();
+            setupDisagreeingQuiz();
+        });
+
+        // --- Generic Button Click Handler ---
+        function handleOptionClick(event) {
+            const button = event.target;
+            const group = button.parentElement;
+            group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+
+        // --- Exercise 57.1: Definitions Quiz ---
+        function setupDefinitionsQuiz() {
+            const container = document.getElementById('definitions-quiz-container');
+            container.innerHTML = definitionsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">${item.question}</p>
+                    <div class="flex flex-wrap gap-2" data-question-index="${index}">
+                       ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-rose-100">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+        
+        function checkDefinitionsQuiz() {
+             let correctCount = 0;
+            document.querySelectorAll('#definitions-quiz-container .flex-wrap').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = definitionsQuizData[index].answer;
+                 group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('definitions-quiz-feedback');
+            const allCorrect = correctCount === definitionsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You know your vocabulary." : `You got ${correctCount} out of ${definitionsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 57.2: Agreeing Quiz ---
+        function setupAgreeingQuiz() {
+             const container = document.getElementById('agreeing-quiz-container');
+            container.innerHTML = agreeingQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">Statement: ${item.question}</p>
+                    <p class="text-sm text-gray-600 mb-2">Agreeing Response:</p>
+                    <div class="flex flex-col gap-2" data-question-index="${index}">
+                       ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-rose-100 text-left">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+             container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+
+        function checkAgreeingQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#agreeing-quiz-container .flex-col').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = agreeingQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('agreeing-quiz-feedback');
+            const allCorrect = correctCount === agreeingQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! You matched the arguments perfectly." : `You got ${correctCount} out of ${agreeingQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+        
+        // --- Exercise 57.3: Disagreeing Quiz ---
+        function setupDisagreeingQuiz() {
+            const container = document.getElementById('disagreeing-quiz-container');
+            container.innerHTML = disagreeingQuizData.map((item, index) => `
+                 <div class="activity-card p-4">
+                    <p class="font-semibold text-gray-700 mb-3">Statement: ${item.question}</p>
+                    <p class="text-sm text-gray-600 mb-2">Disagreeing Response:</p>
+                    <div class="flex flex-col gap-2" data-question-index="${index}">
+                        ${item.options.map(opt => `<button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-700 hover:bg-rose-100 text-left">${opt}</button>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            container.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', handleOptionClick));
+        }
+
+        function checkDisagreeingQuiz() {
+            let correctCount = 0;
+            document.querySelectorAll('#disagreeing-quiz-container .flex-col').forEach((group, index) => {
+                const selectedBtn = group.querySelector('.selected');
+                const correctAnswer = disagreeingQuizData[index].answer;
+                group.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.textContent === correctAnswer) btn.classList.add('correct');
+                });
+                if (selectedBtn) {
+                    if (selectedBtn.textContent === correctAnswer) {
+                        correctCount++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            const feedbackEl = document.getElementById('disagreeing-quiz-feedback');
+            const allCorrect = correctCount === disagreeingQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! You handled the disagreements well." : `You got ${correctCount} out of ${disagreeingQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
