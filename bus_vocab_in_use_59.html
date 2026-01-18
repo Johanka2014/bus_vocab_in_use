@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Presentations 1</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Light sky theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #0284c7; /* sky-600 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #0ea5e9; /* sky-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #38bdf8; /* sky-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #e0f2fe;
+            border-color: #0ea5e9;
+            color: #0369a1;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-sky-700 text-center">Presentations 1: Preparation</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Vocabulary</button>
+            <button id="nav-types-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Types of Presentation (59.1)</button>
+            <button id="nav-advice-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-sky-100">Preparation Advice (59.2)</button>
+        </nav>
+
+        <main class="bg-sky-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-sky-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Types of Presentation</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li><strong>Press conference:</strong> Executives speak to journalists (e.g., about a merger).</li>
+                                <li><strong>Briefing:</strong> Senior officer gives info to colleagues (e.g., police operation).</li>
+                                <li><strong>Demonstration:</strong> Showing how something works (e.g., a new machine).</li>
+                                <li><strong>Product launch:</strong> Announcing a new product (e.g., car model).</li>
+                            </ul>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li><strong>Lecture:</strong> Professor communicating to students.</li>
+                                <li><strong>Talk:</strong> Informal presentation to a group (e.g., club members).</li>
+                                <li><strong>Seminar:</strong> Expert giving advice to a small group (e.g., investments).</li>
+                                <li><strong>Workshop:</strong> Practical session where people practice (e.g., yoga).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Dos and Don'ts</h3>
+                        <p class="text-gray-600 mb-2">Tips for a <strong>stand-up presentation</strong>:</p>
+                        <ul class="list-disc list-outside space-y-1 text-gray-700 ml-5 text-sm">
+                            <li><strong>Audience:</strong> Find out who they are and how much they know.</li>
+                            <li><strong>Venue:</strong> Check the room, seating plan, and equipment.</li>
+                            <li><strong>Content:</strong> Plan structure but <em>don't</em> write the complete text.</li>
+                            <li><strong>Notes:</strong> Write notes on sheets of paper, not on cards (to avoid dropping them).</li>
+                            <li><strong>Memorize:</strong> Learn the first five sentences by heart to settle nerves.</li>
+                            <li><strong>Rehearse:</strong> Practice with friends until it becomes familiar.</li>
+                        </ul>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Introduction Phrases</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5">
+                            <li><strong>Introduce yourself:</strong> "My name's... and I work for..."</li>
+                            <li><strong>Outline the talk:</strong> "There are three main skills areas I want to talk about today..."</li>
+                            <li><strong>Handle questions:</strong> "If you have any questions, I'll be very happy to answer them at the end."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Types Quiz (59.1) -->
+            <div id="page-types-quiz" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise 59.1: Types of Presentation</h2>
+                <p class="text-gray-500 mb-6">Read the statement and identify the type of presentation being given.</p>
+                <div id="types-quiz-container" class="space-y-6"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkTypesQuiz()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="types-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Advice Quiz (59.2) -->
+            <div id="page-advice-quiz" class="page">
+                <h2 class="text-2xl font-bold text-sky-800 mb-2">Exercise 59.2: Reasoning</h2>
+                <p class="text-gray-500 mb-6">Match the reason (left) to the correct piece of advice (right).</p>
+                <div id="advice-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkAdviceQuiz()" class="px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 font-semibold shadow-sm">Check Matches</button>
+                    <p id="advice-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const typesQuizData = [
+            { text: "1. \"As you can see, this prototype is far in advance of anything we've done before.\"", answer: "demonstration" },
+            { text: "2. \"Here are some typical patterns for demand and supply in the widget industry.\"", answer: "lecture" },
+            { text: "3. \"I'm going to give each group a series of problems... and I want you to suggest solutions.\"", answer: "workshop" },
+            { text: "4. \"Now is the right time to get out of company shares and invest in property.\"", answer: "seminar" },
+            { text: "5. \"The combined resources of our two organizations will allow us to achieve great things.\"", answer: "press conference" },
+            { text: "6. \"The first postage stamp in the world was the Penny Black in 1840.\"", answer: "talk" },
+            { text: "7. \"The parachutists will come in at 08:30 and land in two waves, here and here.\"", answer: "briefing" },
+            { text: "8. \"The X300 has the most advanced features of any car in its class.\"", answer: "product launch" }
+        ];
+
+        const adviceQuizData = [
+            { reason: "1. If you drop the cards on the floor, you're in trouble.", advice: "Write notes on sheets of paper, not cards." },
+            { reason: "2. It could sound monotonous and boring if you speak from a complete, prepared text.", advice: "Plan content/structure, but don't write complete text." },
+            { reason: "3. It will help you adjust the content of your talk so that it is suitable.", advice: "Find out about the audience." },
+            { reason: "4. It will help you to keep control, and avoid people interrupting if you don't want them to.", advice: "Say when to ask questions (e.g., at the end)." },
+            { reason: "5. It will help your audience follow the logic of what you're going to say.", advice: "Outline what you're going to talk about." },
+            { reason: "6. It will make you feel more at ease at the beginning, when you may be nervous.", advice: "Memorize the first five sentences." },
+            { reason: "7. It will reassure people that they are in the right place.", advice: "Introduce yourself and your subject." },
+            { reason: "8. They add visual interest, provide you with support and help the audience follow you.", advice: "Prepare visual aids." },
+            { reason: "9. You can ask for changes in the seating plan if necessary.", advice: "Find out about the venue and facilities." },
+            { reason: "10. They will be able to tell you if anything is unclear before the presentation.", advice: "Rehearse with friends or colleagues." }
+        ];
+
+        const adviceOptions = adviceQuizData.map(d => d.advice).sort(() => Math.random() - 0.5);
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupTypesQuiz();
+            setupAdviceQuiz();
+        });
+
+        // --- Exercise 59.1: Types Quiz ---
+        function setupTypesQuiz() {
+            const container = document.getElementById('types-quiz-container');
+            const options = ["press conference", "briefing", "demonstration", "product launch", "lecture", "talk", "seminar", "workshop"];
+            
+            container.innerHTML = typesQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-700 mb-3">${item.text}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-sky-100" 
+                                onclick="selectType(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="type-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectType(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`type-answer-${index}`).value = value;
+        }
+        
+        function checkTypesQuiz() {
+            let correctCount = 0;
+            typesQuizData.forEach((item, index) => {
+                const input = document.getElementById(`type-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                // Disable all
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    // Highlight correct
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+
+            const feedbackEl = document.getElementById('types-quiz-feedback');
+            const allCorrect = correctCount === typesQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You know your presentation types." : `You got ${correctCount} out of ${typesQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 59.2: Advice Quiz ---
+        function setupAdviceQuiz() {
+            const container = document.getElementById('advice-quiz-container');
+            
+            container.innerHTML = adviceQuizData.map((item, index) => `
+                <div class="activity-card p-3 flex flex-col md:flex-row md:items-center gap-4">
+                    <div class="md:w-1/2">
+                        <p class="text-sm text-gray-800 font-medium">${item.reason}</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <select id="advice-${index}" class="w-full border-2 border-sky-200 rounded-md p-2 text-sm bg-white focus:border-sky-500 outline-none">
+                            <option value="">Select the advice...</option>
+                            ${adviceOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkAdviceQuiz() {
+            let correctCount = 0;
+            adviceQuizData.forEach((item, index) => {
+                const select = document.getElementById(`advice-${index}`);
+                
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+
+                if (select.value === item.advice) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedbackEl = document.getElementById('advice-quiz-feedback');
+            const allCorrect = correctCount === adviceQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! You are ready to present." : `You matched ${correctCount} out of ${adviceQuizData.length} correctly.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
