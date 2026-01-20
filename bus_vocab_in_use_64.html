@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Negotiations 3</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Light violet theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #7c3aed; /* violet-600 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #8b5cf6; /* violet-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #a78bfa; /* violet-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #ede9fe;
+            border-color: #8b5cf6;
+            color: #5b21b6;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-violet-700 text-center">Negotiations 3: Furthering Negotiations</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Vocabulary</button>
+            <button id="nav-probing-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Probing (64.1)</button>
+            <button id="nav-proposals-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Proposals (64.2)</button>
+            <button id="nav-tradeoffs-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-violet-100">Trade-offs (64.3)</button>
+        </nav>
+
+        <main class="bg-violet-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-violet-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Win-Win & Probing</h3>
+                        <p class="text-gray-600 mb-2 text-sm">A successful negotiation leads to a <strong>win-win solution</strong> (equal benefit). One way to achieve this is <strong>probing</strong> (asking the right questions).</p>
+                        <ul class="list-disc list-inside text-gray-600 text-sm italic">
+                            <li>"What is the situation on...?"</li>
+                            <li>"What sort of quantities are you looking for?"</li>
+                            <li>"What did you have in mind regarding...?"</li>
+                            <li>"What were you thinking of in terms of...?"</li>
+                        </ul>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Proposals & Counter-Proposals</h3>
+                        <p class="text-gray-600 mb-2 text-sm">Use conditionals to make offers that depend on the other side's actions:</p>
+                        <div class="bg-violet-50 p-3 rounded-md text-sm text-gray-700">
+                            <p><strong>Common Phrases:</strong></p>
+                            <ul class="list-none space-y-1 mt-1">
+                                <li>• "<strong>If</strong> you offer..., then we will/can..."</li>
+                                <li>• "<strong>As long as</strong>..., then we could..."</li>
+                                <li>• "<strong>On condition that</strong>..., then we might..."</li>
+                                <li>• "<strong>Supposing that</strong>..., then we may..."</li>
+                                <li>• "<strong>Provided/Providing that</strong>..., then we..."</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Trade-offs & Bargaining</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Concession:</strong> Offering to change your position to one less favorable to yourself (giving something up).</li>
+                            <li><strong>Goodwill gesture:</strong> A concession made hoping the other side will be friendly in return.</li>
+                            <li><strong>Trade-off:</strong> Giving something away to get something else in return.</li>
+                            <li><strong>Horse-trading:</strong> Making a series of concessions (often used to show disapproval).</li>
+                            <li><strong>Haggle:</strong> Arguing about something (usually price) for a long time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Probing Quiz (64.1) -->
+            <div id="page-probing-quiz" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 64.1: Probing Questions</h2>
+                <p class="text-gray-500 mb-6">Match the probing question (Left) to the appropriate reply (Right).</p>
+                <div id="probing-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkProbingQuiz()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Matches</button>
+                    <p id="probing-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Proposals Quiz (64.2) -->
+            <div id="page-proposals-quiz" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 64.2: Making Offers</h2>
+                <p class="text-gray-500 mb-6">Complete the conditional offers with the correct phrase structure.</p>
+                <div id="proposals-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkProposalsQuiz()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="proposals-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Trade-offs Quiz (64.3) -->
+            <div id="page-tradeoffs-quiz" class="page">
+                <h2 class="text-2xl font-bold text-violet-800 mb-2">Exercise 64.3: Vocabulary in Context</h2>
+                <p class="text-gray-500 mb-6">Choose the correct vocabulary word to complete the business scenario.</p>
+                <div id="tradeoffs-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkTradeoffsQuiz()" class="px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="tradeoffs-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const probingQuizData = [
+            { question: "What is the situation on production at your plant at the moment?", answer: "We're operating at full capacity." },
+            { question: "What sort of quantities are you looking for?", answer: "Perhaps 100 units per year over five years." },
+            { question: "What are we looking at in the way of discount?", answer: "We can offer ten per cent if the quantities are right." },
+            { question: "What did you have in mind regarding specifications?", answer: "We'd like to see a ten per cent improvement in performance." },
+            { question: "What were you thinking of in terms of delivery dates?", answer: "We'll need the first 30 units in six months." },
+            { question: "How important to you is the currency for payment?", answer: "We'd prefer US dollars." }
+        ];
+
+        const proposalsQuizData = [
+            { text: "1. If you offer more flexible payment conditions, ______ a higher price.", options: ["we might consider paying", "we consider paying", "we might considering"], answer: "we might consider paying" },
+            { text: "2. As long as engine performance improves by ten per cent, ______ $550,000 per unit.", options: ["we can offer a price of", "we offering", "we can offer"], answer: "we can offer a price of" },
+            { text: "3. On condition that you deliver 20 engines by May, ______ a more flexible price.", options: ["we will be able to consider", "we able to consider", "we will consider to"], answer: "we will be able to consider" },
+            { text: "4. Supposing that you provide good technical support, ______ the order.", options: ["we might be able to increase", "we might increase able", "we increase"], answer: "we might be able to increase" },
+            { text: "5. Provided that you supply documentation in Portuguese, ______ personnel for training.", options: ["we could consider sending", "we could consider send", "we consider sending"], answer: "we could consider sending" },
+            { text: "6. Providing that this contract works out OK, ______ with you in future.", options: ["we might agree to work", "we agree working", "we might agree work"], answer: "we might agree to work" }
+        ];
+
+        const tradeoffsQuizData = [
+            { text: "1. The Government's approach of 'If you do this, then we'll do that' seems to owe more to political ______ than good policy-making.", options: ["horse-trading", "haggling", "probing"], answer: "horse-trading" },
+            { text: "2. When Frankfurt was chosen for the European Central Bank, the French again wanted a similar ______.", options: ["concession", "haggle", "gesture"], answer: "concession" },
+            { text: "3. The unions suspended the strike until next week as a goodwill ______ aimed at reopening negotiations.", options: ["gesture", "trade-off", "horse-trade"], answer: "gesture" },
+            { text: "4. She is a hard, unforgiving businesswoman making ______ to no one.", options: ["concessions", "proposals", "haggles"], answer: "concessions" },
+            { text: "5. Experienced travellers then ______ to get an even better compensation package.", options: ["haggle", "trade-off", "probe"], answer: "haggle" }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupProbingQuiz();
+            setupProposalsQuiz();
+            setupTradeoffsQuiz();
+        });
+
+        // --- Exercise 64.1: Probing Quiz ---
+        function setupProbingQuiz() {
+            const container = document.getElementById('probing-quiz-container');
+            const answers = probingQuizData.map(d => d.answer).sort(() => Math.random() - 0.5);
+
+            container.innerHTML = probingQuizData.map((item, index) => `
+                <div class="activity-card p-4 flex flex-col gap-3">
+                    <div class="w-full">
+                        <p class="font-medium text-gray-800 text-sm">Q: "${item.question}"</p>
+                    </div>
+                    <div class="w-full">
+                        <select id="probing-${index}" class="w-full border-2 border-violet-200 rounded-md p-2 text-sm bg-white focus:border-violet-500 outline-none">
+                            <option value="">Select the reply...</option>
+                            ${answers.map(ans => `<option value="${ans}">${ans}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function checkProbingQuiz() {
+            let correctCount = 0;
+            probingQuizData.forEach((item, index) => {
+                const select = document.getElementById(`probing-${index}`);
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                if (select.value === item.answer) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+            const feedbackEl = document.getElementById('probing-quiz-feedback');
+            const allCorrect = correctCount === probingQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You're asking the right questions." : `You matched ${correctCount} out of ${probingQuizData.length} correctly.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 64.2: Proposals Quiz ---
+        function setupProposalsQuiz() {
+            const container = document.getElementById('proposals-quiz-container');
+            
+            container.innerHTML = proposalsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm">${item.text}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-xs sm:text-sm rounded-md font-medium text-gray-600 hover:bg-violet-100" 
+                                onclick="selectProposal(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="proposal-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectProposal(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`proposal-answer-${index}`).value = value;
+        }
+
+        function checkProposalsQuiz() {
+            let correctCount = 0;
+            proposalsQuizData.forEach((item, index) => {
+                const input = document.getElementById(`proposal-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('proposals-quiz-feedback');
+            const allCorrect = correctCount === proposalsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! Excellent negotiation skills." : `You got ${correctCount} out of ${proposalsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 64.3: Trade-offs Quiz ---
+        function setupTradeoffsQuiz() {
+            const container = document.getElementById('tradeoffs-quiz-container');
+            
+            container.innerHTML = tradeoffsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm italic">"${item.text}"</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-xs sm:text-sm rounded-md font-medium text-gray-600 hover:bg-violet-100" 
+                                onclick="selectTradeoff(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="tradeoff-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectTradeoff(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`tradeoff-answer-${index}`).value = value;
+        }
+
+        function checkTradeoffsQuiz() {
+            let correctCount = 0;
+            tradeoffsQuizData.forEach((item, index) => {
+                const input = document.getElementById(`tradeoff-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('tradeoffs-quiz-feedback');
+            const allCorrect = correctCount === tradeoffsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You know the vocabulary well." : `You got ${correctCount} out of ${tradeoffsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
