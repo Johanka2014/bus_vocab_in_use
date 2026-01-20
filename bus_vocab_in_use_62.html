@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Negotiations 1</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ecfdf5; /* Light emerald theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #059669; /* emerald-600 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #10b981; /* emerald-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #34d399; /* emerald-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-emerald-700 text-center">Negotiations 1: Situations</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-emerald-100">Vocabulary</button>
+            <button id="nav-headlines-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-emerald-100">Headlines (62.1)</button>
+            <button id="nav-matching-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-emerald-100">Sentences (62.2)</button>
+        </nav>
+
+        <main class="bg-emerald-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-emerald-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Types of Negotiation</h3>
+                        <p class="text-gray-600 mb-2 text-sm">Negotiations aim for <strong>mutual advantage</strong> (good for both sides) or to <strong>settle disputes</strong>.</p>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-emerald-600">Reaching Agreement</h4>
+                                <ul class="list-disc list-inside text-gray-600">
+                                    <li><strong>Customer-supplier:</strong> Buying/selling.</li>
+                                    <li><strong>Wage:</strong> Pay discussions.</li>
+                                    <li><strong>Merger/Takeover:</strong> Companies joining.</li>
+                                    <li><strong>Trade:</strong> Between countries.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-emerald-600">Settling Disputes</h4>
+                                <ul class="list-disc list-inside text-gray-600">
+                                    <li><strong>Contract disputes:</strong> Legal disagreements.</li>
+                                    <li><strong>Labour disputes:</strong> Workers vs. management.</li>
+                                    <li><strong>Trade disputes:</strong> Tariffs/bans.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Describing Negotiations</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Intense / Intensive:</strong> Difficult, tiring, active.</li>
+                            <li><strong>Delicate / Tense:</strong> Difficult, could easily fail.</li>
+                            <li><strong>Eleventh-hour / Last-minute:</strong> Taking place at the very end of available time.</li>
+                            <li><strong>Protracted:</strong> Taking a very long time.</li>
+                        </ul>
+                        <p class="mt-2 text-sm italic">"He is a <strong>tough negotiator</strong> (good at getting what he wants)."</p>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Bargaining</h3>
+                        <p class="text-gray-600 mb-2 text-sm"><strong>Bargaining</strong> is often used for discussing prices or pay (e.g., <em>collective bargaining</em>).</p>
+                        <ul class="list-disc list-outside space-y-1 text-gray-700 ml-5 text-sm">
+                            <li><strong>Bargaining ploy/tactic:</strong> A technique used to gain advantage.</li>
+                            <li><strong>Bargaining chip/tool:</strong> An issue used for leverage.</li>
+                            <li><strong>Bargaining point:</strong> An issue to be discussed.</li>
+                            <li><strong>Bargaining power:</strong> The strength of one side.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Headlines Quiz (62.1) -->
+            <div id="page-headlines-quiz" class="page">
+                <h2 class="text-2xl font-bold text-emerald-800 mb-2">Exercise 62.1: Analyzing Headlines</h2>
+                <p class="text-gray-500 mb-6">Match the business headline to the type of negotiation or dispute.</p>
+                <div id="headlines-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkHeadlinesQuiz()" class="px-6 py-3 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="headlines-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Matching Quiz (62.2) -->
+            <div id="page-matching-quiz" class="page">
+                <h2 class="text-2xl font-bold text-emerald-800 mb-2">Exercise 62.2: Negotiation Sentences</h2>
+                <p class="text-gray-500 mb-6">Match the beginning of the sentence (Left) with the correct ending (Right).</p>
+                <div id="matching-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkMatchingQuiz()" class="px-6 py-3 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 font-semibold shadow-sm">Check Matches</button>
+                    <p id="matching-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const headlinesQuizData = [
+            { text: "1. CAR WORKERS IN TWO-YEAR PAY DEAL TALKS WITH FORD", answer: "wage negotiations" },
+            { text: "2. FRANCE BANS US FILMS FOLLOWING TALKS BREAKDOWN", answer: "trade dispute" },
+            { text: "3. WORLD TRADE ORGANIZATION MEMBERS IN WIDE-RANGING DISCUSSIONS", answer: "trade negotiations" },
+            { text: "4. EMPLOYERS REFUSE TO NEGOTIATE WITH STRIKING MINERS", answer: "labour dispute" },
+            { text: "5. EUROTUNNEL ATTACKS CONSTRUCTION COMPANIES FOR LATE COMPLETION", answer: "contract dispute" },
+            { text: "6. PHARMACEUTICAL GIANTS SAY THAT COMBINING WOULD BE 'TO THEIR MUTUAL ADVANTAGE'", answer: "merger negotiations" },
+            { text: "7. EDUCATION MINISTRY AND COMPAQ IN 'COMPUTER ON EVERY DESK' TALKS", answer: "customer-supplier negotiations" }
+        ];
+
+        const matchingQuizData = [
+            { start: "1. After 48 hours of intensive negotiations in which he slept for...", end: "...only one hour, Mr Prescott said, 'It has been both tough and incredibly complicated.'" },
+            { start: "2. One of the problems of protracted negotiations is that achieving agreement can come...", end: "...to be more important than anything else, including the final decision." },
+            { start: "3. After tense negotiations between the hijackers and air traffic control in Cyprus...", end: "...the plane was allowed to land at Larnaca airport." },
+            { start: "4. The agreement on limiting television violence represents the climax of several months of intense...", end: "...negotiations between television executives and the National Parent Teacher Association." },
+            { start: "5. The painting has been withdrawn from sale and acquired by the National Gallery...", end: "...after last-minute negotiations with the auctioneers, Sotheby's." },
+            { start: "6. Then violence broke out, and it took six months...", end: "...of delicate negotiations to put the process back on track." },
+            { start: "7. The deal was struck only after eleventh-...", end: "...hour negotiations between the US, the European Union and Japan." },
+            { start: "8. He's a tough negotiator...", end: "...and likes bargaining about everything." }
+        ];
+
+        // Shuffle endings for the quiz
+        const endingsOptions = matchingQuizData.map(d => d.end).sort(() => Math.random() - 0.5);
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupHeadlinesQuiz();
+            setupMatchingQuiz();
+        });
+
+        // --- Exercise 62.1: Headlines Quiz ---
+        function setupHeadlinesQuiz() {
+            const container = document.getElementById('headlines-quiz-container');
+            const options = ["wage negotiations", "trade dispute", "trade negotiations", "labour dispute", "contract dispute", "merger negotiations", "customer-supplier negotiations"];
+            
+            container.innerHTML = headlinesQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-bold text-emerald-800 mb-3 font-serif bg-emerald-100 p-2 inline-block rounded">${item.text}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${options.sort(() => Math.random() - 0.5).map(opt => `
+                            <button class="option-btn px-3 py-2 text-xs sm:text-sm rounded-md font-medium text-gray-600 hover:bg-emerald-100" 
+                                onclick="selectHeadlineType(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="headline-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectHeadlineType(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`headline-answer-${index}`).value = value;
+        }
+        
+        function checkHeadlinesQuiz() {
+            let correctCount = 0;
+            headlinesQuizData.forEach((item, index) => {
+                const input = document.getElementById(`headline-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+
+            const feedbackEl = document.getElementById('headlines-quiz-feedback');
+            const allCorrect = correctCount === headlinesQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You understand the business news." : `You got ${correctCount} out of ${headlinesQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 62.2: Matching Quiz ---
+        function setupMatchingQuiz() {
+            const container = document.getElementById('matching-quiz-container');
+            
+            container.innerHTML = matchingQuizData.map((item, index) => `
+                <div class="activity-card p-3 flex flex-col gap-3">
+                    <div class="w-full">
+                        <p class="text-sm text-gray-800 font-medium">${item.start}</p>
+                    </div>
+                    <div class="w-full">
+                        <select id="match-${index}" class="w-full border-2 border-emerald-200 rounded-md p-2 text-sm bg-white focus:border-emerald-500 outline-none">
+                            <option value="">Select the ending...</option>
+                            ${endingsOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkMatchingQuiz() {
+            let correctCount = 0;
+            matchingQuizData.forEach((item, index) => {
+                const select = document.getElementById(`match-${index}`);
+                
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+
+                if (select.value === item.end) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedbackEl = document.getElementById('matching-quiz-feedback');
+            const allCorrect = correctCount === matchingQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! You've matched the scenarios correctly." : `You matched ${correctCount} out of ${matchingQuizData.length} correctly.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
