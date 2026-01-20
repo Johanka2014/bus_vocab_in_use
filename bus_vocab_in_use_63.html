@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Negotiations 2</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fee7; /* Light lime theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #65a30d; /* lime-600 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #84cc16; /* lime-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #a3e635; /* lime-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #ecfccb;
+            border-color: #84cc16;
+            color: #3f6212;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-lime-700 text-center">Negotiations 2: Preparing</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-lime-100">Vocabulary</button>
+            <button id="nav-prep-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-lime-100">Preparation (63.1)</button>
+            <button id="nav-steps-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-lime-100">Scenario Steps (63.2)</button>
+            <button id="nav-culture-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-lime-100">Cultural Rules (63.3)</button>
+        </nav>
+
+        <main class="bg-lime-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-lime-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Preparing to Negotiate</h3>
+                        <p class="text-gray-600 mb-2">Before starting, planning is crucial:</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Information & Etiquette:</strong> Learn about the situation and culture (negotiating styles, acceptable behavior).</li>
+                            <li><strong>Priorities & Objectives:</strong> Decide your <em>needs</em> (what you must have) and <em>objectives</em> (goals).</li>
+                            <li><strong>Fallback Position:</strong> Conditions you will accept if your main objectives aren't met.</li>
+                            <li><strong>Venue:</strong> Choose the location:
+                                <ul class="list-circle list-inside ml-4 mt-1">
+                                    <li><em>On your own/home ground</em> (your offices)</li>
+                                    <li><em>On their ground</em> (their offices)</li>
+                                    <li><em>Neutral ground</em> (e.g., a hotel)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Roles:</strong> If in a team, allocate responsibilities.</li>
+                        </ul>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Negotiating Scenario</h3>
+                        <p class="text-gray-600 mb-2 text-sm">Typical steps at the start of a negotiation:</p>
+                        <ol class="list-decimal list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Meet and greet:</strong> Introduce colleagues.</li>
+                            <li><strong>Small talk:</strong> Offer coffee, create a relaxed atmosphere.</li>
+                            <li><strong>Get down to business:</strong> Move to the meeting room.</li>
+                            <li><strong>Agenda:</strong> Have a clear timetable.</li>
+                            <li><strong>Background:</strong> State key facts and the situation.</li>
+                            <li><strong>Kick off:</strong> Start discussing priorities and requirements.</li>
+                        </ol>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Cultural Styles</h3>
+                        <p class="text-gray-600 mb-2 text-sm">Consider these factors when negotiating internationally:</p>
+                        <div class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                            <span>• Body language</span>
+                            <span>• Physical contact</span>
+                            <span>• Conversational rules</span>
+                            <span>• Relationship building</span>
+                            <span>• Hierarchy</span>
+                            <span>• Attitude to time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Preparation Quiz (63.1) -->
+            <div id="page-prep-quiz" class="page">
+                <h2 class="text-2xl font-bold text-lime-800 mb-2">Exercise 63.1: Preparation Strategy</h2>
+                <p class="text-gray-500 mb-6">Match José's notes to the correct preparation tip.</p>
+                <div id="prep-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkPrepQuiz()" class="px-6 py-3 bg-lime-500 text-white rounded-lg hover:bg-lime-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="prep-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Steps Quiz (63.2) -->
+            <div id="page-steps-quiz" class="page">
+                <h2 class="text-2xl font-bold text-lime-800 mb-2">Exercise 63.2: Ordering the Meeting</h2>
+                <p class="text-gray-500 mb-6">Put the phrases used at the beginning of the negotiation into the correct chronological order (1-6).</p>
+                <div id="steps-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkStepsQuiz()" class="px-6 py-3 bg-lime-500 text-white rounded-lg hover:bg-lime-600 font-semibold shadow-sm">Check Order</button>
+                    <p id="steps-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Culture Quiz (63.3) -->
+            <div id="page-culture-quiz" class="page">
+                <h2 class="text-2xl font-bold text-lime-800 mb-2">Exercise 63.3: Cultural Analysis</h2>
+                <p class="text-gray-500 mb-6">Identify which cultural factor is causing the problem in the meeting.</p>
+                <div id="culture-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkCultureQuiz()" class="px-6 py-3 bg-lime-500 text-white rounded-lg hover:bg-lime-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="culture-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const prepQuizData = [
+            { note: "1. organize preparatory meeting... to discuss strategy", answer: "Allocate roles and responsibilities" },
+            { note: "2. persuade Zebra representatives to come to our offices in São Paulo", answer: "Influence the choice of venue" },
+            { note: "3. principal objective: delivery of first 20 engines... aim for US$500,000", answer: "Work out initial bargaining position/priorities" },
+            { note: "4. rumour says that Zebra are in financial difficulty...", answer: "Get information about the situation" },
+            { note: "5. will accept price up to US$550,000 if specifications are good", answer: "Prepare a fallback position" },
+            { note: "6. Zebra well-known in the industry for its 'strong' negotiating techniques", answer: "Find out about negotiating styles" }
+        ];
+
+        const stepsQuizData = [
+            { id: 1, text: "Mr Watanabe, good to see you again. Let me introduce my colleagues...", order: 1 },
+            { id: 2, text: "Would you like some coffee or tea? How was the flight?", order: 2 },
+            { id: 3, text: "Shall we go to the conference room and make a start?", order: 3 },
+            { id: 4, text: "I believe you're flying back on Friday... I think two days should be enough...", order: 4 },
+            { id: 5, text: "As you all probably know, Mr Watanabe and I met at the Aerospace Trade Fair...", order: 5 },
+            { id: 6, text: "Well we've looked at the potential market... and it looks as if we will need...", order: 6 }
+        ];
+
+        const cultureQuizData = [
+            { situation: "1. Mr A wanted to start immediately, but Mr B suggested a sightseeing tour and golf.", answer: "Relationship building / Attitude to time" },
+            { situation: "2. Mr B started asking Mr A about his wife, home and family.", answer: "Relationship building" },
+            { situation: "3. When Mr C made a point, Mr A was silent for two minutes. Mr C got nervous.", answer: "Conversational rules (silence)" },
+            { situation: "4. Mr B looked directly at Mr A and his assistants equally. Mr A looked annoyed.", answer: "Hierarchy" },
+            { situation: "5. Mr B put his arm around Mr A's shoulders to be friendly.", answer: "Physical contact" },
+            { situation: "6. When Mr A was talking, Mr C frequently interrupted him.", answer: "Conversational rules (interruption)" }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupPrepQuiz();
+            setupStepsQuiz();
+            setupCultureQuiz();
+        });
+
+        // --- Exercise 63.1: Prep Quiz ---
+        function setupPrepQuiz() {
+            const container = document.getElementById('prep-quiz-container');
+            const options = prepQuizData.map(d => d.answer).sort(() => Math.random() - 0.5);
+
+            container.innerHTML = prepQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 bg-lime-50 p-2 rounded border border-lime-100 italic">"${item.note}"</p>
+                    <select id="prep-${index}" class="w-full border-2 border-lime-200 rounded-md p-2 text-sm bg-white focus:border-lime-500 outline-none">
+                        <option value="">Select the preparation tip...</option>
+                        ${options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                    </select>
+                </div>
+            `).join('');
+        }
+        
+        function checkPrepQuiz() {
+            let correctCount = 0;
+            prepQuizData.forEach((item, index) => {
+                const select = document.getElementById(`prep-${index}`);
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                if (select.value === item.answer) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+            const feedbackEl = document.getElementById('prep-quiz-feedback');
+            const allCorrect = correctCount === prepQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You are well prepared." : `You matched ${correctCount} out of ${prepQuizData.length} correctly.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 63.2: Steps Quiz ---
+        function setupStepsQuiz() {
+            const container = document.getElementById('steps-quiz-container');
+            // Shuffle initially
+            const shuffled = [...stepsQuizData].sort(() => Math.random() - 0.5);
+            
+            container.innerHTML = shuffled.map((item) => `
+                <div class="activity-card p-3 flex items-start gap-4" data-id="${item.id}">
+                    <div class="flex-shrink-0">
+                        <label class="block text-xs font-bold text-gray-500 mb-1">Step</label>
+                        <select class="step-select w-16 border-2 border-lime-200 rounded-md p-1 text-center font-bold text-lime-700 focus:border-lime-500 outline-none">
+                            <option value="">-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                    <p class="text-sm text-gray-700 leading-relaxed pt-1">"${item.text}"</p>
+                </div>
+            `).join('');
+        }
+
+        function checkStepsQuiz() {
+            let correctCount = 0;
+            const container = document.getElementById('steps-quiz-container');
+            const cards = container.querySelectorAll('.activity-card');
+            
+            cards.forEach(card => {
+                const id = parseInt(card.getAttribute('data-id'));
+                const select = card.querySelector('.step-select');
+                const userVal = parseInt(select.value);
+                const correctPos = stepsQuizData.find(d => d.id === id).order;
+
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                if (userVal === correctPos) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+            const feedbackEl = document.getElementById('steps-quiz-feedback');
+            const allCorrect = correctCount === stepsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! The meeting flow is logical." : `You have ${correctCount} out of 6 in the correct order.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 63.3: Culture Quiz ---
+        function setupCultureQuiz() {
+            const container = document.getElementById('culture-quiz-container');
+            const options = [
+                "Relationship building", 
+                "Relationship building / Attitude to time", 
+                "Hierarchy", 
+                "Physical contact", 
+                "Conversational rules (silence)", 
+                "Conversational rules (interruption)"
+            ];
+
+            container.innerHTML = cultureQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3">${item.situation}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-xs rounded-md font-medium text-gray-600 hover:bg-lime-100" 
+                                onclick="selectCulture(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="culture-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectCulture(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`culture-answer-${index}`).value = value;
+        }
+
+        function checkCultureQuiz() {
+            let correctCount = 0;
+            cultureQuizData.forEach((item, index) => {
+                const input = document.getElementById(`culture-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('culture-quiz-feedback');
+            const allCorrect = correctCount === cultureQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You understand cultural nuances." : `You got ${correctCount} out of ${cultureQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
