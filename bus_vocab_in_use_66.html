@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Negotiations 5</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ecfeff; /* Light cyan theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #0891b2; /* cyan-600 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #06b6d4; /* cyan-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #22d3ee; /* cyan-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #cffafe;
+            border-color: #06b6d4;
+            color: #155e75;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-cyan-700 text-center">Negotiations 5: Reaching Agreement</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-cyan-100">Vocabulary</button>
+            <button id="nav-deadlock-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-cyan-100">Deadlock (66.1)</button>
+            <button id="nav-contracts-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-cyan-100">Contracts (66.2)</button>
+            <button id="nav-closing-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-cyan-100">Closing the Deal (66.3)</button>
+        </nav>
+
+        <main class="bg-cyan-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-cyan-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Deadlock and Resolution</h3>
+                        <p class="text-gray-600 mb-2 text-sm">When negotiations fail, they may <strong>break down</strong>. This leads to:</p>
+                        <ul class="list-disc list-outside space-y-1 text-gray-700 ml-5 text-sm">
+                            <li><strong>Deadlock / Stalemate / Impasse:</strong> A situation where no progress can be made.</li>
+                            <li><strong>Irreconcilable differences:</strong> Differences that cannot be fixed.</li>
+                        </ul>
+                        <p class="text-gray-600 mt-2 mb-1 text-sm font-semibold">Solutions:</p>
+                        <ul class="list-disc list-outside space-y-1 text-gray-700 ml-5 text-sm">
+                            <li><strong>Mediator:</strong> An outsider who helps sides reach an agreement (Mediation).</li>
+                            <li><strong>Arbitrator:</strong> An outsider (like a judge) who <em>imposes</em> a settlement or resolution (Arbitration).</li>
+                            <li><strong>Cooling-off period:</strong> A time where each side takes no action.</li>
+                        </ul>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Agreements and Contracts</h3>
+                        <p class="text-gray-600 mb-2 text-sm">An agreement is a <strong>deal</strong> or <strong>bargain</strong>. You can <strong>clinch</strong> or <strong>close</strong> a deal.</p>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
+                            <div>
+                                <h4 class="font-semibold text-cyan-600">Contract Types</h4>
+                                <ul class="list-disc list-inside text-gray-700">
+                                    <li><strong>Employment:</strong> About a job/employees.</li>
+                                    <li><strong>Commercial:</strong> Buying or selling a product.</li>
+                                    <li><strong>Oral / Verbal:</strong> Not written down.</li>
+                                    <li><strong>Binding / Legal:</strong> Forces both sides to act by law.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Checking the Deal</h3>
+                        <p class="text-gray-600 mb-2 text-sm">Useful phrases for summarizing and finalizing:</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li>"Let me just <strong>run over</strong> (summarize) the main points."</li>
+                            <li>"As far as [X] is <strong>concerned</strong>..."</li>
+                            <li>"We still have the question of [X] to <strong>settle</strong>."</li>
+                            <li>"There is still the <strong>outstanding</strong> (remaining) issue of..."</li>
+                            <li>"We'll <strong>draw up</strong> (write) a contract."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Deadlock Quiz (66.1) -->
+            <div id="page-deadlock-quiz" class="page">
+                <h2 class="text-2xl font-bold text-cyan-800 mb-2">Exercise 66.1: True or False?</h2>
+                <p class="text-gray-500 mb-6">Read the statements based on Section A and decide if they are True or False.</p>
+                <div id="deadlock-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkDeadlockQuiz()" class="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="deadlock-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Contracts Quiz (66.2) -->
+            <div id="page-contracts-quiz" class="page">
+                <h2 class="text-2xl font-bold text-cyan-800 mb-2">Exercise 66.2: Types of Contract</h2>
+                <p class="text-gray-500 mb-6">Choose the correct word combination for each contract situation.</p>
+                <div id="contracts-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkContractsQuiz()" class="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="contracts-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Closing Quiz (66.3) -->
+            <div id="page-closing-quiz" class="page">
+                <h2 class="text-2xl font-bold text-cyan-800 mb-2">Exercise 66.3: Closing the Deal</h2>
+                <p class="text-gray-500 mb-6">Reorder the phrases to form a logical conclusion to the negotiation.</p>
+                <div id="closing-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkClosingQuiz()" class="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 font-semibold shadow-sm">Check Order</button>
+                    <p id="closing-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const deadlockQuizData = [
+            { text: "1. Someone who helps two sides to reach an agreement is an arbitrator.", answer: "False" },
+            { text: "2. If two sides in a dispute use arbitration, no outsiders are involved.", answer: "False" },
+            { text: "3. It's not usual for mediators to impose agreements.", answer: "True" },
+            { text: "4. If you're in an impasse, you think that progress is possible.", answer: "False" },
+            { text: "5. If negotiations break down, they stop.", answer: "True" },
+            { text: "6. Irreconcilable differences are not important.", answer: "False" },
+            { text: "7. If the two sides agree on a cooling-off period of one week, negotiations continue the next day.", answer: "False" }
+        ];
+
+        const contractsQuizData = [
+            { text: "1. Buyer and seller enter into a ______ contract once an offer has been accepted.", options: ["legally binding", "commercial", "employment"], answer: "legally binding" },
+            { text: "2. DAF is bidding for a ______ contract to supply trucks to the British army.", options: ["commercial", "employment", "oral"], answer: "commercial" },
+            { text: "3. Peters asserted that an unwritten, ______ contract made them partners.", options: ["verbal/oral", "binding", "employment"], answer: "verbal/oral" },
+            { text: "4. She had an ______ contract due to expire later in the year.", options: ["employment", "oral", "commercial"], answer: "employment" }
+        ];
+
+        // Sequence: 1, 6, 5, 7, 4, 8, 3, 2
+        const closingQuizData = [
+            { id: 1, text: "Let me just run over the main points. On engine quantities,", order: 1 },
+            { id: 2, text: "I think that covers everything.", order: 8 },
+            { id: 3, text: "If you agree to the proposal, we'll draw up a contract based on those points.", order: 7 },
+            { id: 4, text: "payment to settle, and there is also still the outstanding issue of documentation.", order: 5 },
+            { id: 5, text: "we agreed that you would improve the power of the engine by ten per cent.", order: 3 },
+            { id: 6, text: "we agreed that you would supply us with 120 units over four years. As far as performance is concerned,", order: 2 },
+            { id: 7, text: "We still have the question of the currency for", order: 4 },
+            { id: 8, text: "We'll send you a written proposal on these last two issues.", order: 6 }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupDeadlockQuiz();
+            setupContractsQuiz();
+            setupClosingQuiz();
+        });
+
+        // --- Exercise 66.1: Deadlock Quiz ---
+        function setupDeadlockQuiz() {
+            const container = document.getElementById('deadlock-quiz-container');
+            
+            container.innerHTML = deadlockQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm">${item.text}</p>
+                    <div class="flex gap-4">
+                        <button class="option-btn px-4 py-2 rounded-md font-medium text-sm text-gray-600 hover:bg-cyan-100" onclick="selectTrueFalse(this, ${index}, 'True')">True</button>
+                        <button class="option-btn px-4 py-2 rounded-md font-medium text-sm text-gray-600 hover:bg-cyan-100" onclick="selectTrueFalse(this, ${index}, 'False')">False</button>
+                    </div>
+                    <input type="hidden" id="deadlock-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectTrueFalse(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`deadlock-answer-${index}`).value = value;
+        }
+
+        function checkDeadlockQuiz() {
+            let correctCount = 0;
+            deadlockQuizData.forEach((item, index) => {
+                const input = document.getElementById(`deadlock-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('deadlock-quiz-feedback');
+            const allCorrect = correctCount === deadlockQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You understand the key concepts." : `You got ${correctCount} out of ${deadlockQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 66.2: Contracts Quiz ---
+        function setupContractsQuiz() {
+            const container = document.getElementById('contracts-quiz-container');
+
+            container.innerHTML = contractsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm">${item.text}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-cyan-100" 
+                                onclick="selectContract(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="contract-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+        
+        function selectContract(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`contract-answer-${index}`).value = value;
+        }
+
+        function checkContractsQuiz() {
+            let correctCount = 0;
+            contractsQuizData.forEach((item, index) => {
+                const input = document.getElementById(`contract-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('contracts-quiz-feedback');
+            const allCorrect = correctCount === contractsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! You know your contracts." : `You got ${correctCount} out of ${contractsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 66.3: Closing Quiz ---
+        function setupClosingQuiz() {
+            const container = document.getElementById('closing-quiz-container');
+            // Randomize initially
+            const shuffled = [...closingQuizData].sort(() => Math.random() - 0.5);
+            
+            container.innerHTML = shuffled.map((item) => `
+                <div class="activity-card p-3 flex items-start gap-4" data-id="${item.id}">
+                    <div class="flex-shrink-0">
+                        <label class="block text-xs font-bold text-gray-500 mb-1">Order</label>
+                        <select class="closing-select w-16 border-2 border-cyan-200 rounded-md p-1 text-center font-bold text-cyan-700 focus:border-cyan-500 outline-none">
+                            <option value="">-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                    <p class="text-sm text-gray-700 leading-relaxed pt-1">"${item.text}"</p>
+                </div>
+            `).join('');
+        }
+
+        function checkClosingQuiz() {
+            let correctCount = 0;
+            const container = document.getElementById('closing-quiz-container');
+            const cards = container.querySelectorAll('.activity-card');
+            
+            cards.forEach(card => {
+                const id = parseInt(card.getAttribute('data-id'));
+                const select = card.querySelector('.closing-select');
+                const userVal = parseInt(select.value);
+                const correctPos = closingQuizData.find(d => d.id === id).order;
+
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+
+                if (userVal === correctPos) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedbackEl = document.getElementById('closing-quiz-feedback');
+            const allCorrect = correctCount === closingQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent! The deal is closed." : `You have ${correctCount} out of 8 in the correct position.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
