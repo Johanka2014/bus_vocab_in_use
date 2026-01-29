@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Negotiations 4</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light slate theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #16a34a; /* green-600 */
+        }
+        .incorrect {
+            color: #dc2626; /* red-600 */
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #475569; /* slate-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #94a3b8; /* slate-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #e2e8f0;
+            border-color: #475569;
+            color: #1e293b;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-slate-700 text-center">Negotiations 4: Difficulties</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-slate-100">Vocabulary</button>
+            <button id="nav-confrontation-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-slate-100">Confrontation (65.1)</button>
+            <button id="nav-tactics-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-slate-100">Tactics (65.2)</button>
+            <button id="nav-problems-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-slate-100">Solving Problems (65.3)</button>
+        </nav>
+
+        <main class="bg-slate-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: Confrontation</h3>
+                        <p class="text-gray-600 mb-2 text-sm">When negotiations become <strong>confrontational</strong> or <strong>adversarial</strong> (fighting each other):</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Bargaining Power:</strong> Negotiating from <em>strength</em> (strong position) vs. negotiating from <em>weakness</em>.</li>
+                            <li><strong>Demands:</strong> Objectives that are <strong>non-negotiable</strong> (will not be changed). You might "moderate" (reduce) demands later.</li>
+                            <li><strong>Under duress:</strong> Being forced to accept something you don't want.</li>
+                            <li><strong>Giving in:</strong> When one side accepts the other's demands, they have <em>conceded</em>, <em>backed down</em>, or <em>climbed down</em>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Difficult Tactics</h3>
+                        <p class="text-gray-600 mb-2 text-sm">Tricks used by tough negotiators:</p>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Ultimatums / Threats:</strong> "Do this, or else..."</li>
+                            <li><strong>Bluffing:</strong> Threatening to do something you don't actually intend to do.</li>
+                            <li><strong>Calling someone's bluff:</strong> Pretending to believe them when you know they are lying, forcing them to act.</li>
+                        </ul>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Dealing with Problems</h3>
+                        <p class="text-gray-600 mb-2 text-sm">When negotiations get stuck:</p>
+                        <ul class="list-disc list-outside space-y-1 text-gray-700 ml-5 text-sm">
+                            <li><strong>Underline common ground:</strong> Focus on what is already agreed.</li>
+                            <li><strong>Reassure:</strong> Confirm key points haven't changed.</li>
+                            <li><strong>Compromise:</strong> Accept less than original objectives.</li>
+                            <li><strong>Identify sticking points:</strong> Find the exact obstacles.</li>
+                            <li><strong>Postpone discussions:</strong> Take a break to reconsider positions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Confrontation Quiz (65.1) -->
+            <div id="page-confrontation-quiz" class="page">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Exercise 65.1: Analyzing the Dispute</h2>
+                <p class="text-gray-500 mb-6">Read the description of a miners' strike and choose the expression that best describes the situation.</p>
+                <div id="confrontation-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkConfrontationQuiz()" class="px-6 py-3 bg-slate-600 text-white rounded-lg hover:bg-slate-700 font-semibold shadow-sm">Check Analysis</button>
+                    <p id="confrontation-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Tactics Quiz (65.2) -->
+            <div id="page-tactics-quiz" class="page">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Exercise 65.2: Confrontational Tactics</h2>
+                <p class="text-gray-500 mb-6">Match the situation (Left) to the outcome or detail (Right).</p>
+                <div id="tactics-quiz-container" class="space-y-3"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkTacticsQuiz()" class="px-6 py-3 bg-slate-600 text-white rounded-lg hover:bg-slate-700 font-semibold shadow-sm">Check Matches</button>
+                    <p id="tactics-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Problems Quiz (65.3) -->
+            <div id="page-problems-quiz" class="page">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Exercise 65.3: Solving Problems</h2>
+                <p class="text-gray-500 mb-6">Identify the strategy being used to resolve the negotiation difficulty.</p>
+                <div id="problems-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkProblemsQuiz()" class="px-6 py-3 bg-slate-600 text-white rounded-lg hover:bg-slate-700 font-semibold shadow-sm">Check Answers</button>
+                    <p id="problems-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Data ---
+        const confrontationQuizData = [
+            { text: "1. The company had enormous stocks of coal... it suited them if there was no production.", options: ["Negotiating from strength", "Negotiating from weakness", "Under duress"], answer: "Negotiating from strength" },
+            { text: "2. The union wasn't in a good position. Thousands were already out of work.", options: ["Negotiating from strength", "Negotiating from weakness", "Making a concession"], answer: "Negotiating from weakness" },
+            { text: "3. In the beginning, the union said they wanted 100% increase... later said they would accept less.", options: ["Making demands / Moderating demands", "Issuing ultimatums", "Bluffing"], answer: "Making demands / Moderating demands" },
+            { text: "4. Eventually the miners went back to work. The strike had produced nothing for them.", options: ["Backed down / Climbed down", "Negotiated under duress", "Called a bluff"], answer: "Backed down / Climbed down" },
+            { text: "5. The mining company had been very aggressive towards the miners.", options: ["Confrontational / Adversarial", "Compromising", "Reassuring"], answer: "Confrontational / Adversarial" }
+        ];
+
+        const tacticsQuizData = [
+            { start: "1. Boeing offered the idea of a 600-plus seat jet to airlines...", end: "...European plane industry executives are convinced that Boeing is bluffing." },
+            { start: "2. The country's trade negotiators are trying all sorts of tricks...", end: "...for example, allowing only whole chickens to be imported, not chicken parts." },
+            { start: "3. The TV presenter gave his bosses an ultimatum that he would leave...", end: "...if Miss Taylor was allowed to stay as co-presenter." },
+            { start: "4. The company said they would fire all of us if we didn't accept...", end: "...but we called their bluff we refused and six months later we still have our jobs!" },
+            { start: "5. Over the past two years, Mersey Docks has made a number of 'final' offers...", end: "...the last one being £28,000 to each docker involved in the dispute." }
+        ];
+
+        const problemsQuizData = [
+            { situation: "1. With currency values changing so quickly, you want to think further about the currency.", options: ["Postpone discussions", "Identify obstacles", "Compromise"], answer: "Postpone discussions" },
+            { situation: "2. If you can increase the performance... we may be willing to pay a little more.", options: ["Willing to compromise", "Underline common ground", "Identify obstacles"], answer: "Willing to compromise" },
+            { situation: "3. Well, the currency for payment would seem to be the problem here.", options: ["Identify the exact obstacles", "Reassure on key points", "Postpone discussions"], answer: "Identify the exact obstacles" },
+            { situation: "4. We've reached agreement on the number of engines... that's very positive.", options: ["Underline common ground", "Identify obstacles", "Compromise"], answer: "Underline common ground" },
+            { situation: "5. We've definitely reached a consensus on price - that much at least is agreed.", options: ["Reassure on key points", "Identify obstacles", "Postpone discussions"], answer: "Reassure on key points" }
+        ];
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            setupConfrontationQuiz();
+            setupTacticsQuiz();
+            setupProblemsQuiz();
+        });
+
+        // --- Exercise 65.1: Confrontation Quiz ---
+        function setupConfrontationQuiz() {
+            const container = document.getElementById('confrontation-quiz-container');
+            
+            container.innerHTML = confrontationQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm italic">"${item.text}"</p>
+                    <div class="flex flex-col gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-slate-100 text-left" 
+                                onclick="selectConfrontation(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="confrontation-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectConfrontation(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`confrontation-answer-${index}`).value = value;
+        }
+
+        function checkConfrontationQuiz() {
+            let correctCount = 0;
+            confrontationQuizData.forEach((item, index) => {
+                const input = document.getElementById(`confrontation-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('confrontation-quiz-feedback');
+            const allCorrect = correctCount === confrontationQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You understand the power dynamics." : `You got ${correctCount} out of ${confrontationQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 65.2: Tactics Quiz ---
+        function setupTacticsQuiz() {
+            const container = document.getElementById('tactics-quiz-container');
+            const endings = tacticsQuizData.map(d => d.end).sort(() => Math.random() - 0.5);
+
+            container.innerHTML = tacticsQuizData.map((item, index) => `
+                <div class="activity-card p-4 flex flex-col gap-3">
+                    <div class="w-full">
+                        <p class="font-medium text-gray-800 text-sm">"${item.start}"</p>
+                    </div>
+                    <div class="w-full">
+                        <select id="tactic-${index}" class="w-full border-2 border-slate-300 rounded-md p-2 text-sm bg-white focus:border-slate-500 outline-none">
+                            <option value="">Select the outcome...</option>
+                            ${endings.map(end => `<option value="${end}">${end}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function checkTacticsQuiz() {
+            let correctCount = 0;
+            tacticsQuizData.forEach((item, index) => {
+                const select = document.getElementById(`tactic-${index}`);
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                if (select.value === item.end) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+            const feedbackEl = document.getElementById('tactics-quiz-feedback');
+            const allCorrect = correctCount === tacticsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You matched the negotiation tactics." : `You matched ${correctCount} out of ${tacticsQuizData.length} correctly.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Exercise 65.3: Problems Quiz ---
+        function setupProblemsQuiz() {
+            const container = document.getElementById('problems-quiz-container');
+            
+            container.innerHTML = problemsQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm italic">"${item.situation}"</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-slate-100" 
+                                onclick="selectProblem(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="problem-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectProblem(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`problem-answer-${index}`).value = value;
+        }
+
+        function checkProblemsQuiz() {
+            let correctCount = 0;
+            problemsQuizData.forEach((item, index) => {
+                const input = document.getElementById(`problem-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('problems-quiz-feedback');
+            const allCorrect = correctCount === problemsQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Perfect! You know how to resolve conflicts." : `You got ${correctCount} out of ${problemsQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+    </script>
+</body>
+</html>
