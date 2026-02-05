@@ -173,41 +173,73 @@
                 icon: "fa-clock",
                 summary: "Office routines, flexible hours, and teleworking.",
                 learning: {
-                    intro: "The traditional '9-to-5' is changing. We now talk about flexitime, shifts, and teleworking.",
+                    intro: "Traditional office hours (9-to-5) are changing. Business professionals now talk about flexible hours, shifts, and remote working.",
                     keyTerms: [
-                        { term: "Flexitime", def: "A system where you can choose when you start and finish work." },
-                        { term: "Shift work", def: "Working at different times of the day or night (e.g., night shift)." },
-                        { term: "Teleworking", def: "Working from home using a computer/internet." },
-                        { term: "Commute", def: "The daily journey to and from work." },
-                        { term: "Clock in/on", def: "To record the time you arrive at work." }
+                        { term: "Nine-to-five", def: "Regular office hours (usually 9am to 5pm)." },
+                        { term: "Flexitime", def: "A system where you choose start/finish times around 'core' hours." },
+                        { term: "Shift work", def: "Working at different times (e.g., day shift, night shift)." },
+                        { term: "Teleworking", def: "Working from home (also 'telecommuting')." },
+                        { term: "To clock on/in", def: "To use a card/badge to record your arrival time." },
+                        { term: "Stimulating", def: "Work that is interesting and makes you think." },
+                        { term: "Repetitive", def: "Doing the same thing again and again (negative)." }
                     ]
                 },
                 exercises: [
                     {
-                        type: "gapfill",
-                        instruction: "Complete the text with words from the unit.",
+                        type: "match",
+                        instruction: "2.1 Match the verbs (1-5) to the nouns/phrases (A-E) to make collocations.",
                         questions: [
-                            { text: "I hate the daily ___ to London; the trains are crowded.", answer: "commute" },
-                            { text: "We have ___ system, so I can start at 10am if I want.", answer: "flexitime" },
-                            { text: "Nurses often have to work the night ___.", answer: "shift" }
+                            { q: "1. Clock", options: ["on / off", "up / down", "work"], answer: 0 },
+                            { q: "2. Take", options: ["time off", "time out", "time away"], answer: 0 },
+                            { q: "3. Work", options: ["in shifts", "at shifts", "to shifts"], answer: 0 },
+                            { q: "4. Commute", options: ["to work", "at work", "for work"], answer: 0 },
+                            { q: "5. Go", options: ["to work", "at work", "in work"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "2.2 Complete the sentences about types of work.",
+                        questions: [
+                            { text: "I work ___ hours; I start at 9am and finish at 5pm.", answer: "office" },
+                            { text: "We have a ___ system, so I can start at 8am or 10am.", answer: "flexitime" },
+                            { text: "Nurses often work the night ___.", answer: "shift" },
+                            { text: "I am a ___ worker; I work from home and send work by email.", answer: "remote" },
+                            { text: "I have to ___ in when I arrive at the factory.", answer: "clock" }
                         ]
                     },
                     {
                         type: "match",
-                        instruction: "Choose the adjective that fits the description.",
+                        instruction: "2.3 Is the adjective Positive (+) or Negative (-)?",
                         questions: [
-                            { q: "The work involves doing the same thing again and again.", options: ["Stimulating", "Repetitive", "Fascinating"], answer: 1 },
-                            { q: "The work is difficult and makes you tired.", options: ["Tough", "Routine", "Boring"], answer: 0 },
-                            { q: "The work gives you positive feelings.", options: ["Satisfying", "Dull", "Uninteresting"], answer: 0 }
+                            { q: "Stimulating", options: ["Positive (+)", "Negative (-)"], answer: 0 },
+                            { q: "Boring", options: ["Positive (+)", "Negative (-)"], answer: 1 },
+                            { q: "Satisfying", options: ["Positive (+)", "Negative (-)"], answer: 0 },
+                            { q: "Repetitive", options: ["Positive (+)", "Negative (-)"], answer: 1 },
+                            { q: "Fascinating", options: ["Positive (+)", "Negative (-)"], answer: 0 },
+                            { q: "Tough", options: ["Positive (+)", "Negative (-)"], answer: 1 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "2.4 Complete the description of a job.",
+                        questions: [
+                            { text: "My job is very ___; I do the same thing all day.", answer: "routine" },
+                            { text: "It is also very ___; I am always tired at the end of the day.", answer: "tiring" },
+                            { text: "However, the salary is good and the work is ___.", answer: "permanent" }
                         ]
                     }
                 ],
                 test: [
-                    { q: "I work ___ home two days a week.", options: ["from", "at", "in"], answer: 0 },
-                    { q: "He has to ___ in at 8:00 AM exactly.", options: ["watch", "time", "clock"], answer: 2 },
-                    { q: "Working from home is also called:", options: ["Telecommuting", "Shift working", "Flexi-working"], answer: 0 },
-                    { q: "My job is ___; it's very interesting.", options: ["boring", "stimulating", "repetitive"], answer: 1 },
-                    { q: "I have a ___ job (9am to 5pm).", options: ["nine-to-five", "full-day", "all-time"], answer: 0 }
+                    { q: "Which is correct? 'I work ___ home once a week.'", options: ["at", "from", "in", "by"], answer: 1 },
+                    { q: "I have to ___ on at 8:30 AM.", options: ["watch", "time", "clock", "check"], answer: 2 },
+                    { q: "Another word for 'teleworking' is:", options: ["Telecommuting", "Shift working", "Flexi-working", "Homeworking"], answer: 0 },
+                    { q: "My job is ___; it's very interesting and gives me energy.", options: ["boring", "stimulating", "repetitive", "dull"], answer: 1 },
+                    { q: "I hate my daily ___ to the city center.", options: ["travel", "commute", "trip", "move"], answer: 1 },
+                    { q: "My job involves paperwork. It is very ___.", options: ["fascinating", "dull", "tough", "creative"], answer: 1 },
+                    { q: "Flexitime allows you to vary your:", options: ["Salary", "Start and finish times", "Job title", "Office location"], answer: 1 },
+                    { q: "People who work at night are on the:", options: ["Night train", "Night shift", "Night time", "Night clock"], answer: 1 },
+                    { q: "If you work hard and enjoy it, the job is:", options: ["Satisfying", "Tiring", "Routine", "Repetitive"], answer: 0 },
+                    { q: "I work irregular hours. I don't have a ___ job.", options: ["nine-to-five", "ten-to-six", "clock-on", "full-day"], answer: 0 }
                 ]
             }
             // TO ADD MORE MODULES: Copy the structure above and change ID/Content based on the PDF.
