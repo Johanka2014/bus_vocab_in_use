@@ -91,6 +91,7 @@
     <script>
         // DATA STORE: Based on Business Vocabulary in Use (Mascull)
         const modules = [
+            // ... existing modules 1-10 ...
             {
                 id: 1,
                 title: "Work and Jobs",
@@ -729,8 +730,127 @@
                     { q: "Entrepreneurs often take ___.", options: ["risks", "rests", "rushes", "roles"], answer: 0 },
                     { q: "To 'found' a company means to:", options: ["Start it", "Find it", "Sell it", "Buy it"], answer: 0 }
                 ]
+            },
+            {
+                id: 11,
+                title: "Organizations 1",
+                icon: "fa-building",
+                summary: "Types of businesses: Sole traders, partnerships, and limited companies.",
+                learning: {
+                    intro: "Businesses have different legal structures. Small businesses might be sole traders. Large businesses are often limited companies (Ltd or Plc) owned by shareholders.",
+                    keyTerms: [
+                        { term: "Sole Trader / Sole Proprietor", def: "A business owned by one person." },
+                        { term: "Partnership", def: "A business owned by two or more people (e.g., lawyers, architects)." },
+                        { term: "Limited Company (Ltd)", def: "A private company where owners have limited liability." },
+                        { term: "Public Limited Company (Plc)", def: "A large company that sells shares to the public on the stock market." },
+                        { term: "Shareholders", def: "The people who own shares in a company." },
+                        { term: "Non-profit / Not-for-profit", def: "An organization (like a charity) that does not aim to make money." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "11.1 Match the company type to the definition.",
+                        questions: [
+                            { q: "1. Sole Trader", options: ["Owned by one person", "Owned by the government", "Owned by shareholders"], answer: 0 },
+                            { q: "2. Plc (Public Limited Company)", options: ["Shares sold to public", "Shares sold to friends", "Owned by one person"], answer: 0 },
+                            { q: "3. Ltd (Private Limited Company)", options: ["Shares not sold to public", "Shares sold on stock market", "A charity"], answer: 0 },
+                            { q: "4. Non-profit", options: ["Does not aim for profit", "Aims for huge profit", "A bank"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "11.2 Complete the sentences about ownership.",
+                        questions: [
+                            { text: "I bought 100 ___ in Apple.", answer: "shares" },
+                            { text: "The people who own the company are the ___.", answer: "shareholders" },
+                            { text: "If the company makes a profit, I get a ___.", answer: "dividend" },
+                            { text: "My brother and I run a law practice as a ___.", answer: "partnership" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "11.3 Match the term to the description.",
+                        questions: [
+                            { q: "1. Mutual", options: ["Owned by customers/members", "Owned by one person", "Owned by the state"], answer: 0 },
+                            { q: "2. Demutualization", options: ["Changing from a mutual to a Plc", "Closing a mutual", "Starting a mutual"], answer: 0 },
+                            { q: "3. Building Society", options: ["A mutual that lends money for houses", "A building company", "A club"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "A business owned by one person is a:", options: ["Sole trader", "Single trader", "One trader", "Solo trader"], answer: 0 },
+                    { q: "Ltd stands for:", options: ["Limited", "Limit", "Little", "Long"], answer: 0 },
+                    { q: "Plc stands for:", options: ["Public Limited Company", "Private Limited Company", "Personal Limited Company", "Past Limited Company"], answer: 0 },
+                    { q: "The owners of a limited company are called:", options: ["Shareholders", "Stakeholders", "Bondholders", "Leaseholders"], answer: 0 },
+                    { q: "Money paid to shareholders from profits is a:", options: ["Dividend", "Division", "Divider", "Deviant"], answer: 0 },
+                    { q: "Charities are usually ___ organizations.", options: ["non-profit", "pro-profit", "full-profit", "max-profit"], answer: 0 },
+                    { q: "In the US, a limited company is usually called:", options: ["Inc (Incorporated)", "Ltd", "Plc", "GmbH"], answer: 0 },
+                    { q: "A business run by two or more professionals (e.g. lawyers) is a:", options: ["Partnership", "Friendship", "Relationship", "Membership"], answer: 0 },
+                    { q: "If a company goes bankrupt, a sole trader might lose their:", options: ["Personal assets/house", "Office chair", "Company name", "Share price"], answer: 0 },
+                    { q: "A 'mutual' company is owned by its:", options: ["Members/Customers", "Bosses", "Government", "Banks"], answer: 0 }
+                ]
+            },
+            {
+                id: 12,
+                title: "Organizations 2",
+                icon: "fa-handshake",
+                summary: "Mergers, acquisitions, and restructuring.",
+                learning: {
+                    intro: "Companies change and grow. Sometimes they join together (merge) and sometimes one buys another (acquisition/takeover).",
+                    keyTerms: [
+                        { term: "Merger", def: "Two companies agree to join together to form one new company." },
+                        { term: "Acquisition / Takeover", def: "One company buys another company." },
+                        { term: "Subsidiary", def: "A company that is owned by another larger company (the parent company)." },
+                        { term: "Conglomerate", def: "A large group of companies in very different industries." },
+                        { term: "Joint Venture", def: "Two companies work together on a specific project for a limited time." },
+                        { term: "Friendly / Hostile Takeover", def: "Friendly = agreed; Hostile = unwanted by the target company." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "12.1 Match the verb to the definition.",
+                        questions: [
+                            { q: "1. To merge", options: ["Join together as equals", "Buy another company", "Close a company"], answer: 0 },
+                            { q: "2. To acquire", options: ["Buy another company", "Sell a company", "Split a company"], answer: 0 },
+                            { q: "3. To take over", options: ["Get control of another company", "Start a company", "Leave a company"], answer: 0 },
+                            { q: "4. To divest", options: ["Sell part of a business", "Buy part of a business", "Invest more"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "12.2 Complete the sentences about company changes.",
+                        questions: [
+                            { text: "Company A and Company B agreed to ___; they are now one big company.", answer: "merge" },
+                            { text: "It was a ___ takeover; the directors of the smaller company did not want it.", answer: "hostile" },
+                            { text: "We are starting a ___ venture with a Chinese partner.", answer: "joint" },
+                            { text: "Unilever is a huge ___ with many brands.", answer: "conglomerate" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "12.3 Match the company relationship.",
+                        questions: [
+                            { q: "1. Parent Company", options: ["Owns other companies", "Is owned by another company", "Has no owner"], answer: 0 },
+                            { q: "2. Subsidiary", options: ["Is owned by a parent company", "Owns the parent company", "Is independent"], answer: 0 },
+                            { q: "3. Alliance", options: ["An agreement to work together", "A hostile fight", "A merger"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "When two companies join as equals, it is a:", options: ["Merger", "Takeover", "Buyout", "Sellout"], answer: 0 },
+                    { q: "When one company buys another, it is an:", options: ["Acquisition", "Inquisition", "Exquisition", "Addition"], answer: 0 },
+                    { q: "If the target company wants to be bought, it is a ___ takeover.", options: ["friendly", "hostile", "happy", "kind"], answer: 0 },
+                    { q: "If the target company does NOT want to be bought, it is a ___ takeover.", options: ["hostile", "friendly", "angry", "bad"], answer: 0 },
+                    { q: "A company owned by a larger company is a:", options: ["Subsidiary", "Submarine", "Substitute", "Subject"], answer: 0 },
+                    { q: "The large company that owns subsidiaries is the:", options: ["Parent company", "Father company", "Mother company", "Big company"], answer: 0 },
+                    { q: "A company with businesses in many different sectors is a:", options: ["Conglomerate", "Combination", "Collection", "Connection"], answer: 0 },
+                    { q: "When companies work together on a specific project, it is a:", options: ["Joint venture", "Joint adventure", "Joint merger", "Joint club"], answer: 0 },
+                    { q: "A 'bid' is an offer to ___ shares in a company.", options: ["buy", "sell", "lose", "hide"], answer: 0 },
+                    { q: "Selling off a part of the business is called:", options: ["Divestment", "Investment", "Development", "Department"], answer: 0 }
+                ]
             }
-            // TO ADD MORE MODULES: Copy the structure above and change ID/Content based on the PDF.
         ];
 
         // APP STATE
