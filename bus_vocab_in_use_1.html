@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Vocabulary: Work and Jobs</title>
+    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ff; /* Light indigo theme */
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            height: 1.25rem;
+        }
+        .correct {
+            color: #4f46e5; /* indigo-600 */
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active {
+            background-color: #6366f1; /* indigo-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .vocab-card, .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            border-left: 4px solid #818cf8; /* indigo-400 */
+        }
+        .option-btn {
+             border: 1px solid #d1d5db;
+             transition: all 0.2s;
+        }
+        .option-btn.selected {
+            background-color: #e0e7ff;
+            border-color: #6366f1;
+            color: #3730a3;
+        }
+        select, input[type="text"] {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        select:focus, input[type="text"]:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-indigo-700 text-center">Unit 1: Work and Jobs</h1>
+             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
+            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Vocabulary</button>
+            <button id="nav-pierre-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Exercise 1.1 (Corrections)</button>
+            <button id="nav-preps-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Exercise 1.2 (Prepositions)</button>
+            <button id="nav-types-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Exercise 1.3 (Job Types)</button>
+            <button id="nav-test-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Test Unit 1</button>
+        </nav>
+
+        <main class="bg-indigo-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
+            <!-- Page 1: Vocabulary -->
+            <div id="page-vocabulary" class="page active">
+                <h2 class="text-3xl font-bold text-indigo-800 mb-6 text-center">Key Concepts</h2>
+                <div class="space-y-6">
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: What do you do?</h3>
+                        <p class="text-gray-600 mb-2 text-sm">To describe your job role:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li><strong>I work for</strong> (a company).</li>
+                            <li><strong>I work on</strong> (a project/task).</li>
+                            <li><strong>I run</strong> / <strong>I manage</strong> (a department/team).</li>
+                            <li><strong>I work under</strong> (someone is my boss).</li>
+                            <li><strong>I deal with</strong> (people/clients).</li>
+                        </ul>
+                        <div class="mt-3 bg-indigo-50 p-3 rounded-md text-sm border border-indigo-100">
+                            <p class="font-bold text-indigo-700">Responsibility Grammar:</p>
+                            <ul class="list-none mt-1 space-y-1">
+                                <li>• I'm <strong>in charge of</strong> (+ noun/verb-ing)</li>
+                                <li>• I'm <strong>responsible for</strong> (+ noun/verb-ing)</li>
+                                <li>• One of my <strong>responsibilities</strong> is (+ infinitive/-ing)</li>
+                                <li class="text-red-600 text-xs mt-1">Don't say: "I'm a responsible."</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Word combinations with 'work'</h3>
+                        <p class="text-gray-600 mb-2 text-sm"><strong>Note:</strong> "Work" is usually an activity/place (uncountable). "Job" is a specific role (countable). Never say "I have a work".</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm text-gray-700">
+                            <ul class="list-disc list-inside">
+                                <li>Leave for work</li>
+                                <li>Go to work</li>
+                                <li>Get to / Arrive at work</li>
+                            </ul>
+                            <ul class="list-disc list-inside">
+                                <li>Be at work</li>
+                                <li>Be off work (ill/holiday)</li>
+                                <li>Be out of work (unemployed)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card">
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Types of Job</h3>
+                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
+                            <li><strong>Full-time job:</strong> The whole normal working week.</li>
+                            <li><strong>Part-time job:</strong> Less time than a full week.</li>
+                            <li><strong>Permanent job:</strong> Does not finish after a fixed period.</li>
+                            <li><strong>Temporary job:</strong> Finishes after a fixed period (e.g., 6 months).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Pierre Quiz (1.1) -->
+            <div id="page-pierre-quiz" class="page">
+                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 1.1: Correcting Pierre</h2>
+                <p class="text-gray-500 mb-6">Pierre makes mistakes describing his job. Select the correct correction for the highlighted parts.</p>
+                <div id="pierre-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkPierreQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="pierre-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 3: Prepositions Quiz (1.2) -->
+            <div id="page-preps-quiz" class="page">
+                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 1.2: Rebecca's Routine</h2>
+                <p class="text-gray-500 mb-6">Complete the text with the correct prepositions (to, at, off, in, out of).</p>
+                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-indigo-400 leading-loose text-gray-800" id="preps-container">
+                    Rebecca lives in London. She leaves home for work at 7.30 am. She drives
+                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
+                    </select> work. 
+                    The traffic is often bad and she worries about getting
+                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
+                    </select> work late, but she usually arrives
+                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
+                    </select> work at around nine. 
+                    <br><br>
+                    'Luckily, I'm never ill,' she says. 'I could never take the time
+                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
+                    </select> work.'
+                    She loves what she does and is glad to be
+                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
+                    </select> work. Some of her friends are not so lucky: they are
+                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                        <option value="">-</option><option value="at">at</option><option value="out of">out of</option><option value="off">off</option><option value="in">in</option>
+                    </select> work.
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkPrepsQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="preps-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 4: Types Quiz (1.3) -->
+            <div id="page-types-quiz" class="page">
+                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 1.3: Types of Job</h2>
+                <p class="text-gray-500 mb-6">Select the best description for each situation.</p>
+                <div id="types-quiz-container" class="space-y-4"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="checkTypesQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
+                    <p id="types-quiz-feedback" class="feedback"></p>
+                </div>
+            </div>
+
+            <!-- Page 5: Test Unit 1 -->
+            <div id="page-test-quiz" class="page">
+                <h2 class="text-3xl font-bold text-indigo-800 mb-6 text-center">Test Your Business Vocabulary</h2>
+                
+                <!-- Test 1.1 -->
+                <div class="vocab-card mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.1: Complete the Sentences</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Use a word from the box to complete each sentence. There is one extra word.</p>
+                    <div class="bg-indigo-50 p-4 rounded-md mb-4 flex flex-wrap gap-2 text-sm font-semibold text-indigo-700">
+                        <span>deal</span> <span>responsible</span> <span>work</span> <span>job</span> <span>manage</span> <span>under</span> <span>of</span>
+                    </div>
+                    <div id="test1-container" class="space-y-4"></div>
+                    <div class="mt-4 text-right">
+                        <button onclick="checkTest1()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
+                        <span id="test1-feedback" class="ml-2 text-sm font-medium"></span>
+                    </div>
+                </div>
+
+                <!-- Test 1.2 -->
+                <div class="vocab-card mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.2: Job Types</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Decide if the statement describes Full-time (FT), Part-time (PT), Permanent (P), or Temporary (T) work.</p>
+                    <div id="test2-container" class="space-y-4"></div>
+                    <div class="mt-4 text-right">
+                        <button onclick="checkTest2()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
+                        <span id="test2-feedback" class="ml-2 text-sm font-medium"></span>
+                    </div>
+                </div>
+
+                <!-- Test 1.3 -->
+                <div class="vocab-card mb-8">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.3: Prepositions</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Complete the text with words from the box. You may use words more than once.</p>
+                    <div class="bg-indigo-50 p-4 rounded-md mb-4 flex flex-wrap gap-2 text-sm font-semibold text-indigo-700">
+                        <span>at</span> <span>for</span> <span>in</span> <span>of</span> <span>off</span> <span>on</span> <span>get</span> <span>to</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-indigo-400 leading-loose text-gray-800" id="test3-container">
+                        'My name is Anne Scott and I work 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> a public relations company in London. I leave 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> work at 7 o'clock in the morning. I go 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> work by train and I usually 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> work by 8.30. I'm always 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> work till about 6 o'clock so I never get home before 7.30 pm. Last year I broke my leg and so I was 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> work for over a month. I didn't like being at home. I love my job. I would hate to be permanently out 
+                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
+                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
+                        </select> work.
+                    </div>
+                    <div class="mt-4 text-right">
+                        <button onclick="checkTest3()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
+                        <span id="test3-feedback" class="ml-2 text-sm font-medium"></span>
+                    </div>
+                </div>
+
+                <!-- Test 1.4 -->
+                <div class="vocab-card">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.4: Word Forms</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Write the correct form of the word given in brackets.</p>
+                    <div id="test4-container" class="space-y-4"></div>
+                    <div class="mt-4 text-right">
+                        <button onclick="checkTest4()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
+                        <span id="test4-feedback" class="ml-2 text-sm font-medium"></span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Unit 1 Data ---
+        const pierreQuizData = [
+            { text: "I work <span class='text-red-500 line-through'>about</span> the development of new supermarkets.", options: ["work for", "work on", "work in"], answer: "work on" },
+            { text: "In fact, I <span class='text-red-500 line-through'>running</span> the development department.", options: ["run", "ran", "am run"], answer: "run" },
+            { text: "And I <span class='text-red-500 line-through'>am manage for</span> a team.", options: ["manage", "managing", "manager"], answer: "manage" },
+            { text: "One of my <span class='text-red-500 line-through'>main</span> is to make sure...", options: ["main responsibilities", "main responsible", "main tasking"], answer: "main responsibilities" },
+            { text: "I'm also <span class='text-red-500 line-through'>charged with</span> financial reporting.", options: ["in charge of", "charging with", "charge of"], answer: "in charge of" },
+            { text: "I deal <span class='text-red-500 line-through'>at</span> a lot of different organizations.", options: ["deal for", "deal with", "deal on"], answer: "deal with" },
+            { text: "I'm responsible <span class='text-red-500 line-through'>of</span> planning projects.", options: ["for", "to", "with"], answer: "for" },
+            { text: "I work closely <span class='text-red-500 line-through'>near</span> our foreign partners.", options: ["by", "to", "with"], answer: "with" }
+        ];
+
+        const typesQuizData = [
+            { situation: "My husband works in an office from 9 am to 5.30 pm.", options: ["He has a full-time job.", "He has a part-time job.", "He has temporary work."], answer: "He has a full-time job." },
+            { situation: "Our daughter works in a bank from eight till five every day.", options: ["She works part-time.", "She works full-time.", "She works temporary."], answer: "She works full-time." },
+            { situation: "I work in a café from 8 pm until midnight.", options: ["I work full-time.", "I have a permanent job.", "I work part-time."], answer: "I work part-time." },
+            { situation: "My wife works in local government and she can have this job for as long as she wants it.", options: ["She has a permanent job.", "She has a temporary job.", "She is out of work."], answer: "She has a permanent job." },
+            { situation: "Our son is working on a farm for four weeks.", options: ["He has a permanent job.", "He has a temporary job.", "He works full-time."], answer: "He has a temporary job." }
+        ];
+
+        const prepsAnswers = ["to", "to", "at", "off", "in", "out of"];
+
+        // --- Test Unit 1 Data ---
+        const test1Data = [
+            { q: "1. I ______ the manufacturing plant in Cambridge.", ans: "manage", options: ["manage", "job", "under", "of", "deal", "responsible"] },
+            { q: "2. I am in charge ______ the production team.", ans: "of", options: ["manage", "job", "under", "of", "deal", "responsible"] },
+            { q: "3. About 120 people work ______ me.", ans: "under", options: ["manage", "job", "under", "of", "deal", "responsible"] },
+            { q: "4. Coordination between production and design is my ______.", ans: "job", options: ["manage", "job", "under", "of", "deal", "responsible"] },
+            { q: "5. I ______ with a lot of people in the company and with our customers.", ans: "deal", options: ["manage", "job", "under", "of", "deal", "responsible"] },
+            { q: "6. I'm ______ for a budget of over £100 million.", ans: "responsible", options: ["manage", "job", "under", "of", "deal", "responsible"] }
+        ];
+
+        const test2Data = [
+            { q: "1. I joined the company ten years ago and I guess I'll be here for another ten.", ans: "P" },
+            { q: "2. I do four hours each morning and then I pick the children up from school.", ans: "PT" },
+            { q: "3. I've been here since March and I'll leave in July when the designs are finished.", ans: "T" },
+            { q: "4. We are supposed to work 37 hours a week but I usually do a bit more.", ans: "FT" },
+            { q: "5. I started here when I left school. Oh, that's about 20 years ago now.", ans: "P" },
+            { q: "6. This job is only for six months, but that's OK because then I'm going to Italy.", ans: "T" }
+        ];
+
+        // Answers for Test 1.3: for, for, to, get, to, at, off, of
+        const test3Answers = ["for", "for", "to", "get", "to", "at", "off", "of"];
+
+        const test4Data = [
+            { q: "1. I'm in charge of ______ the work of the team. (coordinate)", ans: "coordinating" },
+            { q: "2. One of my responsibilities is to ______ sure that we don't spend too much money. (make)", ans: "make" },
+            { q: "3. My team is responsible for the ______ of new models for production. (design)", ans: "design" },
+            { q: "4. I'm in charge of ______ our work for the whole year. (plan)", ans: "planning" }
+        ];
+
+
+        // --- Page Navigation & Setup ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
+                navButtons.forEach(b => b.classList.remove('active'));
+                const targetButtonId = pageId.replace('page-', 'nav-');
+                document.getElementById(targetButtonId)?.classList.add('active');
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pageName = `page-${button.id.substring(4)}`;
+                    showPage(pageName);
+                });
+            });
+
+            // Unit 1 Setup
+            setupPierreQuiz();
+            setupTypesQuiz();
+
+            // Test Unit 1 Setup
+            setupTest1();
+            setupTest2();
+            setupTest4();
+        });
+
+        // --- Unit 1 Functions ---
+        function setupPierreQuiz() {
+            const container = document.getElementById('pierre-quiz-container');
+            container.innerHTML = pierreQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm">${item.text}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-indigo-100" 
+                                onclick="selectPierre(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="pierre-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectPierre(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`pierre-answer-${index}`).value = value;
+        }
+
+        function checkPierreQuiz() {
+            let correctCount = 0;
+            pierreQuizData.forEach((item, index) => {
+                const input = document.getElementById(`pierre-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('pierre-quiz-feedback');
+            const allCorrect = correctCount === pierreQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Excellent corrections!" : `You got ${correctCount} out of ${pierreQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        function checkPrepsQuiz() {
+            let correctCount = 0;
+            const container = document.getElementById('preps-container');
+            const selects = container.querySelectorAll('select');
+            
+            selects.forEach((select, index) => {
+                const userVal = select.value;
+                const correctVal = prepsAnswers[index];
+                
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                select.disabled = true;
+
+                if (userVal === correctVal) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedbackEl = document.getElementById('preps-quiz-feedback');
+            const allCorrect = correctCount === prepsAnswers.length;
+            feedbackEl.textContent = allCorrect ? "Correct! You know your prepositions." : `You got ${correctCount} out of ${prepsAnswers.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        function setupTypesQuiz() {
+            const container = document.getElementById('types-quiz-container');
+            container.innerHTML = typesQuizData.map((item, index) => `
+                <div class="activity-card p-4">
+                    <p class="font-medium text-gray-800 mb-3 text-sm italic">"${item.situation}"</p>
+                    <div class="flex flex-col gap-2">
+                        ${item.options.map(opt => `
+                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-indigo-100 text-left" 
+                                onclick="selectType(this, ${index}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <input type="hidden" id="type-answer-${index}" value="">
+                </div>
+            `).join('');
+        }
+
+        function selectType(btn, index, value) {
+            const container = btn.closest('.activity-card');
+            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById(`type-answer-${index}`).value = value;
+        }
+
+        function checkTypesQuiz() {
+            let correctCount = 0;
+            typesQuizData.forEach((item, index) => {
+                const input = document.getElementById(`type-answer-${index}`);
+                const container = input.closest('.activity-card');
+                const selectedBtn = container.querySelector('.selected');
+                
+                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+                if (input.value === item.answer) {
+                    correctCount++;
+                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                } else {
+                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
+                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            const feedbackEl = document.getElementById('types-quiz-feedback');
+            const allCorrect = correctCount === typesQuizData.length;
+            feedbackEl.textContent = allCorrect ? "Great job identifying job types!" : `You got ${correctCount} out of ${typesQuizData.length} correct.`;
+            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
+        }
+
+        // --- Test Unit 1 Functions ---
+
+        // Test 1.1: Complete Sentences
+        function setupTest1() {
+            const container = document.getElementById('test1-container');
+            container.innerHTML = test1Data.map((item, index) => `
+                <div class="flex items-center gap-2 p-2 bg-indigo-50 rounded">
+                    <p class="flex-grow text-sm text-gray-800">${item.q}</p>
+                    <select id="test1-${index}" class="text-sm border border-gray-300 rounded p-1">
+                        <option value="">Select...</option>
+                        ${item.options.sort().map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                    </select>
+                </div>
+            `).join('');
+        }
+
+        function checkTest1() {
+            let correctCount = 0;
+            test1Data.forEach((item, index) => {
+                const select = document.getElementById(`test1-${index}`);
+                if (select.value === item.ans) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'text-green-700', 'bg-green-50');
+                    select.classList.remove('border-red-500');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                    select.classList.remove('border-green-500');
+                }
+            });
+            const feedback = document.getElementById('test1-feedback');
+            feedback.textContent = `Score: ${correctCount}/${test1Data.length}`;
+            feedback.className = correctCount === test1Data.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
+        }
+
+        // Test 1.2: Job Types
+        function setupTest2() {
+            const container = document.getElementById('test2-container');
+            container.innerHTML = test2Data.map((item, index) => `
+                <div class="flex items-start md:items-center gap-4 p-2 border-b border-gray-100">
+                    <p class="text-sm text-gray-800 flex-grow">${item.q}</p>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="FT"> FT</label>
+                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="PT"> PT</label>
+                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="P"> P</label>
+                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="T"> T</label>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkTest2() {
+            let correctCount = 0;
+            test2Data.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="test2-${index}"]:checked`);
+                const parent = document.getElementsByName(`test2-${index}`)[0].closest('.flex.gap-2');
+                
+                parent.querySelectorAll('span.status').forEach(e => e.remove());
+
+                if (selected && selected.value === item.ans) {
+                    correctCount++;
+                    const badge = document.createElement('span');
+                    badge.className = 'status text-green-500 font-bold ml-2';
+                    badge.innerHTML = '&#10003;';
+                    parent.appendChild(badge);
+                } else {
+                    const badge = document.createElement('span');
+                    badge.className = 'status text-red-500 font-bold ml-2';
+                    badge.innerHTML = '&times;';
+                    parent.appendChild(badge);
+                }
+            });
+            const feedback = document.getElementById('test2-feedback');
+            feedback.textContent = `Score: ${correctCount}/${test2Data.length}`;
+            feedback.className = correctCount === test2Data.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
+        }
+
+        // Test 1.3: Prepositions
+        function checkTest3() {
+            let correctCount = 0;
+            const container = document.getElementById('test3-container');
+            const selects = container.querySelectorAll('select');
+            
+            selects.forEach((select, index) => {
+                const userVal = select.value;
+                const correctVal = test3Answers[index];
+                
+                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+                
+                if (userVal === correctVal) {
+                    correctCount++;
+                    select.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    select.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+
+            const feedback = document.getElementById('test3-feedback');
+            feedback.textContent = `Score: ${correctCount}/${test3Answers.length}`;
+            feedback.className = correctCount === test3Answers.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
+        }
+
+        // Test 1.4: Word Forms
+        function setupTest4() {
+            const container = document.getElementById('test4-container');
+            container.innerHTML = test4Data.map((item, index) => `
+                <div class="flex flex-col p-2 bg-indigo-50 rounded">
+                    <p class="text-sm text-gray-800 mb-2">${item.q}</p>
+                    <input type="text" id="test4-${index}" placeholder="Type answer..." class="w-full text-sm border p-1 rounded">
+                </div>
+            `).join('');
+        }
+
+        function checkTest4() {
+            let correctCount = 0;
+            test4Data.forEach((item, index) => {
+                const input = document.getElementById(`test4-${index}`);
+                const val = input.value.trim().toLowerCase();
+                
+                if (val === item.ans) {
+                    correctCount++;
+                    input.classList.add('border-green-500', 'bg-green-50');
+                    input.classList.remove('border-red-500');
+                } else {
+                    input.classList.add('border-red-500', 'bg-red-50');
+                    input.classList.remove('border-green-500');
+                }
+            });
+            const feedback = document.getElementById('test4-feedback');
+            feedback.textContent = `Score: ${correctCount}/${test4Data.length}`;
+            feedback.className = correctCount === test4Data.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
+        }
+
+    </script>
+</body>
+</html>
