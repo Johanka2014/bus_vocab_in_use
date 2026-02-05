@@ -91,7 +91,7 @@
     <script>
         // DATA STORE: Based on Business Vocabulary in Use (Mascull)
         const modules = [
-            // ... existing modules 1-10 ...
+            // ... (Modules 1-18 are preserved here) ...
             {
                 id: 1,
                 title: "Work and Jobs",
@@ -849,6 +849,482 @@
                     { q: "When companies work together on a specific project, it is a:", options: ["Joint venture", "Joint adventure", "Joint merger", "Joint club"], answer: 0 },
                     { q: "A 'bid' is an offer to ___ shares in a company.", options: ["buy", "sell", "lose", "hide"], answer: 0 },
                     { q: "Selling off a part of the business is called:", options: ["Divestment", "Investment", "Development", "Department"], answer: 0 }
+                ]
+            },
+            {
+                id: 13,
+                title: "Manufacturing and Services",
+                icon: "fa-industry",
+                summary: "Industry sectors and production.",
+                learning: {
+                    intro: "Economies are divided into sectors: Primary (raw materials), Secondary (manufacturing), and Tertiary (services).",
+                    keyTerms: [
+                        { term: "Primary Sector", def: "Agriculture, mining, fishing, etc. (Raw materials)." },
+                        { term: "Secondary Sector", def: "Manufacturing and construction (Making things)." },
+                        { term: "Tertiary Sector", def: "The service industry (Banking, Tourism, IT)." },
+                        { term: "Production Line", def: "A system where products are made in stages by machines/people." },
+                        { term: "Raw Materials", def: "Basic materials from which a product is made (e.g., oil, wood)." },
+                        { term: "Output", def: "The amount of something produced." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "13.1 Match the industry to the sector.",
+                        questions: [
+                            { q: "1. Agriculture (Farming)", options: ["Primary", "Secondary", "Tertiary"], answer: 0 },
+                            { q: "2. Car Manufacturing", options: ["Secondary", "Primary", "Tertiary"], answer: 0 },
+                            { q: "3. Tourism", options: ["Tertiary", "Secondary", "Primary"], answer: 0 },
+                            { q: "4. Mining (Coal/Gold)", options: ["Primary", "Secondary", "Tertiary"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "13.2 Complete the sentences with production words.",
+                        questions: [
+                            { text: "We ___ cars at our plant in Oxford.", answer: "manufacture" },
+                            { text: "We need to buy more raw ___ like steel and plastic.", answer: "materials" },
+                            { text: "The factory is running at full ___.", answer: "capacity" },
+                            { text: "We ___ components from suppliers in China.", answer: "source" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "13.3 Match the definition.",
+                        questions: [
+                            { q: "1. Productivity", options: ["How fast/efficiently goods are made", "The cost of goods", "The profit"], answer: 0 },
+                            { q: "2. Inventory / Stock", options: ["Goods stored ready for sale", "Money in the bank", "Shareholders"], answer: 0 },
+                            { q: "3. Assembly Line", options: ["Where products are put together", "A meeting room", "A sales team"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "The sector that involves raw materials is the ___ sector.", options: ["primary", "secondary", "tertiary", "fourth"], answer: 0 },
+                    { q: "Manufacturing and construction are in the ___ sector.", options: ["secondary", "primary", "tertiary", "service"], answer: 0 },
+                    { q: "Services like banking and tourism are in the ___ sector.", options: ["tertiary", "primary", "secondary", "industrial"], answer: 0 },
+                    { q: "Making cars on a moving belt is called a ___ line.", options: ["production", "product", "produce", "producing"], answer: 0 },
+                    { q: "Materials like wood, oil, and iron are called ___ materials.", options: ["raw", "rough", "real", "rare"], answer: 0 },
+                    { q: "If you have too many goods in the warehouse, you have high:", options: ["Inventory/Stock", "Sales", "Profits", "Debts"], answer: 0 },
+                    { q: "To 'assemble' a product means to:", options: ["Put it together", "Design it", "Sell it", "Buy it"], answer: 0 },
+                    { q: "Making custom products for specific customers is called:", options: ["Custom-built / Tailor-made", "Mass-produced", "Ready-made", "Off-the-shelf"], answer: 0 },
+                    { q: "Making huge quantities of the same product is ___ production.", options: ["mass", "mess", "miss", "most"], answer: 0 },
+                    { q: "If a factory works 24 hours a day, it is running at full ___.", options: ["capacity", "capability", "city", "capital"], answer: 0 }
+                ]
+            },
+            {
+                id: 14,
+                title: "The Development Process",
+                icon: "fa-flask",
+                summary: "Research, development, and launching new products.",
+                learning: {
+                    intro: "Before you can sell a product, you must develop it. This involves R&D, market research, and testing.",
+                    keyTerms: [
+                        { term: "R&D", def: "Research and Development - creating new products." },
+                        { term: "Market Research", def: "Finding out what customers want (surveys, focus groups)." },
+                        { term: "Prototype", def: "The first working model of a new product." },
+                        { term: "Launch", def: "To introduce a new product to the market." },
+                        { term: "Patent", def: "Legal protection for a new invention so others can't copy it." },
+                        { term: "Beta Version", def: "An early version of software for testing by users." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "14.1 Order the development process steps (1-4).",
+                        questions: [
+                            { q: "Step 1", options: ["Concept / Idea", "Launch", "Prototype"], answer: 0 },
+                            { q: "Step 2", options: ["Market Research", "Launch", "Distribution"], answer: 0 },
+                            { q: "Step 3", options: ["Product Development / Testing", "Idea", "Sales"], answer: 0 },
+                            { q: "Step 4", options: ["Launch / Rollout", "Research", "Concept"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "14.2 Match the term to the definition.",
+                        questions: [
+                            { q: "1. Innovation", options: ["A new idea or method", "An old idea", "A copy"], answer: 0 },
+                            { q: "2. Patent", options: ["Registered right to an invention", "A type of tax", "A customer"], answer: 0 },
+                            { q: "3. Focus Group", options: ["Group discussing a new product", "Group of managers", "Group of friends"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "14.3 Complete the sentences about launching a product.",
+                        questions: [
+                            { text: "We plan to ___ the new phone next month.", answer: "launch" },
+                            { text: "We are testing a ___ version of the software.", answer: "beta" },
+                            { text: "We need to do some market ___ to see if people like it.", answer: "research" },
+                            { text: "This design is cutting-___ (very modern).", answer: "edge" }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "R&D stands for:", options: ["Research and Development", "Roads and Driving", "Rest and Dream", "Real and Direct"], answer: 0 },
+                    { q: "Asking the public what they think is called:", options: ["Market research", "Market testing", "Market selling", "Market buying"], answer: 0 },
+                    { q: "The very first model of a machine is a:", options: ["Prototype", "Copy", "Photo", "Type"], answer: 0 },
+                    { q: "To officially start selling a product is to ___ it.", options: ["launch", "lunch", "lunge", "land"], answer: 0 },
+                    { q: "If you improve a product, you ___ it.", options: ["upgrade", "downgrade", "grade", "up"], answer: 0 },
+                    { q: "A test version of software is often called a ___ version.", options: ["beta", "alpha", "gamma", "delta"], answer: 0 },
+                    { q: "Legal protection preventing copying is a:", options: ["Patent", "Patient", "Pattern", "Parent"], answer: 0 },
+                    { q: "Copyright usually protects:", options: ["Books/Music/Art", "Machines", "Chemicals", "Buildings"], answer: 0 },
+                    { q: "Cutting-edge technology is:", options: ["Very modern/advanced", "Very old", "Very cheap", "Very dangerous"], answer: 0 },
+                    { q: "A flaw in the design is a:", options: ["Mistake/Fault", "Feature", "Benefit", "Bonus"], answer: 0 }
+                ]
+            },
+            {
+                id: 15,
+                title: "Innovation and Invention",
+                icon: "fa-lightbulb",
+                summary: "Creative ideas, intellectual property, and breakthroughs.",
+                learning: {
+                    intro: "Innovation drives business. This involves creating new inventions and protecting them with intellectual property rights.",
+                    keyTerms: [
+                        { term: "Innovation", def: "The process of translating an idea or invention into a good or service that creates value." },
+                        { term: "Invention", def: "A unique or novel device, method, composition or process." },
+                        { term: "Intellectual Property (IP)", def: "Creations of the mind, such as inventions; literary and artistic works; designs; and symbols." },
+                        { term: "Copyright", def: "Legal right that grants the creator of an original work exclusive rights for its use and distribution." },
+                        { term: "Trademark", def: "A symbol, word, or words legally registered or established by use as representing a company or product." },
+                        { term: "Disruptive Technology", def: "An innovation that significantly alters the way that consumers, industries, or businesses operate." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "15.1 Match the term to the definition.",
+                        questions: [
+                            { q: "1. Patent", options: ["Exclusive right granted for an invention", "A type of tax", "A business plan"], answer: 0 },
+                            { q: "2. Copyright", options: ["Protection for literary/artistic works", "Protection for machines", "Protection for land"], answer: 0 },
+                            { q: "3. Trademark", options: ["A recognizable sign/logo", "A trade deal", "A market stall"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "15.2 Complete the collocations.",
+                        questions: [
+                            { text: "This is a major technological ___.", answer: "breakthrough" },
+                            { text: "We use cutting-___ technology.", answer: "edge" },
+                            { text: "Our software is state-of-the-___.", answer: "art" },
+                            { text: "We need to encourage creative ___.", answer: "thinking" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "15.3 Match the concept to the description.",
+                        questions: [
+                            { q: "1. Bureaucracy", options: ["Excessive rules preventing innovation", "Efficient management", "Creative freedom"], answer: 0 },
+                            { q: "2. Research Center", options: ["Place for developing new ideas", "Place for selling goods", "Place for storage"], answer: 0 },
+                            { q: "3. Knowledge Economy", options: ["Economy based on intellectual capital", "Economy based on farming", "Economy based on mining"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "Protecting a brand logo requires a:", options: ["Trademark", "Copyright", "Patent", "License"], answer: 0 },
+                    { q: "Protecting a book or song requires:", options: ["Copyright", "Trademark", "Patent", "Permit"], answer: 0 },
+                    { q: "Protecting a new machine invention requires a:", options: ["Patent", "Pattern", "Parent", "Patient"], answer: 0 },
+                    { q: "A completely new product idea is an:", options: ["Invention", "Invitation", "Inventory", "Investment"], answer: 0 },
+                    { q: "Improving an existing product is:", options: ["Innovation", "Imitation", "Installation", "Inflation"], answer: 0 },
+                    { q: "Technology that changes an industry completely is:", options: ["Disruptive", "Destructive", "Distinctive", "Decorative"], answer: 0 },
+                    { q: "Something very modern is 'state-of-the-___'.", options: ["art", "heart", "part", "chart"], answer: 0 },
+                    { q: "A sudden, important discovery is a:", options: ["Breakthrough", "Breakdown", "Breakout", "Breakup"], answer: 0 },
+                    { q: "IP stands for:", options: ["Intellectual Property", "Internet Protocol", "Important Person", "Internal Process"], answer: 0 },
+                    { q: "Too much paperwork that stops innovation is:", options: ["Bureaucracy", "Democracy", "Autocracy", "Meritocracy"], answer: 0 }
+                ]
+            },
+            {
+                id: 16,
+                title: "Making Things",
+                icon: "fa-hammer",
+                summary: "Production methods: Hand-made, mass-produced, and lean manufacturing.",
+                learning: {
+                    intro: "How things are made matters. Some are crafted by hand, while others are churned out by machines. Efficiency and quality are key.",
+                    keyTerms: [
+                        { term: "Hand-made / Crafted", def: "Made by a person, not a machine. Often implies high quality." },
+                        { term: "Mass-produced", def: "Made in large quantities by machines." },
+                        { term: "Custom-built / Bespoke", def: "Made specially for one customer." },
+                        { term: "Lean Manufacturing", def: "Producing goods with zero waste." },
+                        { term: "Just-in-time (JIT)", def: "Goods arrive exactly when needed, reducing storage costs." },
+                        { term: "Outsourcing", def: "Paying another company to do work for you." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "16.1 Classify the product type.",
+                        questions: [
+                            { q: "1. A cheap plastic toy", options: ["Mass-produced", "Hand-made", "Bespoke"], answer: 0 },
+                            { q: "2. A unique wedding dress", options: ["Custom-made / Bespoke", "Mass-produced", "Standard"], answer: 0 },
+                            { q: "3. A woven basket", options: ["Hand-crafted", "Automated", "Robot-made"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "16.2 Complete the sentences with production verbs.",
+                        questions: [
+                            { text: "The factory can ___ out 1000 units an hour (negative connotation).", answer: "churn" },
+                            { text: "This furniture was lovingly ___ by hand.", answer: "crafted" },
+                            { text: "We ___ our IT support to a company in India.", answer: "outsource" },
+                            { text: "We need to ___ down production due to low demand.", answer: "scale" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "16.3 Match the supply chain term.",
+                        questions: [
+                            { q: "1. Just-in-time", options: ["No storage, immediate use", "Lots of storage", "Late delivery"], answer: 0 },
+                            { q: "2. Supply Chain", options: ["Network creating/delivering a product", "A metal chain", "A shop"], answer: 0 },
+                            { q: "3. Bottleneck", options: ["A delay in the process", "A bottle top", "A fast process"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "Goods made in huge numbers by machines are:", options: ["Mass-produced", "Massive", "Messy", "Mastered"], answer: 0 },
+                    { q: "Goods made by a skilled person are:", options: ["Hand-crafted", "Hand-held", "Hand-picked", "Hand-bagged"], answer: 0 },
+                    { q: "A suit made exactly for you is:", options: ["Bespoke / Tailor-made", "Ready-to-wear", "Off-the-peg", "Standard"], answer: 0 },
+                    { q: "Producing a lot of something quickly and cheaply (negative) is to ___ it out.", options: ["churn", "turn", "burn", "learn"], answer: 0 },
+                    { q: "Reducing waste to zero is ___ manufacturing.", options: ["lean", "mean", "clean", "green"], answer: 0 },
+                    { q: "Buying services from outside the company is:", options: ["Outsourcing", "Insourcing", "Resourcing", "Sourcing"], answer: 0 },
+                    { q: "If parts arrive exactly when needed, it is ___ delivery.", options: ["Just-in-time", "Just-in-case", "Just-for-now", "Just-a-minute"], answer: 0 },
+                    { q: "A blockage that slows down production is a:", options: ["Bottleneck", "Breakneck", "Redneck", "Roughneck"], answer: 0 },
+                    { q: "The network of suppliers and movers is the supply ___.", options: ["chain", "rope", "line", "train"], answer: 0 },
+                    { q: "Checking goods for faults is called ___ control.", options: ["quality", "quantity", "quick", "quiet"], answer: 0 }
+                ]
+            },
+            {
+                id: 17,
+                title: "Materials and Suppliers",
+                icon: "fa-boxes-packing",
+                summary: "Supply chains, logistics, and managing inventory.",
+                learning: {
+                    intro: "To make products, you need materials. This involves suppliers, logistics, and managing stock levels efficiently.",
+                    keyTerms: [
+                        { term: "Supplier", def: "A company that provides raw materials or parts." },
+                        { term: "Inventory / Stock", def: "The goods and materials a business holds." },
+                        { term: "Logistics", def: "The management of moving goods and materials." },
+                        { term: "Component", def: "A part used to build a larger machine or product." },
+                        { term: "Outsourcing", def: "Paying another company to do part of your work." },
+                        { term: "Procurement", def: "The process of buying supplies for a business." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "17.1 Match the supply chain term to its definition.",
+                        questions: [
+                            { q: "1. Supplier", options: ["Provides materials", "Buys products", "Manages staff"], answer: 0 },
+                            { q: "2. Inventory", options: ["Stored goods", "Sold goods", "Lost goods"], answer: 0 },
+                            { q: "3. Component", options: ["A part of a machine", "A finished product", "A factory"], answer: 0 },
+                            { q: "4. Logistics", options: ["Moving/storing goods", "Making goods", "Designing goods"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "17.2 Complete the production flow description.",
+                        questions: [
+                            { text: "First, we buy raw ___ from suppliers.", answer: "materials" },
+                            { text: "Then, the factory turns them into finished ___.", answer: "goods" },
+                            { text: "We keep low ___ levels to save money.", answer: "stock" },
+                            { text: "Finally, logistics delivers them to the ___.", answer: "customer" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "17.3 Match the supply problem.",
+                        questions: [
+                            { q: "1. Bottleneck", options: ["A delay in one part of the process", "A broken bottle", "A fast process"], answer: 0 },
+                            { q: "2. Shortage", options: ["Not enough of something", "Too much of something", "Just enough"], answer: 0 },
+                            { q: "3. Lead Time", options: ["Time between order and delivery", "Time to make a decision", "Time off work"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "A company that sells you parts is a:", options: ["Supplier", "Buyer", "Customer", "Manager"], answer: 0 },
+                    { q: "Another word for 'stock' is:", options: ["Inventory", "Investory", "Invention", "Invitation"], answer: 0 },
+                    { q: "Moving goods from A to B is:", options: ["Logistics", "Logic", "Ballistics", "Statistics"], answer: 0 },
+                    { q: "A small part of a larger machine is a:", options: ["Component", "Opponent", "Proponent", "Exponent"], answer: 0 },
+                    { q: "If you have too much stock, you are:", options: ["Overstocked", "Understocked", "Destocked", "Restocked"], answer: 0 },
+                    { q: "If you run out of stock, you are:", options: ["Out of stock", "In stock", "Over stock", "Under stock"], answer: 0 },
+                    { q: "The time it takes for an order to arrive is the:", options: ["Lead time", "Dead time", "Red time", "Head time"], answer: 0 },
+                    { q: "Getting another company to do your work is:", options: ["Outsourcing", "Insourcing", "Resourcing", "Sourcing"], answer: 0 },
+                    { q: "Raw materials are turned into finished ___.", options: ["goods", "bads", "greats", "fines"], answer: 0 },
+                    { q: "JIT stands for:", options: ["Just-In-Time", "Just-In-Team", "Job-In-Time", "Joy-In-Time"], answer: 0 }
+                ]
+            },
+            {
+                id: 18,
+                title: "Business Philosophies",
+                icon: "fa-brain",
+                summary: "Approaches to quality: TQM, Kaizen, and Benchmarking.",
+                learning: {
+                    intro: "How do companies ensure quality? We look at famous philosophies like Kaizen (continuous improvement) and TQM (Total Quality Management).",
+                    keyTerms: [
+                        { term: "TQM", def: "Total Quality Management - everyone is responsible for quality." },
+                        { term: "Kaizen", def: "Japanese philosophy of continuous improvement." },
+                        { term: "Benchmarking", def: "Comparing your performance against the best in the industry." },
+                        { term: "Zero Defects", def: "Aiming for a perfect product with no faults." },
+                        { term: "Standard", def: "A required level of quality." },
+                        { term: "Defect / Flaw", def: "A fault or mistake in a product." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "18.1 Match the philosophy to the description.",
+                        questions: [
+                            { q: "1. TQM", options: ["Total Quality Management", "Top Quality Management", "Total Quantity Management"], answer: 0 },
+                            { q: "2. Kaizen", options: ["Continuous improvement", "Mass production", "Cost cutting"], answer: 0 },
+                            { q: "3. Six Sigma", options: ["Method to reduce defects", "Six managers", "Six factories"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "18.2 Match the quality vocabulary.",
+                        questions: [
+                            { q: "1. Defect", options: ["A fault/problem", "A solution", "A feature"], answer: 0 },
+                            { q: "2. Standard", options: ["A level of quality", "A flag", "A stand"], answer: 0 },
+                            { q: "3. Compliance", options: ["Following the rules", "Breaking the rules", "Making rules"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "18.3 Complete the sentences about quality.",
+                        questions: [
+                            { text: "We aim for zero ___ in our production.", answer: "defects" },
+                            { text: "We use ___ to compare ourselves with competitors.", answer: "benchmarking" },
+                            { text: "This product does not meet our quality ___.", answer: "standards" },
+                            { text: "Kaizen means continuous ___.", answer: "improvement" }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "TQM stands for:", options: ["Total Quality Management", "Total Quick Management", "Top Quality Management", "Total Quantity Management"], answer: 0 },
+                    { q: "Kaizen is a Japanese word meaning:", options: ["Continuous improvement", "Stop working", "Fast production", "Cheap materials"], answer: 0 },
+                    { q: "Comparing yourself to the best is:", options: ["Benchmarking", "Benchmark", "Benchpressing", "Benchtesting"], answer: 0 },
+                    { q: "A fault in a product is a:", options: ["Defect", "Defeat", "Defense", "Defer"], answer: 0 },
+                    { q: "If a product is perfect, it has zero ___.", options: ["defects", "effects", "affects", "aspects"], answer: 0 },
+                    { q: "ISO 9000 is an international quality ___.", options: ["standard", "stand", "flag", "banner"], answer: 0 },
+                    { q: "If you follow the rules, you are in ___.", options: ["compliance", "complaint", "complement", "complete"], answer: 0 },
+                    { q: "Improving quality usually leads to customer ___.", options: ["satisfaction", "dissatisfaction", "complaints", "returns"], answer: 0 },
+                    { q: "Six Sigma aims to reduce ___.", options: ["errors/defects", "staff", "costs only", "time only"], answer: 0 },
+                    { q: "A 'flaw' is another word for a:", options: ["Mistake/Fault", "Success", "Benefit", "Sale"], answer: 0 }
+                ]
+            },
+            {
+                id: 19,
+                title: "Buyers, Sellers and the Market",
+                icon: "fa-store",
+                summary: "Understanding customers, consumers, and market forces.",
+                learning: {
+                    intro: "Business is about buying and selling. We distinguish between customers (who buy) and consumers (who use), and look at how free markets work.",
+                    keyTerms: [
+                        { term: "Customer", def: "A person or company that buys goods or services." },
+                        { term: "Consumer", def: "The person who actually uses the product." },
+                        { term: "Client", def: "Someone who pays for professional services (e.g., from a lawyer)." },
+                        { term: "Free Market", def: "An economy where prices are determined by supply and demand, not government." },
+                        { term: "Market Forces", def: "The economic factors affecting the price of goods (Supply and Demand)." },
+                        { term: "Vendor", def: "A person or company offering something for sale." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "19.1 Match the person to the definition.",
+                        questions: [
+                            { q: "1. Client", options: ["Pays for professional services", "Buys goods in a shop", "Sells goods"], answer: 0 },
+                            { q: "2. Consumer", options: ["Uses the product", "Makes the product", "Sells the product"], answer: 0 },
+                            { q: "3. Customer", options: ["Buys the product", "Uses the product (only)", "Designs the product"], answer: 0 },
+                            { q: "4. Vendor", options: ["Sells products", "Buys products", "Uses products"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "19.2 Complete the sentences about market forces.",
+                        questions: [
+                            { text: "Prices are set by supply and ___.", answer: "demand" },
+                            { text: "In a ___ market, the government does not control prices.", answer: "free" },
+                            { text: "We need to ___ the market with our new product.", answer: "enter" },
+                            { text: "Supermarkets are fighting for a bigger market ___.", answer: "share" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "19.3 Match the market term.",
+                        questions: [
+                            { q: "1. Marketplace", options: ["Where buyers and sellers meet", "A factory", "A bank"], answer: 0 },
+                            { q: "2. Street Vendor", options: ["Sells goods outside", "Sells goods online", "Sells services"], answer: 0 },
+                            { q: "3. User", options: ["Another word for consumer", "Another word for seller", "Another word for boss"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "A person who buys your services (e.g. architect) is a:", options: ["Client", "Customer", "Shopper", "Buyer"], answer: 0 },
+                    { q: "The person who eats the food you sell is the:", options: ["Consumer", "Customer", "Client", "Buyer"], answer: 0 },
+                    { q: "The person who pays for the food is the:", options: ["Customer", "Consumer", "User", "Eater"], answer: 0 },
+                    { q: "If supply is high and demand is low, prices usually:", options: ["Fall", "Rise", "Stay the same", "Double"], answer: 0 },
+                    { q: "If demand is high and supply is low, prices usually:", options: ["Rise", "Fall", "Drop", "Crash"], answer: 0 },
+                    { q: "A market with no government control is a ___ market.", options: ["free", "open", "closed", "black"], answer: 0 },
+                    { q: "A person selling hot dogs on the street is a street ___.", options: ["vendor", "vender", "seller", "dealer"], answer: 0 },
+                    { q: "The percentage of sales a company has is its market ___.", options: ["share", "part", "piece", "slice"], answer: 0 },
+                    { q: "To start selling in a new area is to ___ the market.", options: ["enter", "exit", "leave", "close"], answer: 0 },
+                    { q: "Another word for 'buyer' is:", options: ["Purchaser", "Seller", "Vendor", "Dealer"], answer: 0 }
+                ]
+            },
+            {
+                id: 20,
+                title: "Markets and Competitors",
+                icon: "fa-chart-pie",
+                summary: "Competition, market share, and segmentation.",
+                learning: {
+                    intro: "Companies fight for customers. This is competition. The most successful company is the market leader. Companies also divide customers into segments.",
+                    keyTerms: [
+                        { term: "Competitor / Rival", def: "A company trying to sell to the same customers as you." },
+                        { term: "Market Share", def: "The percentage of sales in a market that one company has." },
+                        { term: "Market Leader", def: "The company with the biggest market share." },
+                        { term: "Market Segment", def: "A group of customers with similar needs (e.g., luxury segment)." },
+                        { term: "Monopoly", def: "When one company controls the whole market." },
+                        { term: "Oligopoly", def: "When a few large companies control the market." }
+                    ]
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "20.1 Match the competitive term.",
+                        questions: [
+                            { q: "1. Rival", options: ["Competitor", "Partner", "Supplier"], answer: 0 },
+                            { q: "2. Key Player", options: ["Important company in the market", "Small company", "New company"], answer: 0 },
+                            { q: "3. Start-up", options: ["New small company", "Old big company", "Market leader"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "20.2 Complete the market analysis.",
+                        questions: [
+                            { text: "We are the market ___; we sell more than anyone else.", answer: "leader" },
+                            { text: "We want to increase our market ___ by 5%.", answer: "share" },
+                            { text: "This is a fiercely ___ market.", answer: "competitive" },
+                            { text: "The market is growing; there is strong market ___.", answer: "growth" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "20.3 Match the market structure.",
+                        questions: [
+                            { q: "1. Monopoly", options: ["One seller", "Many sellers", "Two sellers"], answer: 0 },
+                            { q: "2. Oligopoly", options: ["Few large sellers", "One seller", "No sellers"], answer: 0 },
+                            { q: "3. Niche Market", options: ["Small, specialized market", "Huge market", "Global market"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "The company with the most sales is the market ___.", options: ["leader", "boss", "head", "chief"], answer: 0 },
+                    { q: "The second biggest company is the market ___.", options: ["challenger", "follower", "loser", "winner"], answer: 0 },
+                    { q: "Dividing customers into groups is market ___.", options: ["segmentation", "separation", "splitting", "sharing"], answer: 0 },
+                    { q: "If one company sells everything (no competition), it is a:", options: ["Monopoly", "Monorail", "Monotone", "Monolith"], answer: 0 },
+                    { q: "Coca-Cola and Pepsi are major ___.", options: ["rivals", "friends", "partners", "colleagues"], answer: 0 },
+                    { q: "A small, specialized part of a market is a ___ market.", options: ["niche", "nice", "night", "near"], answer: 0 },
+                    { q: "Intense competition is often called ___ competition.", options: ["cut-throat", "cut-price", "cut-off", "cut-down"], answer: 0 },
+                    { q: "If you leave a market, you ___ it.", options: ["withdraw from", "enter", "penetrate", "join"], answer: 0 },
+                    { q: "Low-end, mid-range, and high-end refer to market ___.", options: ["segments", "parts", "bits", "pieces"], answer: 0 },
+                    { q: "Omni-channel means selling:", options: ["Everywhere (online & shop)", "Only online", "Only in shops", "By phone"], answer: 0 }
                 ]
             }
         ];
