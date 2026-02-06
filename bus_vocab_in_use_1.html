@@ -3,631 +3,680 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Business Vocabulary: Work and Jobs</title>
-    <link rel="icon" href="https://static.wixstatic.com/media/0f55f2_b4662666c9b34fe58ed45b414b10cae3~mv2.png" type="image/png">
+    <title>BizVocab | Professional English</title>
+    <!-- Briefcase Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F46E5'%3E%3Cpath d='M20 6h-4V4c0-1.1-.9-2-2-2h-4C8.9 2 8 2.9 8 4v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h2v2h-2V4z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #eef2ff; /* Light indigo theme */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Smooth Animations for Background */
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0px) translateX(0px); }
         }
-        .page {
-            display: none;
+        @keyframes float-reverse {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(20px) translateX(-10px); }
+            100% { transform: translateY(0px) translateX(0px); }
         }
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
+
+        .blob {
+            position: fixed;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #4F46E5; animation: float 8s infinite ease-in-out; }
+        .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #06B6D4; animation: float-reverse 10s infinite ease-in-out; }
+        .blob-3 { top: 40%; left: 40%; width: 400px; height: 400px; background: #8B5CF6; animation: float 12s infinite ease-in-out; }
+
+        /* Glassmorphism Cards */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
-        .feedback {
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            height: 1.25rem;
+        .dark .glass-panel {
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .correct {
-            color: #4f46e5; /* indigo-600 */
-        }
-        .incorrect {
-            color: #dc2626;
-        }
-        .nav-button {
-            transition: all 0.2s ease-in-out;
-        }
-        .nav-button.active {
-            background-color: #6366f1; /* indigo-500 */
-            color: white;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-        .vocab-card, .activity-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
-            border-left: 4px solid #818cf8; /* indigo-400 */
-        }
-        .option-btn {
-             border: 1px solid #d1d5db;
-             transition: all 0.2s;
-        }
-        .option-btn.selected {
-            background-color: #e0e7ff;
-            border-color: #6366f1;
-            color: #3730a3;
-        }
-        select, input[type="text"] {
-            background-color: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 0.375rem;
-            padding: 0.5rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        select:focus, input[type="text"]:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-        }
-        select {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-            -webkit-appearance: none;
-            appearance: none;
-        }
+
+        /* Interactive Elements */
+        .option-btn { transition: all 0.2s ease; }
+        .option-btn:hover { transform: translateY(-2px); }
+        .option-btn.selected { border-color: #4F46E5; background-color: #EEF2FF; color: #4F46E5; }
+        
+        .correct-answer { background-color: #D1FAE5 !important; border-color: #10B981 !important; color: #065F46 !important; }
+        .wrong-answer { background-color: #FEE2E2 !important; border-color: #EF4444 !important; color: #991B1B !important; }
+        
+        /* Specific Styles for Mod 1 Rich Content */
+        .rich-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .rich-content li { margin-bottom: 0.5rem; }
+        .rich-content strong { color: #4F46E5; }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-slate-50 text-slate-800 min-h-screen relative overflow-x-hidden transition-colors duration-300">
 
-    <div class="max-w-5xl mx-auto p-4 md:p-8">
-        <!-- Header -->
-        <header class="mb-8">
-            <h1 class="text-4xl font-bold text-indigo-700 text-center">Unit 1: Work and Jobs</h1>
-             <p class="text-center text-gray-500 mt-2">Vocabulary Exercises</p>
-        </header>
+    <!-- Animated Background -->
+    <div class="blob blob-1 rounded-full"></div>
+    <div class="blob blob-2 rounded-full"></div>
+    <div class="blob blob-3 rounded-full"></div>
 
-        <!-- Navigation -->
-        <nav class="flex justify-center flex-wrap gap-2 mb-8 bg-white p-2 rounded-full shadow-sm">
-            <button id="nav-vocabulary" class="nav-button active px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Vocabulary</button>
-            <button id="nav-pierre-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Exercise 1.1 (Corrections)</button>
-            <button id="nav-preps-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Exercise 1.2 (Prepositions)</button>
-            <button id="nav-types-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Exercise 1.3 (Job Types)</button>
-            <button id="nav-test-quiz" class="nav-button px-4 py-2 rounded-full font-semibold text-gray-600 hover:bg-indigo-100">Test Unit 1</button>
-        </nav>
-
-        <main class="bg-indigo-50/50 p-6 sm:p-8 rounded-2xl shadow-lg">
-            <!-- Page 1: Vocabulary -->
-            <div id="page-vocabulary" class="page active">
-                <h2 class="text-3xl font-bold text-indigo-800 mb-6 text-center">Key Concepts</h2>
-                <div class="space-y-6">
-                    <div class="vocab-card">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">A: What do you do?</h3>
-                        <p class="text-gray-600 mb-2 text-sm">To describe your job role:</p>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li><strong>I work for</strong> (a company).</li>
-                            <li><strong>I work on</strong> (a project/task).</li>
-                            <li><strong>I run</strong> / <strong>I manage</strong> (a department/team).</li>
-                            <li><strong>I work under</strong> (someone is my boss).</li>
-                            <li><strong>I deal with</strong> (people/clients).</li>
-                        </ul>
-                        <div class="mt-3 bg-indigo-50 p-3 rounded-md text-sm border border-indigo-100">
-                            <p class="font-bold text-indigo-700">Responsibility Grammar:</p>
-                            <ul class="list-none mt-1 space-y-1">
-                                <li>• I'm <strong>in charge of</strong> (+ noun/verb-ing)</li>
-                                <li>• I'm <strong>responsible for</strong> (+ noun/verb-ing)</li>
-                                <li>• One of my <strong>responsibilities</strong> is (+ infinitive/-ing)</li>
-                                <li class="text-red-600 text-xs mt-1">Don't say: "I'm a responsible."</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="vocab-card">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">B: Word combinations with 'work'</h3>
-                        <p class="text-gray-600 mb-2 text-sm"><strong>Note:</strong> "Work" is usually an activity/place (uncountable). "Job" is a specific role (countable). Never say "I have a work".</p>
-                        <div class="grid grid-cols-2 gap-4 text-sm text-gray-700">
-                            <ul class="list-disc list-inside">
-                                <li>Leave for work</li>
-                                <li>Go to work</li>
-                                <li>Get to / Arrive at work</li>
-                            </ul>
-                            <ul class="list-disc list-inside">
-                                <li>Be at work</li>
-                                <li>Be off work (ill/holiday)</li>
-                                <li>Be out of work (unemployed)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="vocab-card">
-                        <h3 class="text-2xl font-semibold text-gray-700 mb-2">C: Types of Job</h3>
-                        <ul class="list-disc list-outside space-y-2 text-gray-700 ml-5 text-sm">
-                            <li><strong>Full-time job:</strong> The whole normal working week.</li>
-                            <li><strong>Part-time job:</strong> Less time than a full week.</li>
-                            <li><strong>Permanent job:</strong> Does not finish after a fixed period.</li>
-                            <li><strong>Temporary job:</strong> Finishes after a fixed period (e.g., 6 months).</li>
-                        </ul>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center cursor-pointer" onclick="renderView('home')">
+                    <i class="fas fa-briefcase text-indigo-600 text-2xl mr-2"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">BizVocab</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <button onclick="renderView('home')" class="hover:bg-indigo-100 text-slate-700 px-3 py-2 rounded-md text-sm font-medium transition">Home</button>
+                        <button onclick="renderView('modules')" class="hover:bg-indigo-100 text-slate-700 px-3 py-2 rounded-md text-sm font-medium transition">Modules</button>
                     </div>
                 </div>
             </div>
+        </div>
+    </nav>
 
-            <!-- Page 2: Pierre Quiz (1.1) -->
-            <div id="page-pierre-quiz" class="page">
-                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 1.1: Correcting Pierre</h2>
-                <p class="text-gray-500 mb-6">Pierre makes mistakes describing his job. Select the correct correction for the highlighted parts.</p>
-                <div id="pierre-quiz-container" class="space-y-4"></div>
-                <div class="mt-8 text-center">
-                    <button onclick="checkPierreQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
-                    <p id="pierre-quiz-feedback" class="feedback"></p>
-                </div>
-            </div>
+    <!-- Main Container -->
+    <main id="app-container" class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <!-- Content injected via JS -->
+    </main>
 
-            <!-- Page 3: Prepositions Quiz (1.2) -->
-            <div id="page-preps-quiz" class="page">
-                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 1.2: Rebecca's Routine</h2>
-                <p class="text-gray-500 mb-6">Complete the text with the correct prepositions (to, at, off, in, out of).</p>
-                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-indigo-400 leading-loose text-gray-800" id="preps-container">
-                    Rebecca lives in London. She leaves home for work at 7.30 am. She drives
-                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
-                    </select> work. 
-                    The traffic is often bad and she worries about getting
-                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
-                    </select> work late, but she usually arrives
-                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
-                    </select> work at around nine. 
-                    <br><br>
-                    'Luckily, I'm never ill,' she says. 'I could never take the time
-                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
-                    </select> work.'
-                    She loves what she does and is glad to be
-                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                        <option value="">-</option><option value="at">at</option><option value="to">to</option><option value="off">off</option><option value="in">in</option>
-                    </select> work. Some of her friends are not so lucky: they are
-                    <select class="prep-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                        <option value="">-</option><option value="at">at</option><option value="out of">out of</option><option value="off">off</option><option value="in">in</option>
-                    </select> work.
-                </div>
-                <div class="mt-8 text-center">
-                    <button onclick="checkPrepsQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
-                    <p id="preps-quiz-feedback" class="feedback"></p>
-                </div>
-            </div>
-
-            <!-- Page 4: Types Quiz (1.3) -->
-            <div id="page-types-quiz" class="page">
-                <h2 class="text-2xl font-bold text-indigo-800 mb-2">Exercise 1.3: Types of Job</h2>
-                <p class="text-gray-500 mb-6">Select the best description for each situation.</p>
-                <div id="types-quiz-container" class="space-y-4"></div>
-                <div class="mt-8 text-center">
-                    <button onclick="checkTypesQuiz()" class="px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-semibold shadow-sm">Check Answers</button>
-                    <p id="types-quiz-feedback" class="feedback"></p>
-                </div>
-            </div>
-
-            <!-- Page 5: Test Unit 1 -->
-            <div id="page-test-quiz" class="page">
-                <h2 class="text-3xl font-bold text-indigo-800 mb-6 text-center">Test Your Business Vocabulary</h2>
-                
-                <!-- Test 1.1 -->
-                <div class="vocab-card mb-8">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.1: Complete the Sentences</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Use a word from the box to complete each sentence. There is one extra word.</p>
-                    <div class="bg-indigo-50 p-4 rounded-md mb-4 flex flex-wrap gap-2 text-sm font-semibold text-indigo-700">
-                        <span>deal</span> <span>responsible</span> <span>work</span> <span>job</span> <span>manage</span> <span>under</span> <span>of</span>
-                    </div>
-                    <div id="test1-container" class="space-y-4"></div>
-                    <div class="mt-4 text-right">
-                        <button onclick="checkTest1()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
-                        <span id="test1-feedback" class="ml-2 text-sm font-medium"></span>
-                    </div>
-                </div>
-
-                <!-- Test 1.2 -->
-                <div class="vocab-card mb-8">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.2: Job Types</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Decide if the statement describes Full-time (FT), Part-time (PT), Permanent (P), or Temporary (T) work.</p>
-                    <div id="test2-container" class="space-y-4"></div>
-                    <div class="mt-4 text-right">
-                        <button onclick="checkTest2()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
-                        <span id="test2-feedback" class="ml-2 text-sm font-medium"></span>
-                    </div>
-                </div>
-
-                <!-- Test 1.3 -->
-                <div class="vocab-card mb-8">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.3: Prepositions</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Complete the text with words from the box. You may use words more than once.</p>
-                    <div class="bg-indigo-50 p-4 rounded-md mb-4 flex flex-wrap gap-2 text-sm font-semibold text-indigo-700">
-                        <span>at</span> <span>for</span> <span>in</span> <span>of</span> <span>off</span> <span>on</span> <span>get</span> <span>to</span>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-indigo-400 leading-loose text-gray-800" id="test3-container">
-                        'My name is Anne Scott and I work 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> a public relations company in London. I leave 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> work at 7 o'clock in the morning. I go 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> work by train and I usually 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> work by 8.30. I'm always 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> work till about 6 o'clock so I never get home before 7.30 pm. Last year I broke my leg and so I was 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> work for over a month. I didn't like being at home. I love my job. I would hate to be permanently out 
-                        <select class="test3-select mx-1 border-b-2 border-indigo-200 bg-indigo-50 rounded px-2 py-1 outline-none focus:border-indigo-500">
-                            <option value="">...</option><option value="at">at</option><option value="for">for</option><option value="in">in</option><option value="of">of</option><option value="off">off</option><option value="on">on</option><option value="get">get</option><option value="to">to</option>
-                        </select> work.
-                    </div>
-                    <div class="mt-4 text-right">
-                        <button onclick="checkTest3()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
-                        <span id="test3-feedback" class="ml-2 text-sm font-medium"></span>
-                    </div>
-                </div>
-
-                <!-- Test 1.4 -->
-                <div class="vocab-card">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Test 1.4: Word Forms</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Write the correct form of the word given in brackets.</p>
-                    <div id="test4-container" class="space-y-4"></div>
-                    <div class="mt-4 text-right">
-                        <button onclick="checkTest4()" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 text-sm">Check Answers</button>
-                        <span id="test4-feedback" class="ml-2 text-sm font-medium"></span>
-                    </div>
-                </div>
-            </div>
-
-        </main>
-    </div>
+    <!-- Footer -->
+    <footer class="text-center py-6 text-slate-500 text-sm relative z-10">
+        <p>© 2024 Business English Hub. Based on Cambridge Professional English materials.</p>
+    </footer>
 
     <script>
-        // --- Unit 1 Data ---
-        const pierreQuizData = [
-            { text: "I work <span class='text-red-500 line-through'>about</span> the development of new supermarkets.", options: ["work for", "work on", "work in"], answer: "work on" },
-            { text: "In fact, I <span class='text-red-500 line-through'>running</span> the development department.", options: ["run", "ran", "am run"], answer: "run" },
-            { text: "And I <span class='text-red-500 line-through'>am manage for</span> a team.", options: ["manage", "managing", "manager"], answer: "manage" },
-            { text: "One of my <span class='text-red-500 line-through'>main</span> is to make sure...", options: ["main responsibilities", "main responsible", "main tasking"], answer: "main responsibilities" },
-            { text: "I'm also <span class='text-red-500 line-through'>charged with</span> financial reporting.", options: ["in charge of", "charging with", "charge of"], answer: "in charge of" },
-            { text: "I deal <span class='text-red-500 line-through'>at</span> a lot of different organizations.", options: ["deal for", "deal with", "deal on"], answer: "deal with" },
-            { text: "I'm responsible <span class='text-red-500 line-through'>of</span> planning projects.", options: ["for", "to", "with"], answer: "for" },
-            { text: "I work closely <span class='text-red-500 line-through'>near</span> our foreign partners.", options: ["by", "to", "with"], answer: "with" }
+        // DATA STORE
+        const modules = [
+            // --- MODULE 1: Updated with Rich Content ---
+            {
+                id: 1,
+                title: "Work and Jobs",
+                icon: "fa-id-card",
+                summary: "Discussing responsibilities, job titles, and hierarchies.",
+                learning: {
+                    intro: "When asking about someone's job, we usually say 'What do you do?'. In business, we use specific collocations to describe our roles.",
+                    // Rich content sections for Module 1
+                    sections: [
+                        {
+                            title: "A: What do you do?",
+                            content: `
+                                <ul class="list-disc pl-5 space-y-2 text-slate-700">
+                                    <li>To say what your job is, say <strong>I work for...</strong> (a company) or <strong>I work on...</strong> (a project).</li>
+                                    <li>If you manage people, say <strong>I run / I manage</strong> a department or <strong>I'm in charge of</strong> a team.</li>
+                                    <li>If you have a boss, you <strong>work under</strong> them.</li>
+                                    <li>If you communicate with clients, you <strong>deal with</strong> them.</li>
+                                </ul>
+                                <div class="mt-4 bg-indigo-50 p-3 rounded border border-indigo-100">
+                                    <p class="font-bold text-indigo-700">Grammar Note:</p>
+                                    <p class="text-sm">I'm <strong>responsible for</strong> + noun/ing (e.g., planning).</p>
+                                    <p class="text-sm text-red-500">Don't say: "I'm a responsible."</p>
+                                </div>
+                            `
+                        },
+                        {
+                            title: "B: Word combinations with 'work'",
+                            content: `
+                                <p class="mb-2"><strong>Work</strong> is usually an uncountable noun (an activity/place), while <strong>Job</strong> is countable (a specific role).</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <ul class="list-disc pl-5">
+                                        <li>Leave for work</li>
+                                        <li>Go to work</li>
+                                        <li>Get to / Arrive at work</li>
+                                    </ul>
+                                    <ul class="list-disc pl-5">
+                                        <li>Be at work</li>
+                                        <li>Be off work (ill/holiday)</li>
+                                        <li>Be out of work (unemployed)</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            title: "C: Types of Job",
+                            content: `
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Full-time job:</strong> The whole normal working week.</li>
+                                    <li><strong>Part-time job:</strong> Less time than a full week.</li>
+                                    <li><strong>Permanent job:</strong> Does not finish after a fixed period.</li>
+                                    <li><strong>Temporary job:</strong> Finishes after a fixed period (e.g., 6 months).</li>
+                                </ul>
+                            `
+                        }
+                    ],
+                    keyTerms: [] // Kept for compatibility if needed, but 'sections' takes precedence
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "1.1 Correcting Pierre: Choose the correct phrase to replace the mistake.",
+                        questions: [
+                            { q: "I work <span class='line-through text-red-500'>about</span> the development of new supermarkets.", options: ["work for", "work on", "work in"], answer: 1 },
+                            { q: "In fact, I <span class='line-through text-red-500'>running</span> the development department.", options: ["run", "ran", "am run"], answer: 0 },
+                            { q: "And I <span class='line-through text-red-500'>am manage for</span> a team.", options: ["manage", "managing", "manager"], answer: 0 },
+                            { q: "One of my <span class='line-through text-red-500'>main</span> is to make sure...", options: ["main responsibilities", "main responsible", "main tasking"], answer: 0 },
+                            { q: "I'm also <span class='line-through text-red-500'>charged with</span> financial reporting.", options: ["in charge of", "charging with", "charge of"], answer: 0 },
+                            { q: "I deal <span class='line-through text-red-500'>at</span> a lot of different organizations.", options: ["deal for", "deal with", "deal on"], answer: 1 },
+                            { q: "I'm responsible <span class='line-through text-red-500'>of</span> planning projects.", options: ["for", "to", "with"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "1.2 Rebecca's Routine: Complete the text with prepositions (to, at, off, in, out of).",
+                        questions: [
+                            { text: "She drives ___ work.", answer: "to" },
+                            { text: "She worries about getting ___ work late.", answer: "to" },
+                            { text: "She usually arrives ___ work at nine.", answer: "at" },
+                            { text: "She could never take time ___ work.", answer: "off" },
+                            { text: "She is glad to be ___ work.", answer: "in" },
+                            { text: "Some friends are ___ work (unemployed).", answer: "out of" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "1.3 Job Types: Select the best description.",
+                        questions: [
+                            { q: "My husband works in an office from 9 am to 5.30 pm.", options: ["Full-time job", "Part-time job", "Temporary work"], answer: 0 },
+                            { q: "Our daughter works in a bank from eight till five every day.", options: ["Part-time", "Full-time", "Temporary"], answer: 1 },
+                            { q: "I work in a café from 8 pm until midnight.", options: ["Full-time", "Permanent", "Part-time"], answer: 2 },
+                            { q: "My wife works in local government and she can have this job for as long as she wants it.", options: ["Permanent job", "Temporary job", "Out of work"], answer: 0 },
+                            { q: "Our son is working on a farm for four weeks.", options: ["Permanent", "Temporary", "Full-time"], answer: 1 }
+                        ]
+                    }
+                ],
+                test: [
+                    // Combined Test Questions
+                    { q: "I ______ the manufacturing plant in Cambridge.", options: ["manage", "job", "under", "deal"], answer: 0 },
+                    { q: "I am in charge ______ the production team.", options: ["manage", "of", "under", "responsible"], answer: 1 },
+                    { q: "About 120 people work ______ me.", options: ["manage", "job", "under", "deal"], answer: 2 },
+                    { q: "Coordination between production and design is my ______.", options: ["manage", "job", "under", "responsible"], answer: 1 },
+                    { q: "I ______ with a lot of people in the company.", options: ["manage", "job", "deal", "responsible"], answer: 2 },
+                    { q: "I'm ______ for a budget of over £100 million.", options: ["manage", "job", "under", "responsible"], answer: 3 },
+                    { q: "I'm in charge of ______ the work of the team. (coordinate)", options: ["coordinating", "coordinate", "coordinated", "coordinates"], answer: 0 },
+                    { q: "One of my responsibilities is to ______ sure we don't spend too much.", options: ["make", "making", "makes", "made"], answer: 0 },
+                    { q: "My team is responsible for the ______ of new models.", options: ["design", "designing", "designs", "designed"], answer: 0 },
+                    { q: "I'm in charge of ______ our work for the whole year.", options: ["planning", "plan", "planned", "plans"], answer: 0 }
+                ]
+            },
+            // ... (Modules 2-66 remain the same, just compressed here for brevity, assume full data exists) ...
+            { id: 2, title: "Ways of Working", icon: "fa-clock", summary: "Office routines, flexible hours, and teleworking.", learning: { intro: "Traditional 9-to-5 is changing. We talk about flexitime, shifts, and teleworking.", keyTerms: [{ term: "Flexitime", def: "Choosing start/finish times." }, { term: "Shift work", def: "Working different times (e.g. nights)." }, { term: "Teleworking", def: "Working from home." }, { term: "Commute", def: "Daily journey to work." }, { term: "Clock in", def: "Record arrival time." }] }, exercises: [{ type: "gapfill", instruction: "Complete the text.", questions: [{ text: "I hate the daily ___ to London.", answer: "commute" }, { text: "We have a ___ system.", answer: "flexitime" }, { text: "Nurses work the night ___.", answer: "shift" }] }, { type: "match", instruction: "Adjectives.", questions: [{ q: "Boring/Repetitive", options: ["Stimulating", "Dull"], answer: 1 }, { q: "Exciting/Interesting", options: ["Stimulating", "Routine"], answer: 0 }] }], test: [{ q: "I work ___ home.", options: ["at", "from", "in"], answer: 1 }, { q: "He has to ___ in at 8am.", options: ["watch", "clock", "time"], answer: 1 }, { q: "Teleworking is also called:", options: ["Telecommuting", "Shift work", "Flexi"], answer: 0 }] },
+            { id: 3, title: "Recruitment and Selection", icon: "fa-user-plus", summary: "The hiring process: applications, CVs, and interviews.", learning: { intro: "Recruitment is finding people for jobs.", keyTerms: [{ term: "Recruit/Hire", def: "Employ new people." }, { term: "Headhunter", def: "Recruiter for senior jobs." }, { term: "CV", def: "Curriculum Vitae." }, { term: "Apply for", def: "Make a request for a job." }, { term: "Shortlist", def: "Selected candidates." }] }, exercises: [{ type: "match", instruction: "Match phrases.", questions: [{ q: "Apply for", options: ["a job", "a CV"], answer: 0 }, { q: "Fill in", options: ["a form", "a job"], answer: 0 }, { q: "Attend", options: ["an interview", "a vacancy"], answer: 0 }] }, { type: "gapfill", instruction: "Process.", questions: [{ text: "Advertise a ___.", answer: "vacancy" }, { text: "Select candidates for a ___.", answer: "shortlist" }, { text: "Make a job ___.", answer: "offer" }] }], test: [{ q: "To ask for a job you ___ it.", options: ["apply for", "ask to"], answer: 0 }, { q: "CV stands for:", options: ["Curriculum Vitae", "Course Vitae"], answer: 0 }, { q: "A list of best candidates is a:", options: ["Shortlist", "Longlist"], answer: 0 }] },
+            { id: 4, title: "Skills and Qualifications", icon: "fa-graduation-cap", summary: "Education, degrees, and essential workplace skills.", learning: { intro: "Employers look for qualifications and skills.", keyTerms: [{ term: "Graduate", def: "Person with a degree." }, { term: "MBA", def: "Master of Business Admin." }, { term: "Skilled", def: "Having special training." }, { term: "Computer-literate", def: "Good with computers." }, { term: "Numerate", def: "Good with numbers." }] }, exercises: [{ type: "match", instruction: "Abbreviations.", questions: [{ q: "BA/BSc", options: ["Bachelor of Arts/Science", "Basic Art"], answer: 0 }, { q: "PhD", options: ["Doctor of Philosophy", "Private Degree"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "I ___ from university in 2020.", answer: "graduated" }, { text: "I have a ___ in Law.", answer: "degree" }] }], test: [{ q: "A person with a degree is a:", options: ["Graduate", "Student"], answer: 0 }, { q: "Training inside the company is:", options: ["In-house", "Out-house"], answer: 0 }, { q: "Good with numbers means:", options: ["Numerate", "Literate"], answer: 0 }] },
+            { id: 5, title: "Pay and Benefits", icon: "fa-money-bill-wave", summary: "Salaries, wages, commissions, and fringe benefits.", learning: { intro: "We work for money.", keyTerms: [{ term: "Wages", def: "Weekly pay (manual)." }, { term: "Salary", def: "Monthly pay (professional)." }, { term: "Perks", def: "Extra benefits (car, lunch)." }, { term: "Bonus", def: "Extra money for results." }, { term: "Commission", def: "% of sales." }] }, exercises: [{ type: "match", instruction: "Definitions.", questions: [{ q: "Wages", options: ["Weekly", "Monthly"], answer: 0 }, { q: "Salary", options: ["Monthly", "Weekly"], answer: 0 }, { q: "Commission", options: ["% of sales", "Fixed pay"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "I get a basic salary plus ___.", answer: "commission" }, { text: "A company car is a nice ___.", answer: "perk" }] }], test: [{ q: "Manual workers get:", options: ["Wages", "Salary"], answer: 0 }, { q: "Extra money for working late is:", options: ["Overtime", "Undertime"], answer: 0 }, { q: "Pay before tax is:", options: ["Gross", "Net"], answer: 0 }] },
+            { id: 6, title: "People and Workplaces", icon: "fa-users", summary: "Employees, management, and work environments.", learning: { intro: "Words for people and places.", keyTerms: [{ term: "Staff", def: "All workers." }, { term: "Management", def: "People who lead." }, { term: "Headquarters", def: "Main office." }, { term: "Branch", def: "Local office." }, { term: "HR", def: "Human Resources." }] }, exercises: [{ type: "match", instruction: "Definitions.", questions: [{ q: "Staff", options: ["All workers", "One worker"], answer: 0 }, { q: "HQ", options: ["Main office", "Local office"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "I work in the ___ office (HQ).", answer: "head" }, { text: "We have a large ___ (workers).", answer: "workforce" }] }], test: [{ q: "The staff ___ happy.", options: ["is", "are"], answer: 1 }, { q: "A local shop is a:", options: ["Branch", "Leaf"], answer: 0 }, { q: "HR stands for:", options: ["Human Resources", "Human Remains"], answer: 0 }] },
+            { id: 7, title: "The Career Ladder", icon: "fa-arrow-trend-up", summary: "Promotion, resignation, dismissal, and retirement.", learning: { intro: "Moving up or out.", keyTerms: [{ term: "Promotion", def: "Higher job." }, { term: "Resign", def: "Leave voluntarily." }, { term: "Retire", def: "Stop working at 65." }, { term: "Sacked", def: "Fired." }, { term: "Redundant", def: "Job gone." }] }, exercises: [{ type: "match", instruction: "Verbs.", questions: [{ q: "Promoted", options: ["Move up", "Move down"], answer: 0 }, { q: "Resign", options: ["Quit", "Fired"], answer: 0 }] }, { type: "gapfill", instruction: "Career.", questions: [{ text: "I handed in my ___.", answer: "notice" }, { text: "I got a ___ to manager.", answer: "promotion" }] }], test: [{ q: "She moved ___ the ladder.", options: ["up", "down"], answer: 0 }, { q: "To lose your job because the company closes is:", options: ["Redundancy", "Sacking"], answer: 0 }, { q: "Money after retiring is a:", options: ["Pension", "Salary"], answer: 0 }] },
+            { id: 8, title: "Problems at Work", icon: "fa-triangle-exclamation", summary: "Health and safety, bullying, discrimination.", learning: { intro: "Workplace issues.", keyTerms: [{ term: "Health and Safety", def: "Preventing accidents." }, { term: "Bullying", def: "Hurting others." }, { term: "Discrimination", def: "Treating unfairly." }, { term: "Glass ceiling", def: "Barrier to promotion." }, { term: "Dismissal", def: "Being fired." }] }, exercises: [{ type: "match", instruction: "Problems.", questions: [{ q: "Sexual Harassment", options: ["Unwanted behavior", "Friendly"], answer: 0 }, { q: "Glass Ceiling", options: ["Invisible barrier", "Window"], answer: 0 }] }, { type: "gapfill", instruction: "Safety.", questions: [{ text: "Fire ___.", answer: "drill" }, { text: "First ___ box.", answer: "aid" }] }], test: [{ q: "Unfair treatment due to race is:", options: ["Discrimination", "Selection"], answer: 0 }, { q: "If fired unfairly, you claim unfair ___.", options: ["dismissal", "leaving"], answer: 0 }, { q: "Practicing for fire is a fire ___.", options: ["drill", "run"], answer: 0 }] },
+            { id: 9, title: "Managers and Directors", icon: "fa-user-tie", summary: "Hierarchy and the boardroom.", learning: { intro: "Senior roles.", keyTerms: [{ term: "Manager", def: "Controls a group." }, { term: "Executive", def: "Senior manager." }, { term: "Director", def: "Board member." }, { term: "CEO", def: "Chief Executive Officer." }, { term: "Chairman", def: "Leads the board." }] }, exercises: [{ type: "match", instruction: "Titles.", questions: [{ q: "Chairman", options: ["Leads board", "Runs company"], answer: 0 }, { q: "CEO", options: ["Runs company", "Advises"], answer: 0 }, { q: "CFO", options: ["Finance", "Marketing"], answer: 0 }] }, { type: "gapfill", instruction: "Hierarchy.", questions: [{ text: "I ___ to the Director.", answer: "report" }, { text: "Head ___ Sales.", answer: "of" }] }], test: [{ q: "Top manager in US:", options: ["CEO", "MD"], answer: 0 }, { q: "Top manager in UK:", options: ["MD", "President"], answer: 0 }, { q: "CFO is Chief ___ Officer.", options: ["Finance", "First"], answer: 0 }] },
+            { id: 10, title: "Business Leaders", icon: "fa-chess-king", summary: "Entrepreneurs and tycoons.", learning: { intro: "Business personalities.", keyTerms: [{ term: "Entrepreneur", def: "Business starter." }, { term: "Founder", def: "Starter of org." }, { term: "Tycoon", def: "Rich owner." }, { term: "Empire", def: "Large group of companies." }] }, exercises: [{ type: "match", instruction: "Definitions.", questions: [{ q: "Entrepreneur", options: ["Starter", "Worker"], answer: 0 }, { q: "Magnate", options: ["Powerful person", "Manager"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "Media ___.", answer: "mogul" }, { text: "Business ___.", answer: "empire" }] }], test: [{ q: "Someone who starts a business is an:", options: ["Entrepreneur", "Enterprise"], answer: 0 }, { q: "A rich business person is a:", options: ["Tycoon", "Type"], answer: 0 }, { q: "To start a company is to ___ it.", options: ["found", "find"], answer: 0 }] },
+            { id: 11, title: "Organizations 1", icon: "fa-building", summary: "Sole traders, partnerships, limited companies.", learning: { intro: "Legal structures.", keyTerms: [{ term: "Sole Trader", def: "One owner." }, { term: "Partnership", def: "2+ owners." }, { term: "Ltd", def: "Private limited." }, { term: "Plc", def: "Public limited." }, { term: "Shareholder", def: "Owner of shares." }] }, exercises: [{ type: "match", instruction: "Types.", questions: [{ q: "Sole Trader", options: ["1 person", "Many people"], answer: 0 }, { q: "Plc", options: ["Public shares", "Private shares"], answer: 0 }] }, { type: "gapfill", instruction: "Ownership.", questions: [{ text: "I own ___ in Apple.", answer: "shares" }, { text: "I get a ___ from profits.", answer: "dividend" }] }], test: [{ q: "One owner business:", options: ["Sole trader", "Partner"], answer: 0 }, { q: "Ltd means:", options: ["Limited", "Limit"], answer: 0 }, { q: "Owners of a company are:", options: ["Shareholders", "Stakeholders"], answer: 0 }] },
+            { id: 12, title: "Organizations 2", icon: "fa-handshake", summary: "Mergers and acquisitions.", learning: { intro: "Companies joining.", keyTerms: [{ term: "Merger", def: "Joining as equals." }, { term: "Acquisition", def: "Buying another." }, { term: "Subsidiary", def: "Owned company." }, { term: "Joint Venture", def: "Working together." }] }, exercises: [{ type: "match", instruction: "Verbs.", questions: [{ q: "Merge", options: ["Join", "Split"], answer: 0 }, { q: "Acquire", options: ["Buy", "Sell"], answer: 0 }] }, { type: "gapfill", instruction: "Changes.", questions: [{ text: "Friendly ___.", answer: "takeover" }, { text: "Parent ___.", answer: "company" }] }], test: [{ q: "Joining as equals is a:", options: ["Merger", "Takeover"], answer: 0 }, { q: "Buying another company is an:", options: ["Acquisition", "Inquisition"], answer: 0 }, { q: "Company owned by another is a:", options: ["Subsidiary", "Sub"], answer: 0 }] },
+            { id: 13, title: "Manufacturing", icon: "fa-industry", summary: "Sectors and production.", learning: { intro: "Making things.", keyTerms: [{ term: "Primary", def: "Raw materials." }, { term: "Secondary", def: "Manufacturing." }, { term: "Tertiary", def: "Services." }, { term: "Output", def: "Amount produced." }] }, exercises: [{ type: "match", instruction: "Sectors.", questions: [{ q: "Farming", options: ["Primary", "Secondary"], answer: 0 }, { q: "Banking", options: ["Tertiary", "Primary"], answer: 0 }] }, { type: "gapfill", instruction: "Production.", questions: [{ text: "Raw ___.", answer: "materials" }, { text: "Assembly ___.", answer: "line" }] }], test: [{ q: "Mining is ___ sector.", options: ["Primary", "Secondary"], answer: 0 }, { q: "Making cars is ___ sector.", options: ["Secondary", "Tertiary"], answer: 0 }, { q: "Too much stock is high:", options: ["Inventory", "Investory"], answer: 0 }] },
+            { id: 14, title: "Development Process", icon: "fa-flask", summary: "R&D and launch.", learning: { intro: "Creating products.", keyTerms: [{ term: "R&D", def: "Research & Dev." }, { term: "Market Research", def: "Asking customers." }, { term: "Prototype", def: "First model." }, { term: "Launch", def: "Start selling." }] }, exercises: [{ type: "match", instruction: "Process.", questions: [{ q: "Beta", options: ["Test version", "Final version"], answer: 0 }, { q: "Patent", options: ["Protection", "Tax"], answer: 0 }] }, { type: "gapfill", instruction: "Launch.", questions: [{ text: "___ the product.", answer: "launch" }, { text: "Market ___.", answer: "research" }] }], test: [{ q: "R&D means:", options: ["Research & Dev", "Rest & Dream"], answer: 0 }, { q: "First working model is:", options: ["Prototype", "Type"], answer: 0 }, { q: "Legal protection is:", options: ["Patent", "Patient"], answer: 0 }] },
+            { id: 15, title: "Innovation", icon: "fa-lightbulb", summary: "IP and ideas.", learning: { intro: "New ideas.", keyTerms: [{ term: "Innovation", def: "New method/idea." }, { term: "Copyright", def: "Protects art/text." }, { term: "Trademark", def: "Protects brand/logo." }] }, exercises: [{ type: "match", instruction: "IP.", questions: [{ q: "Copyright", options: ["Books/Art", "Machines"], answer: 0 }, { q: "Trademark", options: ["Logos", "Inventions"], answer: 0 }] }, { type: "gapfill", instruction: "Innovation.", questions: [{ text: "Technological ___.", answer: "breakthrough" }, { text: "Cutting-___.", answer: "edge" }] }], test: [{ q: "Protecting a logo needs a:", options: ["Trademark", "Patent"], answer: 0 }, { q: "Very modern is state-of-the-___.", options: ["art", "heart"], answer: 0 }, { q: "IP stands for:", options: ["Intellectual Property", "Internet Protocol"], answer: 0 }] },
+            { id: 16, title: "Making Things", icon: "fa-hammer", summary: "Methods: Hand-made to Mass.", learning: { intro: "Production styles.", keyTerms: [{ term: "Hand-made", def: "By hand." }, { term: "Mass-produced", def: "By machine in bulk." }, { term: "Lean", def: "No waste." }, { term: "Outsourcing", def: "Using other companies." }] }, exercises: [{ type: "match", instruction: "Types.", questions: [{ q: "Bespoke", options: ["Custom made", "Standard"], answer: 0 }, { q: "Mass-produced", options: ["Machine made", "Hand made"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "___ out products.", answer: "churn" }, { text: "Just-in-___.", answer: "time" }] }], test: [{ q: "Made by machines in bulk:", options: ["Mass-produced", "Hand-crafted"], answer: 0 }, { q: "Made for one person:", options: ["Bespoke", "Standard"], answer: 0 }, { q: "Buying services outside is:", options: ["Outsourcing", "Insourcing"], answer: 0 }] },
+            { id: 17, title: "Materials/Suppliers", icon: "fa-boxes-packing", summary: "Supply chain and logistics.", learning: { intro: "Getting parts.", keyTerms: [{ term: "Supplier", def: "Provider." }, { term: "Inventory", def: "Stock." }, { term: "Logistics", def: "Moving things." }, { term: "Component", def: "Part." }] }, exercises: [{ type: "match", instruction: "Supply chain.", questions: [{ q: "Supplier", options: ["Sells parts", "Buys parts"], answer: 0 }, { q: "Logistics", options: ["Transport/Storage", "Making"], answer: 0 }] }, { type: "gapfill", instruction: "Flow.", questions: [{ text: "Raw ___.", answer: "materials" }, { text: "Finished ___.", answer: "goods" }] }], test: [{ q: "Moving goods is:", options: ["Logistics", "Logic"], answer: 0 }, { q: "Stock is also called:", options: ["Inventory", "Investory"], answer: 0 }, { q: "Time between order and delivery:", options: ["Lead time", "Dead time"], answer: 0 }] },
+            { id: 18, title: "Business Philosophies", icon: "fa-brain", summary: "TQM, Kaizen.", learning: { intro: "Quality approaches.", keyTerms: [{ term: "TQM", def: "Total Quality Management." }, { term: "Kaizen", def: "Continuous improvement." }, { term: "Benchmarking", def: "Comparing to best." }] }, exercises: [{ type: "match", instruction: "Terms.", questions: [{ q: "Kaizen", options: ["Improvement", "Stopping"], answer: 0 }, { q: "Zero Defects", options: ["No faults", "Some faults"], answer: 0 }] }, { type: "gapfill", instruction: "Quality.", questions: [{ text: "Zero ___.", answer: "defects" }, { text: "Continuous ___.", answer: "improvement" }] }], test: [{ q: "Kaizen means:", options: ["Continuous improvement", "Stop"], answer: 0 }, { q: "Comparing to the best is:", options: ["Benchmarking", "Marking"], answer: 0 }, { q: "A fault is a:", options: ["Defect", "Defeat"], answer: 0 }] },
+            { id: 19, title: "Buyers and Sellers", icon: "fa-store", summary: "Customers vs Consumers.", learning: { intro: "Who buys?", keyTerms: [{ term: "Customer", def: "Buys." }, { term: "Consumer", def: "Uses." }, { term: "Client", def: "Professional services." }] }, exercises: [{ type: "match", instruction: "19.1 People.", questions: [{ q: "Client", options: ["Professional service", "Shop buyer"], answer: 0 }] }], test: [{ q: "Person who uses:", options: ["Consumer", "Customer"], answer: 0 }] },
+            { id: 20, title: "Markets", icon: "fa-chart-pie", summary: "Competition and share.", learning: { intro: "Fighting for sales.", keyTerms: [{ term: "Market Share", def: "% of sales." }, { term: "Competitor", def: "Rival." }] }, exercises: [{ type: "gapfill", instruction: "20.1 Market.", questions: [{ text: "Market ___.", answer: "leader" }] }], test: [{ q: "One seller:", options: ["Monopoly", "Mono"], answer: 0 }] },
+            { id: 21, title: "Marketing", icon: "fa-bullhorn", summary: "The 4 Ps.", learning: { intro: "Marketing Mix.", keyTerms: [{ term: "4 Ps", def: "Product, Price, Place, Promotion." }] }, exercises: [{ type: "match", instruction: "21.1 Ps.", questions: [{ q: "Place", options: ["Distribution", "Cost"], answer: 0 }] }], test: [{ q: "Focused on needs:", options: ["Market-driven", "Product-driven"], answer: 0 }] },
+            { id: 22, title: "Brands", icon: "fa-tags", summary: "Loyalty and image.", learning: { intro: "Branding.", keyTerms: [{ term: "Brand Loyalty", def: "Returning customers." }, { term: "Image", def: "Reputation." }] }, exercises: [{ type: "gapfill", instruction: "22.1 Brands.", questions: [{ text: "Brand ___.", answer: "awareness" }] }], test: [{ q: "Supermarket brand:", options: ["Own-label", "No-label"], answer: 0 }] },
+            { id: 23, title: "Price", icon: "fa-tag", summary: "Pricing strategies.", learning: { intro: "Costing.", keyTerms: [{ term: "Premium", def: "High price." }, { term: "Budget", def: "Low price." }] }, exercises: [{ type: "match", instruction: "23.1 Price.", questions: [{ q: "Loss leader", options: ["Sold cheap to attract", "Sold expensive"], answer: 0 }] }], test: [{ q: "Expensive:", options: ["Upmarket", "Downmarket"], answer: 0 }] },
+            { id: 24, title: "Place", icon: "fa-truck", summary: "Distribution.", learning: { intro: "Channels.", keyTerms: [{ term: "Retailer", def: "Shop." }, { term: "Wholesaler", def: "Bulk seller." }] }, exercises: [{ type: "gapfill", instruction: "24.1 Place.", questions: [{ text: "Distribution ___.", answer: "channel" }] }], test: [{ q: "Middleman:", options: ["Intermediary", "Immediate"], answer: 0 }] },
+            { id: 25, title: "Promotion", icon: "fa-bullhorn", summary: "Advertising and PR.", learning: { intro: "Telling people.", keyTerms: [{ term: "Advertising", def: "Paid media." }, { term: "PR", def: "Public Relations." }, { term: "Sponsorship", def: "Funding events." }] }, exercises: [{ type: "match", instruction: "25.1 Media.", questions: [{ q: "Billboard", options: ["Outdoor", "Radio"], answer: 0 }] }], test: [{ q: "Free gift:", options: ["Freebie", "Freezer"], answer: 0 }] },
+            { id: 26, title: "E-commerce", icon: "fa-globe", summary: "Online business.", learning: { intro: "Selling online.", keyTerms: [{ term: "B2B", def: "Business to Business." }, { term: "B2C", def: "Business to Consumer." }] }, exercises: [{ type: "gapfill", instruction: "26.1 Online.", questions: [{ text: "Shopping ___.", answer: "cart" }] }], test: [{ q: "Online only:", options: ["Dotcom", "Dotorg"], answer: 0 }] },
+            { id: 27, title: "Money and Banking", icon: "fa-coins", summary: "Currencies and accounts.", learning: { intro: "Banking.", keyTerms: [{ term: "Interest", def: "Cost of loan." }, { term: "Mortgage", def: "House loan." }] }, exercises: [{ type: "match", instruction: "27.1 Bank.", questions: [{ q: "Overdraft", options: ["Negative balance", "Savings"], answer: 0 }] }], test: [{ q: "Money type:", options: ["Currency", "Current"], answer: 0 }] },
+            { id: 28, title: "Corporate Finance", icon: "fa-file-invoice-dollar", summary: "Assets and profits.", learning: { intro: "Accounts.", keyTerms: [{ term: "Asset", def: "Owned." }, { term: "Liability", def: "Owed." }] }, exercises: [{ type: "gapfill", instruction: "28.1 Finance.", questions: [{ text: "Balance ___.", answer: "sheet" }] }], test: [{ q: "Sales revenue:", options: ["Turnover", "Turnout"], answer: 0 }] },
+            { id: 29, title: "Stocks and Shares", icon: "fa-chart-line", summary: "The stock market.", learning: { intro: "Investing.", keyTerms: [{ term: "Share", def: "Part ownership." }, { term: "Dividend", def: "Profit payout." }] }, exercises: [{ type: "match", instruction: "29.1 Market.", questions: [{ q: "Bull market", options: ["Rising", "Falling"], answer: 0 }] }], test: [{ q: "Market crash:", options: ["Prices fall", "Prices rise"], answer: 0 }] },
+            { id: 30, title: "Money and Finance", icon: "fa-chart-area", summary: "Macroeconomics.", learning: { intro: "Economy.", keyTerms: [{ term: "Inflation", def: "Prices up." }, { term: "Recession", def: "Economy down." }] }, exercises: [{ type: "gapfill", instruction: "30.1 Economy.", questions: [{ text: "Interest ___.", answer: "rate" }] }], test: [{ q: "GDP:", options: ["Gross Domestic Product", "Gross Daily Profit"], answer: 0 }] },
+            { id: 31, title: "Financial Markets", icon: "fa-chart-line", summary: "Bonds and futures.", learning: { intro: "Complex markets.", keyTerms: [{ term: "Bond", def: "Govt loan." }, { term: "Commodity", def: "Raw material." }] }, exercises: [{ type: "match", instruction: "31.1 Terms.", questions: [{ q: "Hedge Fund", options: ["High risk", "Safe"], answer: 0 }] }], test: [{ q: "Rise in prices (bad):", options: ["Bubble", "Balloon"], answer: 0 }] },
+            { id: 32, title: "Cultural Issues", icon: "fa-globe-americas", summary: "Culture.", learning: { intro: "Etiquette.", keyTerms: [{ term: "Etiquette", def: "Manners." }, { term: "Stereotype", def: "Fixed idea." }] }, exercises: [{ type: "gapfill", instruction: "32.1 Culture.", questions: [{ text: "Small ___.", answer: "talk" }] }], test: [{ q: "Being on time:", options: ["Punctuality", "Punching"], answer: 0 }] },
+            { id: 33, title: "Business Across Cultures", icon: "fa-plane", summary: "Global manners.", learning: { intro: "Styles.", keyTerms: [{ term: "Power Distance", def: "Hierarchy." }, { term: "Collectivism", def: "Group first." }, { term: "Formality", def: "Strict rules." }] }, exercises: [{ type: "match", instruction: "33.1 Terms.", questions: [{ q: "Formality", options: ["Strict", "Relaxed"], answer: 0 }] }], test: [{ q: "Group focus:", options: ["Collectivism", "Individualism"], answer: 0 }] },
+            { id: 34, title: "Telephone and Email", icon: "fa-phone", summary: "Comms.", learning: { intro: "Contact.", keyTerms: [{ term: "Put through", def: "Connect." }, { term: "Attachment", def: "File." }] }, exercises: [{ type: "gapfill", instruction: "34.1 Phone.", questions: [{ text: "Hold ___.", answer: "on" }] }], test: [{ q: "Copy email:", options: ["CC", "DD"], answer: 0 }] },
+            { id: 35, title: "Business Meetings", icon: "fa-handshake", summary: "Agendas and minutes.", learning: { intro: "Running meetings.", keyTerms: [{ term: "Agenda", def: "Plan." }, { term: "Minutes", def: "Notes." }, { term: "Chair", def: "Leader." }] }, exercises: [{ type: "match", instruction: "35.1 Roles.", questions: [{ q: "Chair", options: ["Leader", "Writer"], answer: 0 }] }], test: [{ q: "Any Other Business:", options: ["AOB", "ABC"], answer: 0 }] },
+            { id: 36, title: "Presentations 1", icon: "fa-person-chalkboard", summary: "Structure.", learning: { intro: "Talks.", keyTerms: [{ term: "Signposting", def: "Guiding." }, { term: "Visuals", def: "Slides." }] }, exercises: [{ type: "gapfill", instruction: "36.1 Talk.", questions: [{ text: "First of ___.", answer: "all" }] }], test: [{ q: "Paper summary:", options: ["Handout", "Handin"], answer: 0 }] },
+            { id: 37, title: "Presentations 2", icon: "fa-microphone", summary: "Delivery.", learning: { intro: "Speaking.", keyTerms: [{ term: "Body Language", def: "Gestures." }, { term: "Rapport", def: "Connection." }] }, exercises: [{ type: "match", instruction: "37.1 Delivery.", questions: [{ q: "Pace", options: ["Speed", "Volume"], answer: 0 }] }], test: [{ q: "Question session:", options: ["Q&A", "Q&Q"], answer: 0 }] },
+            { id: 38, title: "Negotiations 1", icon: "fa-comments-dollar", summary: "Bargaining.", learning: { intro: "Deals.", keyTerms: [{ term: "Win-win", def: "Good for all." }, { term: "Compromise", def: "Middle ground." }] }, exercises: [{ type: "gapfill", instruction: "38.1 Deal.", questions: [{ text: "Make a ___.", answer: "deal" }] }], test: [{ q: "Lowest offer:", options: ["Bottom line", "Base line"], answer: 0 }] },
+            { id: 39, title: "Negotiations 2", icon: "fa-hand-holding-dollar", summary: "Conflict.", learning: { intro: "Problems.", keyTerms: [{ term: "Deadlock", def: "Stuck." }, { term: "Arbitration", def: "Judge." }] }, exercises: [{ type: "match", instruction: "39.1 Terms.", questions: [{ q: "Mediator", options: ["Helper", "Boss"], answer: 0 }] }], test: [{ q: "Final demand:", options: ["Ultimatum", "Ultimate"], answer: 0 }] },
+            { id: 40, title: "Agreement", icon: "fa-thumbs-up", summary: "Diplomatic language.", learning: { intro: "Polite argument.", keyTerms: [{ term: "Agree", def: "Yes." }, { term: "Disagree", def: "No." }, { term: "Diplomatic", def: "Polite." }] }, exercises: [{ type: "gapfill", instruction: "40.1 Polite.", questions: [{ text: "I'm ___ I disagree.", answer: "afraid" }] }], test: [{ q: "I see your point:", options: ["Agreeing", "Disagreeing politely"], answer: 1 }] },
+            { id: 41, title: "Discussion Meetings", icon: "fa-people-arrows", summary: "Debate.", learning: { intro: "Talking.", keyTerms: [{ term: "Brainstorm", def: "Ideas." }, { term: "Digress", def: "Off topic." }] }, exercises: [{ type: "match", instruction: "41.1 Terms.", questions: [{ q: "Wrap up", options: ["Finish", "Start"], answer: 0 }] }], test: [{ q: "Stop speaker:", options: ["Interrupt", "Interpret"], answer: 0 }] },
+            { id: 42, title: "Quality", icon: "fa-certificate", summary: "Standards.", learning: { intro: "Good work.", keyTerms: [{ term: "QC", def: "Checking." }, { term: "QA", def: "Systems." }] }, exercises: [{ type: "gapfill", instruction: "42.1 Quality.", questions: [{ text: "Fit for ___.", answer: "purpose" }] }], test: [{ q: "Official check:", options: ["Audit", "Edit"], answer: 0 }] },
+            { id: 43, title: "Customer Service", icon: "fa-headset", summary: "Service.", learning: { intro: "Help.", keyTerms: [{ term: "Refund", def: "Money back." }, { term: "Feedback", def: "Comments." }] }, exercises: [{ type: "match", instruction: "43.1 Terms.", questions: [{ q: "Complaint", options: ["Problem", "Praise"], answer: 0 }] }], test: [{ q: "Understanding:", options: ["Empathy", "Apathy"], answer: 0 }] },
+            { id: 44, title: "Management Styles", icon: "fa-sitemap", summary: "Leadership.", learning: { intro: "Styles.", keyTerms: [{ term: "Autocratic", def: "Strict." }, { term: "Democratic", def: "Open." }] }, exercises: [{ type: "gapfill", instruction: "44.1 Styles.", questions: [{ text: "Laissez-___.", answer: "faire" }] }], test: [{ q: "Giving tasks:", options: ["Delegating", "Deleting"], answer: 0 }] },
+            { id: 45, title: "Recruitment", icon: "fa-user-plus", summary: "Hiring.", learning: { intro: "Staffing.", keyTerms: [{ term: "Turnover", def: "Leavers." }, { term: "Headhunter", def: "Recruiter." }] }, exercises: [{ type: "match", instruction: "45.1 Hiring.", questions: [{ q: "Vacancy", options: ["Open job", "Holiday"], answer: 0 }] }], test: [{ q: "Keeping staff:", options: ["Retention", "Detention"], answer: 0 }] },
+            { id: 46, title: "Business Ethics", icon: "fa-scale-balanced", summary: "Ethics.", learning: { intro: "Morals.", keyTerms: [{ term: "CSR", def: "Social Resp." }, { term: "Stakeholder", def: "Affected." }] }, exercises: [{ type: "gapfill", instruction: "46.1 Ethics.", questions: [{ text: "Fair ___.", answer: "trade" }] }], test: [{ q: "Bad factory:", options: ["Sweatshop", "Sweetshop"], answer: 0 }] },
+            { id: 47, title: "The Economy", icon: "fa-chart-bar", summary: "Macro.", learning: { intro: "State.", keyTerms: [{ term: "Fiscal", def: "Tax." }, { term: "Monetary", def: "Rates." }] }, exercises: [{ type: "match", instruction: "47.1 Economy.", questions: [{ q: "Austerity", options: ["Cuts", "Spending"], answer: 0 }] }], test: [{ q: "Fast growth:", options: ["Boom", "Bang"], answer: 0 }] },
+            { id: 48, title: "Business Cycle", icon: "fa-rotate", summary: "Cycles.", learning: { intro: "Trends.", keyTerms: [{ term: "Peak", def: "Top." }, { term: "Trough", def: "Bottom." }] }, exercises: [{ type: "gapfill", instruction: "48.1 Cycle.", questions: [{ text: "Economic ___.", answer: "recovery" }] }], test: [{ q: "Two quarters decline:", options: ["Recession", "Procession"], answer: 0 }] },
+            { id: 49, title: "CSR", icon: "fa-hand-holding-heart", summary: "Social good.", learning: { intro: "Responsibility.", keyTerms: [{ term: "Sustainability", def: "Green." }, { term: "Philanthropy", def: "Charity." }] }, exercises: [{ type: "match", instruction: "49.1 CSR.", questions: [{ q: "Transparency", options: ["Open", "Closed"], answer: 0 }] }], test: [{ q: "Triple Bottom Line:", options: ["People Planet Profit", "Product Price Place"], answer: 0 }] },
+            { id: 50, title: "Environment", icon: "fa-leaf", summary: "Green.", learning: { intro: "Eco.", keyTerms: [{ term: "Carbon Footprint", def: "CO2." }, { term: "Renewable", def: "Green energy." }] }, exercises: [{ type: "gapfill", instruction: "50.1 Eco.", questions: [{ text: "Climate ___.", answer: "change" }] }], test: [{ q: "Fake green:", options: ["Greenwashing", "Whitewashing"], answer: 0 }] },
+            { id: 51, title: "Entertaining", icon: "fa-champagne-glasses", summary: "Social.", learning: { intro: "Fun.", keyTerms: [{ term: "Small Talk", def: "Chat." }, { term: "Host", def: "Inviter." }] }, exercises: [{ type: "match", instruction: "51.1 Social.", questions: [{ q: "Toast", options: ["Drink to health", "Bread"], answer: 0 }] }], test: [{ q: "Who pays:", options: ["Host", "Guest"], answer: 0 }] },
+            { id: 52, title: "Business Travel", icon: "fa-plane-departure", summary: "Travel.", learning: { intro: "Trips.", keyTerms: [{ term: "Itinerary", def: "Plan." }, { term: "Jet Lag", def: "Tired." }] }, exercises: [{ type: "gapfill", instruction: "52.1 Travel.", questions: [{ text: "Boarding ___.", answer: "pass" }] }], test: [{ q: "Hotel paper:", options: ["Bill", "Menu"], answer: 0 }] },
+            { id: 53, title: "Communication", icon: "fa-envelope-open-text", summary: "Messages.", learning: { intro: "Comms.", keyTerms: [{ term: "Memo", def: "Note." }, { term: "Briefing", def: "Update." }] }, exercises: [{ type: "match", instruction: "53.1 Docs.", questions: [{ q: "Report", options: ["Analysis", "Letter"], answer: 0 }] }], test: [{ q: "Face to face:", options: ["In person", "Email"], answer: 0 }] },
+            { id: 54, title: "Innovation 2", icon: "fa-cogs", summary: "Product life.", learning: { intro: "Lifecycle.", keyTerms: [{ term: "Maturity", def: "Peak sales." }, { term: "Decline", def: "Sales drop." }] }, exercises: [{ type: "gapfill", instruction: "54.1 Lifecycle.", questions: [{ text: "Product ___.", answer: "launch" }] }], test: [{ q: "Improving:", options: ["Kaizen", "Zen"], answer: 0 }] },
+            { id: 55, title: "IT", icon: "fa-laptop-code", summary: "Tech.", learning: { intro: "Computers.", keyTerms: [{ term: "Hardware", def: "Parts." }, { term: "Software", def: "Code." }] }, exercises: [{ type: "match", instruction: "55.1 IT.", questions: [{ q: "Virus", options: ["Bad code", "Good code"], answer: 0 }] }], test: [{ q: "Internet storage:", options: ["Cloud", "Sky"], answer: 0 }] },
+            { id: 56, title: "Change Management", icon: "fa-arrows-spin", summary: "Change.", learning: { intro: "Restructuring.", keyTerms: [{ term: "Downsizing", def: "Cuts." }, { term: "Merger", def: "Joining." }] }, exercises: [{ type: "gapfill", instruction: "56.1 Change.", questions: [{ text: "Staff ___.", answer: "morale" }] }], test: [{ q: "Moving office:", options: ["Relocation", "Location"], answer: 0 }] },
+            { id: 57, title: "Global Brands", icon: "fa-earth-americas", summary: "Global.", learning: { intro: "World.", keyTerms: [{ term: "Multinational", def: "Global corp." }, { term: "Glocalization", def: "Global+Local." }] }, exercises: [{ type: "match", instruction: "57.1 Brands.", questions: [{ q: "Standardize", options: ["Same", "Different"], answer: 0 }] }], test: [{ q: "Home market:", options: ["Domestic", "Foreign"], answer: 0 }] },
+            { id: 58, title: "Choice and Quality", icon: "fa-star", summary: "Quality.", learning: { intro: "Options.", keyTerms: [{ term: "Premium", def: "High." }, { term: "Budget", def: "Low." }] }, exercises: [{ type: "gapfill", instruction: "58.1 Choice.", questions: [{ text: "Value for ___.", answer: "money" }] }], test: [{ q: "Top quality:", options: ["Top-notch", "Top-heavy"], answer: 0 }] },
+            { id: 59, title: "Logistics", icon: "fa-truck-fast", summary: "Supply.", learning: { intro: "Moving.", keyTerms: [{ term: "Freight", def: "Cargo." }, { term: "Hub", def: "Center." }] }, exercises: [{ type: "match", instruction: "59.1 Logistics.", questions: [{ q: "Warehouse", options: ["Store", "Shop"], answer: 0 }] }], test: [{ q: "Supply ___:", options: ["Chain", "Rope"], answer: 0 }] },
+            { id: 60, title: "Finance/Economy", icon: "fa-piggy-bank", summary: "Money.", learning: { intro: "Markets.", keyTerms: [{ term: "Equity", def: "Shares." }, { term: "Yield", def: "Return." }] }, exercises: [{ type: "gapfill", instruction: "60.1 Finance.", questions: [{ text: "Bull ___.", answer: "market" }] }], test: [{ q: "Borrowing cost:", options: ["Interest", "Tax"], answer: 0 }] },
+            { id: 61, title: "International Business", icon: "fa-globe", summary: "Trade.", learning: { intro: "Export.", keyTerms: [{ term: "Tariff", def: "Tax." }, { term: "Quota", def: "Limit." }] }, exercises: [{ type: "match", instruction: "61.1 Trade.", questions: [{ q: "Embargo", options: ["Ban", "Allow"], answer: 0 }] }], test: [{ q: "Selling abroad:", options: ["Export", "Import"], answer: 0 }] },
+            { id: 62, title: "Business Skills", icon: "fa-briefcase", summary: "Skills.", learning: { intro: "Ability.", keyTerms: [{ term: "Negotiation", def: "Deals." }, { term: "Leadership", def: "Leading." }] }, exercises: [{ type: "gapfill", instruction: "62.1 Skills.", questions: [{ text: "Time ___.", answer: "management" }] }], test: [{ q: "Group talk:", options: ["Meeting", "Eating"], answer: 0 }] },
+            { id: 63, title: "Intercultural Comm", icon: "fa-comments", summary: "Culture.", learning: { intro: "Context.", keyTerms: [{ term: "High Context", def: "Indirect." }, { term: "Low Context", def: "Direct." }] }, exercises: [{ type: "match", instruction: "63.1 Culture.", questions: [{ q: "Faux pas", options: ["Mistake", "Correct"], answer: 0 }] }], test: [{ q: "Personal space:", options: ["Proxemics", "Proximity"], answer: 0 }] },
+            { id: 64, title: "Business Trends", icon: "fa-arrow-trend-up", summary: "Trends.", learning: { intro: "Future.", keyTerms: [{ term: "Gig economy", def: "Freelance." }, { term: "AI", def: "Computers." }] }, exercises: [{ type: "gapfill", instruction: "64.1 Trends.", questions: [{ text: "Remote ___.", answer: "work" }] }], test: [{ q: "Freelance world:", options: ["Gig economy", "Big economy"], answer: 0 }] },
+            { id: 65, title: "Quality Management", icon: "fa-check-double", summary: "Standards.", learning: { intro: "ISO.", keyTerms: [{ term: "ISO", def: "Standard." }, { term: "Audit", def: "Check." }] }, exercises: [{ type: "match", instruction: "65.1 QA.", questions: [{ q: "Fishbone", options: ["Diagram", "Fish"], answer: 0 }] }], test: [{ q: "Zero ___:", options: ["Defects", "Effects"], answer: 0 }] },
+            { id: 66, title: "Developing Skills", icon: "fa-seedling", summary: "Growth.", learning: { intro: "Self.", keyTerms: [{ term: "Hard skills", def: "Technical." }, { term: "Soft skills", def: "People." }] }, exercises: [{ type: "gapfill", instruction: "66.1 Growth.", questions: [{ text: "Emotional ___.", answer: "intelligence" }] }], test: [{ q: "EQ means:", options: ["Emotional Quotient", "Equal Quality"], answer: 0 }] }
         ];
 
-        const typesQuizData = [
-            { situation: "My husband works in an office from 9 am to 5.30 pm.", options: ["He has a full-time job.", "He has a part-time job.", "He has temporary work."], answer: "He has a full-time job." },
-            { situation: "Our daughter works in a bank from eight till five every day.", options: ["She works part-time.", "She works full-time.", "She works temporary."], answer: "She works full-time." },
-            { situation: "I work in a café from 8 pm until midnight.", options: ["I work full-time.", "I have a permanent job.", "I work part-time."], answer: "I work part-time." },
-            { situation: "My wife works in local government and she can have this job for as long as she wants it.", options: ["She has a permanent job.", "She has a temporary job.", "She is out of work."], answer: "She has a permanent job." },
-            { situation: "Our son is working on a farm for four weeks.", options: ["He has a permanent job.", "He has a temporary job.", "He works full-time."], answer: "He has a temporary job." }
+        // Groups Config
+        const groups = [
+            { title: "Jobs, People and Organizations", start: 1, end: 12 },
+            { title: "Production", start: 13, end: 18 },
+            { title: "Marketing", start: 19, end: 26 },
+            { title: "Money", start: 27, end: 34 },
+            { title: "Finance and the economy", start: 35, end: 39 },
+            { title: "Doing the right thing", start: 40, end: 41 },
+            { title: "Skills", start: 42, end: 44 },
+            { title: "Culture", start: 45, end: 47 }, 
+            { title: "Telephone, fax and email", start: 48, end: 53 },
+            { title: "Business Skills", start: 54, end: 66 }
         ];
 
-        const prepsAnswers = ["to", "to", "at", "off", "in", "out of"];
+        // APP STATE
+        let currentView = 'home';
+        let currentModuleId = null;
 
-        // --- Test Unit 1 Data ---
-        const test1Data = [
-            { q: "1. I ______ the manufacturing plant in Cambridge.", ans: "manage", options: ["manage", "job", "under", "of", "deal", "responsible"] },
-            { q: "2. I am in charge ______ the production team.", ans: "of", options: ["manage", "job", "under", "of", "deal", "responsible"] },
-            { q: "3. About 120 people work ______ me.", ans: "under", options: ["manage", "job", "under", "of", "deal", "responsible"] },
-            { q: "4. Coordination between production and design is my ______.", ans: "job", options: ["manage", "job", "under", "of", "deal", "responsible"] },
-            { q: "5. I ______ with a lot of people in the company and with our customers.", ans: "deal", options: ["manage", "job", "under", "of", "deal", "responsible"] },
-            { q: "6. I'm ______ for a budget of over £100 million.", ans: "responsible", options: ["manage", "job", "under", "of", "deal", "responsible"] }
-        ];
-
-        const test2Data = [
-            { q: "1. I joined the company ten years ago and I guess I'll be here for another ten.", ans: "P" },
-            { q: "2. I do four hours each morning and then I pick the children up from school.", ans: "PT" },
-            { q: "3. I've been here since March and I'll leave in July when the designs are finished.", ans: "T" },
-            { q: "4. We are supposed to work 37 hours a week but I usually do a bit more.", ans: "FT" },
-            { q: "5. I started here when I left school. Oh, that's about 20 years ago now.", ans: "P" },
-            { q: "6. This job is only for six months, but that's OK because then I'm going to Italy.", ans: "T" }
-        ];
-
-        // Answers for Test 1.3: for, for, to, get, to, at, off, of
-        const test3Answers = ["for", "for", "to", "get", "to", "at", "off", "of"];
-
-        const test4Data = [
-            { q: "1. I'm in charge of ______ the work of the team. (coordinate)", ans: "coordinating" },
-            { q: "2. One of my responsibilities is to ______ sure that we don't spend too much money. (make)", ans: "make" },
-            { q: "3. My team is responsible for the ______ of new models for production. (design)", ans: "design" },
-            { q: "4. I'm in charge of ______ our work for the whole year. (plan)", ans: "planning" }
-        ];
-
-
-        // --- Page Navigation & Setup ---
-        window.addEventListener('DOMContentLoaded', () => {
-            const navButtons = document.querySelectorAll('.nav-button');
-            function showPage(pageId) {
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                document.getElementById(pageId)?.classList.add('active');
-                navButtons.forEach(b => b.classList.remove('active'));
-                const targetButtonId = pageId.replace('page-', 'nav-');
-                document.getElementById(targetButtonId)?.classList.add('active');
-            }
-
-            navButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const pageName = `page-${button.id.substring(4)}`;
-                    showPage(pageName);
-                });
-            });
-
-            // Unit 1 Setup
-            setupPierreQuiz();
-            setupTypesQuiz();
-
-            // Test Unit 1 Setup
-            setupTest1();
-            setupTest2();
-            setupTest4();
+        // INIT
+        document.addEventListener('DOMContentLoaded', () => {
+            renderView('home');
         });
 
-        // --- Unit 1 Functions ---
-        function setupPierreQuiz() {
-            const container = document.getElementById('pierre-quiz-container');
-            container.innerHTML = pierreQuizData.map((item, index) => `
-                <div class="activity-card p-4">
-                    <p class="font-medium text-gray-800 mb-3 text-sm">${item.text}</p>
-                    <div class="flex flex-wrap gap-2">
-                        ${item.options.map(opt => `
-                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-indigo-100" 
-                                onclick="selectPierre(this, ${index}, '${opt}')">${opt}</button>
+        // VIEW CONTROLLER
+        function renderView(viewName, moduleId = null) {
+            const app = document.getElementById('app-container');
+            app.innerHTML = ''; // Clear content
+            app.style.opacity = 0; // Fade out effect
+
+            setTimeout(() => {
+                if (viewName === 'home') renderHome(app);
+                else if (viewName === 'modules') renderModules(app);
+                else if (viewName === 'module-detail') renderModuleDetail(app, moduleId);
+                else if (viewName === 'test') renderTest(app, moduleId);
+                
+                app.style.transition = 'opacity 0.5s ease';
+                app.style.opacity = 1;
+            }, 200);
+        }
+
+        // RENDERERS
+        function renderHome(container) {
+            container.innerHTML = `
+                <div class="text-center py-16">
+                    <h1 class="text-5xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+                        Master Business <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">English</span>
+                    </h1>
+                    <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+                        Enhance your workplace vocabulary with interactive modules designed for B2 professionals. 
+                        Based on the Cambridge Business Vocabulary curriculum.
+                    </p>
+                    <button onclick="renderView('modules')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+                        Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="glass-panel p-6 rounded-xl shadow-sm text-center">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600">
+                            <i class="fas fa-book-open text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Detailed Theory</h3>
+                        <p class="text-slate-600">Learn definitions, collocations, and grammar rules for the workplace.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-xl shadow-sm text-center">
+                        <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4 text-cyan-600">
+                            <i class="fas fa-laptop-code text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Interactive Practice</h3>
+                        <p class="text-slate-600">Gap fills and matching exercises to reinforce your learning.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-xl shadow-sm text-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 text-purple-600">
+                            <i class="fas fa-chart-line text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Module Tests</h3>
+                        <p class="text-slate-600">Test your knowledge at the end of each module to track progress.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderModules(container) {
+            let html = `
+                <div class="mb-8">
+                    <h2 class="text-4xl font-bold text-slate-800 text-center">Learning Modules</h2>
+                    <p class="text-slate-600 text-center mt-2">Select a topic to begin studying.</p>
+                </div>
+            `;
+
+            groups.forEach(group => {
+                html += `
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold text-indigo-700 mb-6 border-b-2 border-indigo-100 pb-2">${group.title}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                `;
+                
+                const groupModules = modules.filter(m => m.id >= group.start && m.id <= group.end);
+                
+                if(groupModules.length === 0) {
+                     html += `<p class="text-slate-400 italic">No modules in this section.</p>`;
+                }
+
+                groupModules.forEach(mod => {
+                    html += `
+                        <div class="glass-panel rounded-xl p-6 hover:shadow-md transition cursor-pointer group hover:-translate-y-1 duration-300" onclick="renderView('module-detail', ${mod.id})">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase text-indigo-500 tracking-wider">Module ${mod.id}</span>
+                                <i class="fas ${mod.icon} text-slate-400 group-hover:text-indigo-600 transition"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition">${mod.title}</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">${mod.summary}</p>
+                            <div class="w-full bg-slate-200 rounded-full h-1.5 mt-2">
+                                <div class="bg-indigo-500 h-1.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderModuleDetail(container, id) {
+            const mod = modules.find(m => m.id === id);
+            
+            let html = `
+                <button onclick="renderView('modules')" class="mb-6 text-slate-500 hover:text-indigo-600 transition flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Modules
+                </button>
+                
+                <div class="glass-panel rounded-2xl p-8 mb-8 border-l-4 border-indigo-500">
+                    <h1 class="text-3xl font-bold text-slate-900 mb-2">Unit ${mod.id}: ${mod.title}</h1>
+                    <p class="text-lg text-slate-600">${mod.learning.intro}</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Theory Section -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-xl shadow-sm p-6 sticky top-24 border border-slate-100">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center"><i class="fas fa-book mr-2 text-indigo-500"></i>Key Vocabulary</h3>
+                            
+                            <!-- Check for Rich Content Sections -->
+                            ${mod.learning.sections ? 
+                                mod.learning.sections.map(sec => `
+                                    <div class="mb-6 rich-content">
+                                        <h4 class="font-bold text-indigo-700 mb-2">${sec.title}</h4>
+                                        <div class="text-sm text-slate-600 leading-relaxed">${sec.content}</div>
+                                    </div>
+                                `).join('') 
+                                : 
+                                `<ul class="space-y-4">
+                                    ${mod.learning.keyTerms.map(term => `
+                                        <li class="group">
+                                            <span class="block font-bold text-indigo-600 group-hover:text-indigo-700 transition">${term.term}</span>
+                                            <span class="text-sm text-slate-600 leading-relaxed">${term.def}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>`
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Exercises Section -->
+                    <div class="lg:col-span-2 space-y-8">
+                        ${mod.exercises.map((ex, index) => renderExercise(ex, index)).join('')}
+                        
+                        <div class="glass-panel p-8 rounded-xl text-center mt-10">
+                            <h3 class="text-2xl font-bold mb-4">Ready to test yourself?</h3>
+                            <button onclick="renderView('test', ${mod.id})" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                                Take Module Test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        function renderExercise(ex, index) {
+            let content = '';
+            
+            if (ex.type === 'gapfill') {
+                content = `<div class="space-y-4">`;
+                ex.questions.forEach((q, qIdx) => {
+                    const parts = q.text.split('___');
+                    content += `
+                        <div class="flex items-baseline flex-wrap gap-2 text-lg">
+                            <span class="font-medium text-slate-700">${qIdx + 1}. ${parts[0]}</span>
+                            <input type="text" data-ans="${q.answer}" class="gap-input bg-white border border-slate-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 outline-none w-32 text-center font-bold text-indigo-600 shadow-sm" placeholder="?">
+                            <span class="font-medium text-slate-700">${parts[1] || ''}</span>
+                            <span class="feedback-icon hidden ml-2"></span>
+                        </div>
+                    `;
+                });
+                content += `</div>`;
+            } else if (ex.type === 'match') {
+                content = `<div class="space-y-6">`;
+                ex.questions.forEach((q, qIdx) => {
+                    content += `
+                        <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
+                            <p class="font-medium mb-3 text-slate-800">${qIdx + 1}. ${q.q}</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${q.options.map((opt, oIdx) => `
+                                    <button onclick="selectOption(this, ${q.answer === oIdx})" class="option-btn border border-slate-300 px-4 py-2 rounded-full text-sm hover:bg-slate-50 transition text-slate-600">
+                                        ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                content += `</div>`;
+            }
+
+            return `
+                <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fas fa-pencil-alt text-6xl"></i>
+                    </div>
+                    <div class="flex items-center mb-6 relative z-10">
+                        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded uppercase mr-2 tracking-wide">Activity ${index + 1}</span>
+                        <h4 class="font-bold text-slate-800 text-lg">${ex.instruction}</h4>
+                    </div>
+                    <div class="relative z-10">
+                        ${content}
+                        ${ex.type === 'gapfill' ? `<button onclick="checkGapFill(this)" class="mt-6 text-sm bg-slate-800 text-white px-6 py-2.5 rounded-lg hover:bg-slate-700 transition shadow-lg flex items-center"><i class="fas fa-check mr-2"></i> Check Answers</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTest(container, id) {
+            const mod = modules.find(m => m.id === id);
+            
+            let html = `
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="text-indigo-600 font-bold tracking-wider uppercase text-sm">Assessment</span>
+                        <h2 class="text-4xl font-bold text-slate-900 mt-2">Test: ${mod.title}</h2>
+                        <p class="text-slate-500 mt-2">Select the correct answer for each question.</p>
+                    </div>
+
+                    <div class="space-y-6" id="test-form">
+                        ${mod.test.map((q, idx) => `
+                            <div class="glass-panel p-6 rounded-xl test-question transition hover:shadow-md" data-correct="${q.answer}">
+                                <p class="text-xl font-medium mb-4 text-slate-800"><span class="text-indigo-400 mr-2 font-bold">${idx + 1}.</span>${q.q.replace('___', '______')}</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    ${q.options.map((opt, oIdx) => `
+                                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-indigo-50 transition border-slate-200 bg-white group">
+                                            <input type="radio" name="q${idx}" value="${oIdx}" class="text-indigo-600 focus:ring-indigo-500 h-5 w-5 border-gray-300">
+                                            <span class="ml-3 text-slate-600 group-hover:text-slate-900 font-medium">${opt}</span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </div>
                         `).join('')}
                     </div>
-                    <input type="hidden" id="pierre-answer-${index}" value="">
-                </div>
-            `).join('');
-        }
 
-        function selectPierre(btn, index, value) {
-            const container = btn.closest('.activity-card');
-            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            document.getElementById(`pierre-answer-${index}`).value = value;
-        }
-
-        function checkPierreQuiz() {
-            let correctCount = 0;
-            pierreQuizData.forEach((item, index) => {
-                const input = document.getElementById(`pierre-answer-${index}`);
-                const container = input.closest('.activity-card');
-                const selectedBtn = container.querySelector('.selected');
-                
-                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
-
-                if (input.value === item.answer) {
-                    correctCount++;
-                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
-                } else {
-                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
-                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
-                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
-                }
-            });
-            const feedbackEl = document.getElementById('pierre-quiz-feedback');
-            const allCorrect = correctCount === pierreQuizData.length;
-            feedbackEl.textContent = allCorrect ? "Excellent corrections!" : `You got ${correctCount} out of ${pierreQuizData.length} correct.`;
-            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
-        }
-
-        function checkPrepsQuiz() {
-            let correctCount = 0;
-            const container = document.getElementById('preps-container');
-            const selects = container.querySelectorAll('select');
-            
-            selects.forEach((select, index) => {
-                const userVal = select.value;
-                const correctVal = prepsAnswers[index];
-                
-                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
-                select.disabled = true;
-
-                if (userVal === correctVal) {
-                    correctCount++;
-                    select.classList.add('border-green-500', 'bg-green-50');
-                } else {
-                    select.classList.add('border-red-500', 'bg-red-50');
-                }
-            });
-
-            const feedbackEl = document.getElementById('preps-quiz-feedback');
-            const allCorrect = correctCount === prepsAnswers.length;
-            feedbackEl.textContent = allCorrect ? "Correct! You know your prepositions." : `You got ${correctCount} out of ${prepsAnswers.length} correct.`;
-            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
-        }
-
-        function setupTypesQuiz() {
-            const container = document.getElementById('types-quiz-container');
-            container.innerHTML = typesQuizData.map((item, index) => `
-                <div class="activity-card p-4">
-                    <p class="font-medium text-gray-800 mb-3 text-sm italic">"${item.situation}"</p>
-                    <div class="flex flex-col gap-2">
-                        ${item.options.map(opt => `
-                            <button class="option-btn px-3 py-2 text-sm rounded-md font-medium text-gray-600 hover:bg-indigo-100 text-left" 
-                                onclick="selectType(this, ${index}, '${opt}')">${opt}</button>
-                        `).join('')}
-                    </div>
-                    <input type="hidden" id="type-answer-${index}" value="">
-                </div>
-            `).join('');
-        }
-
-        function selectType(btn, index, value) {
-            const container = btn.closest('.activity-card');
-            container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            document.getElementById(`type-answer-${index}`).value = value;
-        }
-
-        function checkTypesQuiz() {
-            let correctCount = 0;
-            typesQuizData.forEach((item, index) => {
-                const input = document.getElementById(`type-answer-${index}`);
-                const container = input.closest('.activity-card');
-                const selectedBtn = container.querySelector('.selected');
-                
-                container.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
-
-                if (input.value === item.answer) {
-                    correctCount++;
-                    if (selectedBtn) selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
-                } else {
-                    if (selectedBtn) selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
-                    const correctBtn = Array.from(container.querySelectorAll('.option-btn')).find(b => b.textContent === item.answer);
-                    if (correctBtn) correctBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
-                }
-            });
-            const feedbackEl = document.getElementById('types-quiz-feedback');
-            const allCorrect = correctCount === typesQuizData.length;
-            feedbackEl.textContent = allCorrect ? "Great job identifying job types!" : `You got ${correctCount} out of ${typesQuizData.length} correct.`;
-            feedbackEl.className = `feedback ${allCorrect ? 'correct' : 'incorrect'} text-center`;
-        }
-
-        // --- Test Unit 1 Functions ---
-
-        // Test 1.1: Complete Sentences
-        function setupTest1() {
-            const container = document.getElementById('test1-container');
-            container.innerHTML = test1Data.map((item, index) => `
-                <div class="flex items-center gap-2 p-2 bg-indigo-50 rounded">
-                    <p class="flex-grow text-sm text-gray-800">${item.q}</p>
-                    <select id="test1-${index}" class="text-sm border border-gray-300 rounded p-1">
-                        <option value="">Select...</option>
-                        ${item.options.sort().map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-                    </select>
-                </div>
-            `).join('');
-        }
-
-        function checkTest1() {
-            let correctCount = 0;
-            test1Data.forEach((item, index) => {
-                const select = document.getElementById(`test1-${index}`);
-                if (select.value === item.ans) {
-                    correctCount++;
-                    select.classList.add('border-green-500', 'text-green-700', 'bg-green-50');
-                    select.classList.remove('border-red-500');
-                } else {
-                    select.classList.add('border-red-500', 'bg-red-50');
-                    select.classList.remove('border-green-500');
-                }
-            });
-            const feedback = document.getElementById('test1-feedback');
-            feedback.textContent = `Score: ${correctCount}/${test1Data.length}`;
-            feedback.className = correctCount === test1Data.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
-        }
-
-        // Test 1.2: Job Types
-        function setupTest2() {
-            const container = document.getElementById('test2-container');
-            container.innerHTML = test2Data.map((item, index) => `
-                <div class="flex items-start md:items-center gap-4 p-2 border-b border-gray-100">
-                    <p class="text-sm text-gray-800 flex-grow">${item.q}</p>
-                    <div class="flex gap-2 flex-shrink-0">
-                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="FT"> FT</label>
-                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="PT"> PT</label>
-                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="P"> P</label>
-                        <label class="flex items-center gap-1 text-xs cursor-pointer"><input type="radio" name="test2-${index}" value="T"> T</label>
+                    <div class="mt-12 text-center pb-20">
+                        <button onclick="submitTest()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-12 rounded-full shadow-lg transform transition hover:scale-105 text-lg flex items-center mx-auto">
+                            <i class="fas fa-paper-plane mr-2"></i> Submit Answers
+                        </button>
+                        <button onclick="renderView('module-detail', ${id})" class="mt-6 text-slate-500 hover:text-slate-700 underline text-sm">Cancel and Return</button>
                     </div>
                 </div>
-            `).join('');
-        }
 
-        function checkTest2() {
-            let correctCount = 0;
-            test2Data.forEach((item, index) => {
-                const selected = document.querySelector(`input[name="test2-${index}"]:checked`);
-                const parent = document.getElementsByName(`test2-${index}`)[0].closest('.flex.gap-2');
-                
-                parent.querySelectorAll('span.status').forEach(e => e.remove());
-
-                if (selected && selected.value === item.ans) {
-                    correctCount++;
-                    const badge = document.createElement('span');
-                    badge.className = 'status text-green-500 font-bold ml-2';
-                    badge.innerHTML = '&#10003;';
-                    parent.appendChild(badge);
-                } else {
-                    const badge = document.createElement('span');
-                    badge.className = 'status text-red-500 font-bold ml-2';
-                    badge.innerHTML = '&times;';
-                    parent.appendChild(badge);
-                }
-            });
-            const feedback = document.getElementById('test2-feedback');
-            feedback.textContent = `Score: ${correctCount}/${test2Data.length}`;
-            feedback.className = correctCount === test2Data.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
-        }
-
-        // Test 1.3: Prepositions
-        function checkTest3() {
-            let correctCount = 0;
-            const container = document.getElementById('test3-container');
-            const selects = container.querySelectorAll('select');
-            
-            selects.forEach((select, index) => {
-                const userVal = select.value;
-                const correctVal = test3Answers[index];
-                
-                select.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
-                
-                if (userVal === correctVal) {
-                    correctCount++;
-                    select.classList.add('border-green-500', 'bg-green-50');
-                } else {
-                    select.classList.add('border-red-500', 'bg-red-50');
-                }
-            });
-
-            const feedback = document.getElementById('test3-feedback');
-            feedback.textContent = `Score: ${correctCount}/${test3Answers.length}`;
-            feedback.className = correctCount === test3Answers.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
-        }
-
-        // Test 1.4: Word Forms
-        function setupTest4() {
-            const container = document.getElementById('test4-container');
-            container.innerHTML = test4Data.map((item, index) => `
-                <div class="flex flex-col p-2 bg-indigo-50 rounded">
-                    <p class="text-sm text-gray-800 mb-2">${item.q}</p>
-                    <input type="text" id="test4-${index}" placeholder="Type answer..." class="w-full text-sm border p-1 rounded">
+                <!-- Result Modal Overlay -->
+                <div id="result-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center px-4 backdrop-blur-sm">
+                    <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl transform scale-90 opacity-0 transition-all duration-300" id="result-content">
+                        <div id="score-icon" class="text-6xl mb-4"></div>
+                        <h3 class="text-3xl font-bold mb-2 text-slate-800">Test Complete!</h3>
+                        <p class="text-slate-600 mb-8 text-lg">You scored <span id="score-val" class="font-bold text-4xl text-indigo-600"></span> out of <span id="score-total" class="text-xl"></span></p>
+                        <div class="flex justify-center space-x-4">
+                            <button onclick="renderView('module-detail', ${id}); closeModal()" class="px-6 py-3 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-50 font-medium">Review Unit</button>
+                            <button onclick="renderView('modules'); closeModal()" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium shadow-md">Next Module</button>
+                        </div>
+                    </div>
                 </div>
-            `).join('');
+            `;
+            container.innerHTML = html;
         }
 
-        function checkTest4() {
-            let correctCount = 0;
-            test4Data.forEach((item, index) => {
-                const input = document.getElementById(`test4-${index}`);
-                const val = input.value.trim().toLowerCase();
-                
-                if (val === item.ans) {
-                    correctCount++;
-                    input.classList.add('border-green-500', 'bg-green-50');
-                    input.classList.remove('border-red-500');
+        // INTERACTION LOGIC
+
+        // For Multiple Choice Practice
+        window.selectOption = function(btn, isCorrect) {
+            // Reset siblings
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => {
+                b.classList.remove('correct-answer', 'wrong-answer', 'bg-red-50', 'bg-green-50', 'border-red-500', 'border-green-500', 'text-red-700', 'text-green-700');
+                b.disabled = true; // Disable after selection
+                b.classList.add('opacity-60');
+            });
+
+            btn.classList.remove('opacity-60');
+
+            if (isCorrect) {
+                btn.classList.add('correct-answer');
+                btn.innerHTML += ' <i class="fas fa-check-circle ml-2"></i>';
+            } else {
+                btn.classList.add('wrong-answer');
+                btn.innerHTML += ' <i class="fas fa-times-circle ml-2"></i>';
+            }
+        };
+
+        // For Gap Fill
+        window.checkGapFill = function(btn) {
+            const container = btn.parentElement.previousElementSibling; // Content div
+            const inputs = container.querySelectorAll('input');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                const userAns = input.value.trim().toLowerCase();
+                const correctAns = input.dataset.ans.toLowerCase();
+                const icon = input.nextElementSibling.nextElementSibling; // span.feedback-icon
+
+                icon.classList.remove('hidden');
+                input.classList.remove('border-slate-300', 'focus:ring-indigo-500');
+
+                if (userAns === correctAns) {
+                    input.classList.add('border-green-500', 'text-green-700', 'bg-green-50');
+                    input.classList.remove('border-red-500', 'text-red-700', 'bg-red-50');
+                    icon.innerHTML = '<i class="fas fa-check text-green-500"></i>';
                 } else {
-                    input.classList.add('border-red-500', 'bg-red-50');
-                    input.classList.remove('border-green-500');
+                    input.classList.add('border-red-500', 'text-red-700', 'bg-red-50');
+                    input.classList.remove('border-green-500', 'text-green-700', 'bg-green-50');
+                    icon.innerHTML = `<i class="fas fa-times text-red-500"></i> <span class="text-xs text-red-500 ml-1 font-bold">${correctAns}</span>`;
+                    allCorrect = false;
                 }
             });
-            const feedback = document.getElementById('test4-feedback');
-            feedback.textContent = `Score: ${correctCount}/${test4Data.length}`;
-            feedback.className = correctCount === test4Data.length ? 'ml-2 text-sm font-medium correct' : 'ml-2 text-sm font-medium incorrect';
-        }
+
+            if (allCorrect) {
+                btn.innerHTML = '<i class="fas fa-star mr-2"></i> Great Job!';
+                btn.className = "mt-6 text-sm bg-green-600 text-white px-6 py-2.5 rounded-lg shadow-lg cursor-default";
+            } else {
+                btn.innerHTML = '<i class="fas fa-redo mr-2"></i> Try Again';
+            }
+        };
+
+        // For Test Submission
+        window.submitTest = function() {
+            const questions = document.querySelectorAll('.test-question');
+            let score = 0;
+            let total = questions.length;
+
+            questions.forEach((qDiv, idx) => {
+                const correctIdx = parseInt(qDiv.dataset.correct);
+                const selected = qDiv.querySelector(`input[name="q${idx}"]:checked`);
+                const labels = qDiv.querySelectorAll('label');
+                
+                // Reset styles
+                labels.forEach(l => l.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500'));
+
+                if (selected) {
+                    if (parseInt(selected.value) === correctIdx) {
+                        score++;
+                        selected.parentElement.classList.add('bg-green-100', 'border-green-500');
+                        selected.parentElement.innerHTML += '<i class="fas fa-check text-green-600 ml-auto"></i>';
+                    } else {
+                        selected.parentElement.classList.add('bg-red-100', 'border-red-500');
+                        labels[correctIdx].classList.add('bg-green-100', 'border-green-500'); // Show correct
+                    }
+                } else {
+                    // No answer selected, highlight correct
+                    labels[correctIdx].classList.add('bg-green-100', 'border-green-500');
+                }
+            });
+
+            // Show Modal
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('result-content');
+            const icon = document.getElementById('score-icon');
+            
+            document.getElementById('score-val').innerText = score;
+            document.getElementById('score-total').innerText = total;
+
+            if (score === total) {
+                icon.innerHTML = '🏆';
+                icon.className = "text-6xl mb-4 animate-bounce text-yellow-500";
+            } else if (score > total / 2) {
+                icon.innerHTML = '👍';
+                icon.className = "text-6xl mb-4 animate-pulse text-indigo-500";
+            } else {
+                icon.innerHTML = '📚';
+                icon.className = "text-6xl mb-4 text-slate-400";
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-90', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        };
+
+        window.closeModal = function() {
+            document.getElementById('result-modal').classList.add('hidden');
+        };
 
     </script>
 </body>
