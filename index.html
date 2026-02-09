@@ -53,6 +53,12 @@
         
         .correct-answer { background-color: #D1FAE5 !important; border-color: #10B981 !important; color: #065F46 !important; }
         .wrong-answer { background-color: #FEE2E2 !important; border-color: #EF4444 !important; color: #991B1B !important; }
+        
+        /* Rich Content Styles */
+        .rich-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .rich-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .rich-content li { margin-bottom: 0.5rem; }
+        .rich-content strong { color: #4F46E5; font-weight: 600; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen relative overflow-x-hidden transition-colors duration-300">
@@ -91,39 +97,147 @@
     </footer>
 
     <script>
-        // DATA STORE: 66 Modules based on Business Vocabulary in Use
+        // DATA STORE
         const modules = [
-            { id: 1, title: "Work and Jobs", icon: "fa-id-card", summary: "Discussing responsibilities and roles.", learning: { intro: "Describing what you do.", keyTerms: [{ term: "to work for", def: "Used with a company." }, { term: "in charge of", def: "Having control." }] }, exercises: [{ type: "match", instruction: "1.1 Match verbs.", questions: [{ q: "1. to work", options: ["for", "of", "about"], answer: 0 }] }, { type: "gapfill", instruction: "1.2 Sentences.", questions: [{ text: "I deal ___ customers.", answer: "with" }] }], test: [{ q: "I am responsible ___ sales.", options: ["for", "of"], answer: 0 }] },
-            { id: 2, title: "Ways of Working", icon: "fa-clock", summary: "Flexitime and shifts.", learning: { intro: "Working patterns.", keyTerms: [{ term: "Flexitime", def: "Flexible hours." }, { term: "Shift work", def: "Different times." }] }, exercises: [{ type: "gapfill", instruction: "2.1 Sentences.", questions: [{ text: "I work the night ___.", answer: "shift" }] }], test: [{ q: "I work ___ home.", options: ["from", "at"], answer: 0 }] },
-            { id: 3, title: "Recruitment and Selection", icon: "fa-user-plus", summary: "Hiring process.", learning: { intro: "Finding staff.", keyTerms: [{ term: "Recruit", def: "Hire." }, { term: "CV", def: "Curriculum Vitae." }] }, exercises: [{ type: "match", instruction: "3.1 Terms.", questions: [{ q: "Apply for", options: ["a job", "a CV"], answer: 0 }] }], test: [{ q: "List of candidates:", options: ["Shortlist", "Longlist"], answer: 0 }] },
-            { id: 4, title: "Skills and Qualifications", icon: "fa-graduation-cap", summary: "Education and skills.", learning: { intro: "Qualifications.", keyTerms: [{ term: "Graduate", def: "Has a degree." }, { term: "Skilled", def: "Trained." }] }, exercises: [{ type: "gapfill", instruction: "4.1 Sentences.", questions: [{ text: "I have a ___ in law.", answer: "degree" }] }], test: [{ q: "MBA stands for Master of Business ___.", options: ["Administration", "Accountancy"], answer: 0 }] },
-            { id: 5, title: "Pay and Benefits", icon: "fa-money-bill-wave", summary: "Salaries and wages.", learning: { intro: "Money.", keyTerms: [{ term: "Salary", def: "Monthly pay." }, { term: "Wages", def: "Weekly pay." }] }, exercises: [{ type: "match", instruction: "5.1 Pay.", questions: [{ q: "Bonus", options: ["Extra money", "Fixed pay"], answer: 0 }] }], test: [{ q: "Manual workers earn:", options: ["Wages", "Salary"], answer: 0 }] },
-            { id: 6, title: "People and Workplaces", icon: "fa-users", summary: "Staff and offices.", learning: { intro: "The workforce.", keyTerms: [{ term: "Staff", def: "Employees." }, { term: "HQ", def: "Headquarters." }] }, exercises: [{ type: "gapfill", instruction: "6.1 Sentences.", questions: [{ text: "The ___ Office.", answer: "head" }] }], test: [{ q: "HR stands for Human ___.", options: ["Resources", "Rights"], answer: 0 }] },
-            { id: 7, title: "The Career Ladder", icon: "fa-arrow-trend-up", summary: "Promotion and retiring.", learning: { intro: "Career paths.", keyTerms: [{ term: "Promotion", def: "Moving up." }, { term: "Resign", def: "Quit." }] }, exercises: [{ type: "match", instruction: "7.1 Terms.", questions: [{ q: "Retire", options: ["Stop at 65", "Fired"], answer: 0 }] }], test: [{ q: "To leave a job voluntarily:", options: ["Resign", "Sack"], answer: 0 }] },
+            // --- MODULE 1: Rich Content ---
+            {
+                id: 1,
+                title: "Work and Jobs",
+                icon: "fa-id-card",
+                summary: "Discussing responsibilities, job titles, and hierarchies.",
+                learning: {
+                    intro: "When asking about someone's job, we usually say 'What do you do?'.",
+                    sections: [
+                        {
+                            title: "A: What do you do?",
+                            content: `
+                                <ul class="list-disc pl-5 space-y-2 text-slate-700">
+                                    <li>To say what your job is, say <strong>I work for...</strong> (a company) or <strong>I work on...</strong> (a project).</li>
+                                    <li>If you manage people, say <strong>I run / I manage</strong> a department or <strong>I'm in charge of</strong> a team.</li>
+                                    <li>If you have a boss, you <strong>work under</strong> them.</li>
+                                    <li>If you communicate with clients, you <strong>deal with</strong> them.</li>
+                                </ul>
+                                <div class="mt-4 bg-indigo-50 p-3 rounded border border-indigo-100">
+                                    <p class="font-bold text-indigo-700">Grammar Note:</p>
+                                    <p class="text-sm">I'm <strong>responsible for</strong> + noun/ing (e.g., planning).</p>
+                                    <p class="text-sm text-red-500">Don't say: "I'm a responsible."</p>
+                                </div>
+                            `
+                        },
+                        {
+                            title: "B: Word combinations with 'work'",
+                            content: `
+                                <p class="mb-2"><strong>Work</strong> is usually an uncountable noun, while <strong>Job</strong> is countable.</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <ul class="list-disc pl-5">
+                                        <li>Leave for work</li>
+                                        <li>Go to work</li>
+                                        <li>Get to / Arrive at work</li>
+                                    </ul>
+                                    <ul class="list-disc pl-5">
+                                        <li>Be at work</li>
+                                        <li>Be off work (ill/holiday)</li>
+                                        <li>Be out of work (unemployed)</li>
+                                    </ul>
+                                </div>
+                            `
+                        },
+                        {
+                            title: "C: Types of Job",
+                            content: `
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Full-time job:</strong> The whole normal working week.</li>
+                                    <li><strong>Part-time job:</strong> Less time than a full week.</li>
+                                    <li><strong>Permanent job:</strong> Does not finish after a fixed period.</li>
+                                    <li><strong>Temporary job:</strong> Finishes after a fixed period (e.g., 6 months).</li>
+                                </ul>
+                            `
+                        }
+                    ],
+                    keyTerms: []
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "1.1 Correcting Pierre: Choose the correct phrase.",
+                        questions: [
+                            { q: "I work <span class='line-through text-red-500'>about</span> the development of new supermarkets.", options: ["work for", "work on", "work in"], answer: 1 },
+                            { q: "In fact, I <span class='line-through text-red-500'>running</span> the development department.", options: ["run", "ran", "am run"], answer: 0 },
+                            { q: "And I <span class='line-through text-red-500'>am manage for</span> a team.", options: ["manage", "managing", "manager"], answer: 0 },
+                            { q: "One of my <span class='line-through text-red-500'>main</span> is to make sure...", options: ["main responsibilities", "main responsible", "main tasking"], answer: 0 },
+                            { q: "I'm also <span class='line-through text-red-500'>charged with</span> financial reporting.", options: ["in charge of", "charging with", "charge of"], answer: 0 },
+                            { q: "I deal <span class='line-through text-red-500'>at</span> a lot of different organizations.", options: ["deal for", "deal with", "deal on"], answer: 1 },
+                            { q: "I'm responsible <span class='line-through text-red-500'>of</span> planning projects.", options: ["for", "to", "with"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "1.2 Rebecca's Routine: Complete with prepositions.",
+                        questions: [
+                            { text: "She drives ___ work.", answer: "to" },
+                            { text: "She worries about getting ___ work late.", answer: "to" },
+                            { text: "She usually arrives ___ work at nine.", answer: "at" },
+                            { text: "She could never take time ___ work.", answer: "off" },
+                            { text: "She is glad to be ___ work.", answer: "in" },
+                            { text: "Some friends are ___ work (unemployed).", answer: "out of" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "1.3 Job Types: Select the best description.",
+                        questions: [
+                            { q: "My husband works in an office from 9 am to 5.30 pm.", options: ["Full-time job", "Part-time job", "Temporary work"], answer: 0 },
+                            { q: "Our daughter works in a bank from eight till five every day.", options: ["Part-time", "Full-time", "Temporary"], answer: 1 },
+                            { q: "I work in a café from 8 pm until midnight.", options: ["Full-time", "Permanent", "Part-time"], answer: 2 },
+                            { q: "My wife works in local government and she can have this job for as long as she wants it.", options: ["Permanent job", "Temporary job", "Out of work"], answer: 0 },
+                            { q: "Our son is working on a farm for four weeks.", options: ["Permanent", "Temporary", "Full-time"], answer: 1 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "I ______ the manufacturing plant in Cambridge.", options: ["manage", "job", "under", "deal"], answer: 0 },
+                    { q: "I am in charge ______ the production team.", options: ["manage", "of", "under", "responsible"], answer: 1 },
+                    { q: "About 120 people work ______ me.", options: ["manage", "job", "under", "deal"], answer: 2 },
+                    { q: "Coordination between production and design is my ______.", options: ["manage", "job", "under", "responsible"], answer: 1 },
+                    { q: "I ______ with a lot of people in the company.", options: ["manage", "job", "deal", "responsible"], answer: 2 },
+                    { q: "I'm ______ for a budget of over £100 million.", options: ["manage", "job", "under", "responsible"], answer: 3 },
+                    { q: "I'm in charge of ______ the work of the team. (coordinate)", options: ["coordinating", "coordinate", "coordinated", "coordinates"], answer: 0 },
+                    { q: "One of my responsibilities is to ______ sure we don't spend too much.", options: ["make", "making", "makes", "made"], answer: 0 },
+                    { q: "My team is responsible for the ______ of new models.", options: ["design", "designing", "designs", "designed"], answer: 0 },
+                    { q: "I'm in charge of ______ our work for the whole year.", options: ["planning", "plan", "planned", "plans"], answer: 0 }
+                ]
+            },
+            // ... (Modules 2-62) ...
+            { id: 2, title: "Ways of Working", icon: "fa-clock", summary: "Office routines, flexible hours, and teleworking.", learning: { intro: "Traditional 9-to-5 is changing. We talk about flexitime, shifts, and teleworking.", keyTerms: [{ term: "Flexitime", def: "Choosing start/finish times." }, { term: "Shift work", def: "Working different times (e.g. nights)." }, { term: "Teleworking", def: "Working from home." }, { term: "Commute", def: "Daily journey to work." }, { term: "Clock in", def: "Record arrival time." }] }, exercises: [{ type: "gapfill", instruction: "Complete the text.", questions: [{ text: "I hate the daily ___ to London.", answer: "commute" }, { text: "We have a ___ system.", answer: "flexitime" }, { text: "Nurses work the night ___.", answer: "shift" }] }, { type: "match", instruction: "Adjectives.", questions: [{ q: "Boring/Repetitive", options: ["Stimulating", "Dull"], answer: 1 }, { q: "Exciting/Interesting", options: ["Stimulating", "Routine"], answer: 0 }] }], test: [{ q: "I work ___ home.", options: ["at", "from", "in"], answer: 1 }, { q: "He has to ___ in at 8am.", options: ["watch", "clock", "time"], answer: 1 }, { q: "Teleworking is also called:", options: ["Telecommuting", "Shift work", "Flexi"], answer: 0 }] },
+            { id: 3, title: "Recruitment and Selection", icon: "fa-user-plus", summary: "The hiring process: applications, CVs, and interviews.", learning: { intro: "Recruitment is finding people for jobs.", keyTerms: [{ term: "Recruit/Hire", def: "Employ new people." }, { term: "Headhunter", def: "Recruiter for senior jobs." }, { term: "CV", def: "Curriculum Vitae." }, { term: "Apply for", def: "Make a request for a job." }, { term: "Shortlist", def: "Selected candidates." }] }, exercises: [{ type: "match", instruction: "Match phrases.", questions: [{ q: "Apply for", options: ["a job", "a CV"], answer: 0 }, { q: "Fill in", options: ["a form", "a job"], answer: 0 }, { q: "Attend", options: ["an interview", "a vacancy"], answer: 0 }] }, { type: "gapfill", instruction: "Process.", questions: [{ text: "Advertise a ___.", answer: "vacancy" }, { text: "Select candidates for a ___.", answer: "shortlist" }, { text: "Make a job ___.", answer: "offer" }] }], test: [{ q: "To ask for a job you ___ it.", options: ["apply for", "ask to"], answer: 0 }, { q: "CV stands for:", options: ["Curriculum Vitae", "Course Vitae"], answer: 0 }, { q: "A list of best candidates is a:", options: ["Shortlist", "Longlist"], answer: 0 }] },
+            { id: 4, title: "Skills and Qualifications", icon: "fa-graduation-cap", summary: "Education, degrees, and essential workplace skills.", learning: { intro: "Employers look for qualifications and skills.", keyTerms: [{ term: "Graduate", def: "Person with a degree." }, { term: "MBA", def: "Master of Business Admin." }, { term: "Skilled", def: "Having special training." }, { term: "Computer-literate", def: "Good with computers." }, { term: "Numerate", def: "Good with numbers." }] }, exercises: [{ type: "match", instruction: "Abbreviations.", questions: [{ q: "BA/BSc", options: ["Bachelor of Arts/Science", "Basic Art"], answer: 0 }, { q: "PhD", options: ["Doctor of Philosophy", "Private Degree"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "I ___ from university in 2020.", answer: "graduated" }, { text: "I have a ___ in Law.", answer: "degree" }] }], test: [{ q: "A person with a degree is a:", options: ["Graduate", "Student"], answer: 0 }, { q: "Training inside the company is:", options: ["In-house", "Out-house"], answer: 0 }, { q: "Good with numbers means:", options: ["Numerate", "Literate"], answer: 0 }] },
+            { id: 5, title: "Pay and Benefits", icon: "fa-money-bill-wave", summary: "Salaries, wages, commissions, and fringe benefits.", learning: { intro: "We work for money.", keyTerms: [{ term: "Wages", def: "Weekly pay (manual)." }, { term: "Salary", def: "Monthly pay (professional)." }, { term: "Perks", def: "Extra benefits (car, lunch)." }, { term: "Bonus", def: "Extra money for results." }, { term: "Commission", def: "% of sales." }] }, exercises: [{ type: "match", instruction: "Definitions.", questions: [{ q: "Wages", options: ["Weekly", "Monthly"], answer: 0 }, { q: "Salary", options: ["Monthly", "Weekly"], answer: 0 }, { q: "Commission", options: ["% of sales", "Fixed pay"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "I get a basic salary plus ___.", answer: "commission" }, { text: "A company car is a nice ___.", answer: "perk" }] }], test: [{ q: "Manual workers get:", options: ["Wages", "Salary"], answer: 0 }, { q: "Extra money for working late is:", options: ["Overtime", "Undertime"], answer: 0 }, { q: "Pay before tax is:", options: ["Gross", "Net"], answer: 0 }] },
+            { id: 6, title: "People and Workplaces", icon: "fa-users", summary: "Employees, management, and work environments.", learning: { intro: "Words for people and places.", keyTerms: [{ term: "Staff", def: "All workers." }, { term: "Management", def: "People who lead." }, { term: "Headquarters", def: "Main office." }, { term: "Branch", def: "Local office." }, { term: "HR", def: "Human Resources." }] }, exercises: [{ type: "match", instruction: "Definitions.", questions: [{ q: "Staff", options: ["All workers", "One worker"], answer: 0 }, { q: "HQ", options: ["Main office", "Local office"], answer: 0 }] }, { type: "gapfill", instruction: "Sentences.", questions: [{ text: "I work in the ___ office (HQ).", answer: "head" }, { text: "We have a large ___ (workers).", answer: "workforce" }] }], test: [{ q: "The staff ___ happy.", options: ["is", "are"], answer: 1 }, { q: "A local shop is a:", options: ["Branch", "Leaf"], answer: 0 }, { q: "HR stands for:", options: ["Human Resources", "Human Remains"], answer: 0 }] },
+            { id: 7, title: "The Career Ladder", icon: "fa-arrow-trend-up", summary: "Promotion, resignation, dismissal, and retirement.", learning: { intro: "Moving up or out.", keyTerms: [{ term: "Promotion", def: "Moving up." }, { term: "Resign", def: "Quit." }] }, exercises: [{ type: "match", instruction: "7.1 Terms.", questions: [{ q: "Retire", options: ["Stop at 65", "Fired"], answer: 0 }] }], test: [{ q: "To leave a job voluntarily:", options: ["Resign", "Sack"], answer: 0 }] },
             { id: 8, title: "Problems at Work", icon: "fa-triangle-exclamation", summary: "Safety and discrimination.", learning: { intro: "Issues.", keyTerms: [{ term: "Strike", def: "Stop work protest." }, { term: "Discrimination", def: "Unfair treatment." }] }, exercises: [{ type: "gapfill", instruction: "8.1 Safety.", questions: [{ text: "Fire ___.", answer: "drill" }] }], test: [{ q: "Being fired unfairly:", options: ["Unfair dismissal", "Bad leaving"], answer: 0 }] },
             { id: 9, title: "Managers and Directors", icon: "fa-user-tie", summary: "The board and hierarchy.", learning: { intro: "Leadership.", keyTerms: [{ term: "CEO", def: "Chief Exec." }, { term: "Board", def: "Group of directors." }] }, exercises: [{ type: "match", instruction: "9.1 Roles.", questions: [{ q: "Chairman", options: ["Head of board", "Head of sales"], answer: 0 }] }], test: [{ q: "CFO deals with:", options: ["Finance", "Factory"], answer: 0 }] },
-            { id: 10, title: "Business Leaders", icon: "fa-chess-king", summary: "Entrepreneurs.", learning: { intro: "Founders.", keyTerms: [{ term: "Entrepreneur", def: "Business starter." }, { term: "Tycoon", def: "Rich owner." }] }, exercises: [{ type: "gapfill", instruction: "10.1 Leaders.", questions: [{ text: "He is a media ___.", answer: "mogul" }] }], test: [{ q: "Starter of a company:", options: ["Founder", "Finder"], answer: 0 }] },
+            { id: 10, title: "Business Leaders", icon: "fa-chess-king", summary: "Entrepreneurs and tycoons.", learning: { intro: "Founders.", keyTerms: [{ term: "Entrepreneur", def: "Business starter." }, { term: "Tycoon", def: "Rich owner." }] }, exercises: [{ type: "gapfill", instruction: "10.1 Leaders.", questions: [{ text: "He is a media ___.", answer: "mogul" }] }], test: [{ q: "Starter of a company:", options: ["Founder", "Finder"], answer: 0 }] },
             { id: 11, title: "Organizations 1", icon: "fa-building", summary: "Sole traders and Plcs.", learning: { intro: "Structures.", keyTerms: [{ term: "Sole Trader", def: "One owner." }, { term: "Plc", def: "Public company." }] }, exercises: [{ type: "match", instruction: "11.1 Types.", questions: [{ q: "Ltd", options: ["Private Limited", "Public Limited"], answer: 0 }] }], test: [{ q: "Owners of a Plc:", options: ["Shareholders", "Partners"], answer: 0 }] },
             { id: 12, title: "Organizations 2", icon: "fa-handshake", summary: "Mergers.", learning: { intro: "Joining forces.", keyTerms: [{ term: "Merger", def: "Joining." }, { term: "Acquisition", def: "Buying." }] }, exercises: [{ type: "gapfill", instruction: "12.1 Sentences.", questions: [{ text: "Hostile ___.", answer: "takeover" }] }], test: [{ q: "Two companies become one:", options: ["Merger", "Mixer"], answer: 0 }] },
             { id: 13, title: "Manufacturing", icon: "fa-industry", summary: "Production sectors.", learning: { intro: "Sectors.", keyTerms: [{ term: "Primary", def: "Raw materials." }, { term: "Secondary", def: "Making." }] }, exercises: [{ type: "match", instruction: "13.1 Sectors.", questions: [{ q: "Mining", options: ["Primary", "Secondary"], answer: 0 }] }], test: [{ q: "Service sector is:", options: ["Tertiary", "Primary"], answer: 0 }] },
             { id: 14, title: "Development Process", icon: "fa-flask", summary: "R&D.", learning: { intro: "New products.", keyTerms: [{ term: "R&D", def: "Research & Dev." }, { term: "Prototype", def: "First model." }] }, exercises: [{ type: "gapfill", instruction: "14.1 Process.", questions: [{ text: "Product ___.", answer: "launch" }] }], test: [{ q: "Testing phase:", options: ["Beta", "Alpha"], answer: 0 }] },
-            { id: 15, title: "Innovation", icon: "fa-lightbulb", summary: "IP and ideas.", learning: { intro: "Copyright.", keyTerms: [{ term: "Patent", def: "Invention rights." }, { term: "Copyright", def: "Art/Text rights." }] }, exercises: [{ type: "match", instruction: "15.1 IP.", questions: [{ q: "Logo protection", options: ["Trademark", "Patent"], answer: 0 }] }], test: [{ q: "New idea:", options: ["Innovation", "Imitation"], answer: 0 }] },
-            { id: 16, title: "Making Things", icon: "fa-hammer", summary: "Mass vs Hand made.", learning: { intro: "Production.", keyTerms: [{ term: "Mass-produced", def: "Factory volume." }, { term: "Hand-made", def: "Crafted." }] }, exercises: [{ type: "gapfill", instruction: "16.1 Sentences.", questions: [{ text: "Custom-___.", answer: "built" }] }], test: [{ q: "Made by machines:", options: ["Mass-produced", "Hand-crafted"], answer: 0 }] },
+            { id: 15, title: "Innovation", icon: "fa-lightbulb", summary: "Ideas and IP.", learning: { intro: "Copyright.", keyTerms: [{ term: "Patent", def: "Invention rights." }, { term: "Copyright", def: "Art/Text rights." }] }, exercises: [{ type: "match", instruction: "15.1 IP.", questions: [{ q: "Logo protection", options: ["Trademark", "Patent"], answer: 0 }] }], test: [{ q: "New idea:", options: ["Innovation", "Imitation"], answer: 0 }] },
+            { id: 16, title: "Making Things", icon: "fa-hammer", summary: "Methods: Hand-made to Mass.", learning: { intro: "Production.", keyTerms: [{ term: "Mass-produced", def: "Factory volume." }, { term: "Hand-made", def: "Crafted." }] }, exercises: [{ type: "gapfill", instruction: "16.1 Sentences.", questions: [{ text: "Custom-___.", answer: "built" }] }], test: [{ q: "Made by machines:", options: ["Mass-produced", "Hand-crafted"], answer: 0 }] },
             { id: 17, title: "Materials", icon: "fa-boxes-packing", summary: "Suppliers and stock.", learning: { intro: "Supply chain.", keyTerms: [{ term: "Inventory", def: "Stock." }, { term: "Supplier", def: "Provider." }] }, exercises: [{ type: "match", instruction: "17.1 Terms.", questions: [{ q: "JIT", options: ["Just-In-Time", "Just-In-Team"], answer: 0 }] }], test: [{ q: "Goods held in store:", options: ["Inventory", "Investory"], answer: 0 }] },
             { id: 18, title: "Business Philosophies", icon: "fa-brain", summary: "TQM and Kaizen.", learning: { intro: "Quality ideas.", keyTerms: [{ term: "Kaizen", def: "Improvement." }, { term: "TQM", def: "Total Quality." }] }, exercises: [{ type: "gapfill", instruction: "18.1 Quality.", questions: [{ text: "Zero ___.", answer: "defects" }] }], test: [{ q: "Continuous improvement:", options: ["Kaizen", "Zen"], answer: 0 }] },
             { id: 19, title: "Buyers and Sellers", icon: "fa-store", summary: "Customers.", learning: { intro: "Buying.", keyTerms: [{ term: "Customer", def: "Buys." }, { term: "Consumer", def: "Uses." }] }, exercises: [{ type: "match", instruction: "19.1 People.", questions: [{ q: "Client", options: ["Professional service", "Shop buyer"], answer: 0 }] }], test: [{ q: "Person who uses:", options: ["Consumer", "Customer"], answer: 0 }] },
             { id: 20, title: "Markets", icon: "fa-chart-pie", summary: "Competition.", learning: { intro: "Rivals.", keyTerms: [{ term: "Market Share", def: "% of sales." }, { term: "Competitor", def: "Rival." }] }, exercises: [{ type: "gapfill", instruction: "20.1 Market.", questions: [{ text: "Market ___.", answer: "leader" }] }], test: [{ q: "One seller:", options: ["Monopoly", "Mono"], answer: 0 }] },
             { id: 21, title: "Marketing", icon: "fa-bullhorn", summary: "The 4 Ps.", learning: { intro: "Marketing Mix.", keyTerms: [{ term: "4 Ps", def: "Product, Price, Place, Promotion." }] }, exercises: [{ type: "match", instruction: "21.1 Ps.", questions: [{ q: "Place", options: ["Distribution", "Cost"], answer: 0 }] }], test: [{ q: "Focused on needs:", options: ["Market-driven", "Product-driven"], answer: 0 }] },
             { id: 22, title: "Brands", icon: "fa-tags", summary: "Loyalty and image.", learning: { intro: "Branding.", keyTerms: [{ term: "Brand Loyalty", def: "Returning customers." }, { term: "Image", def: "Reputation." }] }, exercises: [{ type: "gapfill", instruction: "22.1 Brands.", questions: [{ text: "Brand ___.", answer: "awareness" }] }], test: [{ q: "Supermarket brand:", options: ["Own-label", "No-label"], answer: 0 }] },
-            { id: 23, title: "Price", icon: "fa-tag", summary: "Pricing strategies.", learning: { intro: "Costing.", keyTerms: [{ term: "Premium", def: "High price." }, { term: "Budget", def: "Low price." }] }, exercises: [{ type: "match", instruction: "23.1 Price.", questions: [{ q: "Loss leader", options: ["Sold cheap to attract", "Sold expensive"], answer: 0 }] }], test: [{ q: "Expensive:", options: ["Upmarket", "Downmarket"], answer: 0 }] },
+            { id: 23, title: "Price", icon: "fa-tag", summary: "Strategies.", learning: { intro: "Costing.", keyTerms: [{ term: "Premium", def: "High price." }, { term: "Budget", def: "Low price." }] }, exercises: [{ type: "match", instruction: "23.1 Price.", questions: [{ q: "Loss leader", options: ["Sold cheap to attract", "Sold expensive"], answer: 0 }] }], test: [{ q: "Expensive:", options: ["Upmarket", "Downmarket"], answer: 0 }] },
             { id: 24, title: "Place", icon: "fa-truck", summary: "Distribution.", learning: { intro: "Channels.", keyTerms: [{ term: "Retailer", def: "Shop." }, { term: "Wholesaler", def: "Bulk seller." }] }, exercises: [{ type: "gapfill", instruction: "24.1 Place.", questions: [{ text: "Distribution ___.", answer: "channel" }] }], test: [{ q: "Middleman:", options: ["Intermediary", "Immediate"], answer: 0 }] },
             { id: 25, title: "Promotion", icon: "fa-bullhorn", summary: "Advertising.", learning: { intro: "Ads.", keyTerms: [{ term: "Sponsorship", def: "Funding events." }, { term: "Viral", def: "Spreading online." }] }, exercises: [{ type: "match", instruction: "25.1 Media.", questions: [{ q: "Billboard", options: ["Outdoor", "Radio"], answer: 0 }] }], test: [{ q: "Free gift:", options: ["Freebie", "Freezer"], answer: 0 }] },
             { id: 26, title: "E-commerce", icon: "fa-globe", summary: "Online business.", learning: { intro: "Internet.", keyTerms: [{ term: "B2B", def: "Business to Business." }, { term: "B2C", def: "Business to Consumer." }] }, exercises: [{ type: "gapfill", instruction: "26.1 Online.", questions: [{ text: "Shopping ___.", answer: "cart" }] }], test: [{ q: "Online only:", options: ["Dotcom", "Dotorg"], answer: 0 }] },
             { id: 27, title: "Money and Banking", icon: "fa-coins", summary: "Banks and loans.", learning: { intro: "Banking.", keyTerms: [{ term: "Interest", def: "Cost of loan." }, { term: "Mortgage", def: "House loan." }] }, exercises: [{ type: "match", instruction: "27.1 Bank.", questions: [{ q: "Overdraft", options: ["Negative balance", "Savings"], answer: 0 }] }], test: [{ q: "Money type:", options: ["Currency", "Current"], answer: 0 }] },
             { id: 28, title: "Corporate Finance", icon: "fa-file-invoice-dollar", summary: "Profit and loss.", learning: { intro: "Accounts.", keyTerms: [{ term: "Asset", def: "Owned." }, { term: "Liability", def: "Owed." }] }, exercises: [{ type: "gapfill", instruction: "28.1 Finance.", questions: [{ text: "Balance ___.", answer: "sheet" }] }], test: [{ q: "Sales revenue:", options: ["Turnover", "Turnout"], answer: 0 }] },
-            { id: 29, title: "Stocks and Shares", icon: "fa-chart-line", summary: "The stock market.", learning: { intro: "Shares.", keyTerms: [{ term: "Share", def: "Ownership part." }, { term: "Dividend", def: "Profit payout." }] }, exercises: [{ type: "match", instruction: "29.1 Market.", questions: [{ q: "Bull market", options: ["Rising", "Falling"], answer: 0 }] }], test: [{ q: "Market crash:", options: ["Prices fall", "Prices rise"], answer: 0 }] },
+            { id: 29, title: "Stocks and Shares", icon: "fa-chart-line", summary: "The stock market.", learning: { intro: "Shares.", keyTerms: [{ term: "Share", def: "Part ownership." }, { term: "Dividend", def: "Profit payout." }] }, exercises: [{ type: "match", instruction: "29.1 Market.", questions: [{ q: "Bull market", options: ["Rising", "Falling"], answer: 0 }] }], test: [{ q: "Market crash:", options: ["Prices fall", "Prices rise"], answer: 0 }] },
             { id: 30, title: "Money and Finance", icon: "fa-chart-area", summary: "Macroeconomics.", learning: { intro: "Economy.", keyTerms: [{ term: "Inflation", def: "Prices up." }, { term: "Recession", def: "Economy down." }] }, exercises: [{ type: "gapfill", instruction: "30.1 Economy.", questions: [{ text: "Interest ___.", answer: "rate" }] }], test: [{ q: "GDP:", options: ["Gross Domestic Product", "Gross Daily Profit"], answer: 0 }] },
-            { id: 31, title: "Financial Markets", icon: "fa-chart-line", summary: "Bonds/Futures.", learning: { intro: "Instruments.", keyTerms: [{ term: "Bond", def: "Govt loan." }, { term: "Commodity", def: "Raw material." }] }, exercises: [{ type: "match", instruction: "31.1 Terms.", questions: [{ q: "Hedge Fund", options: ["High risk", "Safe"], answer: 0 }] }], test: [{ q: "Rise in prices (bad):", options: ["Bubble", "Balloon"], answer: 0 }] },
+            { id: 31, title: "Financial Markets", icon: "fa-chart-line", summary: "Bonds and futures.", learning: { intro: "Complex markets.", keyTerms: [{ term: "Bond", def: "Govt loan." }, { term: "Commodity", def: "Raw material." }] }, exercises: [{ type: "match", instruction: "31.1 Terms.", questions: [{ q: "Hedge Fund", options: ["High risk", "Safe"], answer: 0 }] }], test: [{ q: "Rise in prices (bad):", options: ["Bubble", "Balloon"], answer: 0 }] },
             { id: 32, title: "Cultural Issues", icon: "fa-globe-americas", summary: "Culture.", learning: { intro: "Etiquette.", keyTerms: [{ term: "Etiquette", def: "Manners." }, { term: "Stereotype", def: "Fixed idea." }] }, exercises: [{ type: "gapfill", instruction: "32.1 Culture.", questions: [{ text: "Small ___.", answer: "talk" }] }], test: [{ q: "Being on time:", options: ["Punctuality", "Punching"], answer: 0 }] },
             { id: 33, title: "Business Across Cultures", icon: "fa-plane", summary: "Global manners.", learning: { intro: "Styles.", keyTerms: [{ term: "Power Distance", def: "Hierarchy." }, { term: "Hospitality", def: "Hosting." }] }, exercises: [{ type: "match", instruction: "33.1 Terms.", questions: [{ q: "Formality", options: ["Strict", "Relaxed"], answer: 0 }] }], test: [{ q: "Group focus:", options: ["Collectivism", "Individualism"], answer: 0 }] },
             { id: 34, title: "Telephone and Email", icon: "fa-phone", summary: "Comms.", learning: { intro: "Contact.", keyTerms: [{ term: "Put through", def: "Connect." }, { term: "Attachment", def: "File." }] }, exercises: [{ type: "gapfill", instruction: "34.1 Phone.", questions: [{ text: "Hold ___.", answer: "on" }] }], test: [{ q: "Copy email:", options: ["CC", "DD"], answer: 0 }] },
@@ -155,9 +269,101 @@
             { id: 60, title: "Finance/Economy", icon: "fa-piggy-bank", summary: "Money.", learning: { intro: "Markets.", keyTerms: [{ term: "Equity", def: "Shares." }, { term: "Yield", def: "Return." }] }, exercises: [{ type: "gapfill", instruction: "60.1 Finance.", questions: [{ text: "Bull ___.", answer: "market" }] }], test: [{ q: "Borrowing cost:", options: ["Interest", "Tax"], answer: 0 }] },
             { id: 61, title: "International Business", icon: "fa-globe", summary: "Trade.", learning: { intro: "Export.", keyTerms: [{ term: "Tariff", def: "Tax." }, { term: "Quota", def: "Limit." }] }, exercises: [{ type: "match", instruction: "61.1 Trade.", questions: [{ q: "Embargo", options: ["Ban", "Allow"], answer: 0 }] }], test: [{ q: "Selling abroad:", options: ["Export", "Import"], answer: 0 }] },
             { id: 62, title: "Business Skills", icon: "fa-briefcase", summary: "Skills.", learning: { intro: "Ability.", keyTerms: [{ term: "Negotiation", def: "Deals." }, { term: "Leadership", def: "Leading." }] }, exercises: [{ type: "gapfill", instruction: "62.1 Skills.", questions: [{ text: "Time ___.", answer: "management" }] }], test: [{ q: "Group talk:", options: ["Meeting", "Eating"], answer: 0 }] },
-            { id: 63, title: "Intercultural Comm", icon: "fa-comments", summary: "Culture.", learning: { intro: "Context.", keyTerms: [{ term: "High Context", def: "Indirect." }, { term: "Low Context", def: "Direct." }] }, exercises: [{ type: "match", instruction: "63.1 Culture.", questions: [{ q: "Faux pas", options: ["Mistake", "Correct"], answer: 0 }] }], test: [{ q: "Personal space:", options: ["Proxemics", "Proximity"], answer: 0 }] },
-            { id: 64, title: "Business Trends", icon: "fa-arrow-trend-up", summary: "Trends.", learning: { intro: "Future.", keyTerms: [{ term: "Gig economy", def: "Freelance." }, { term: "AI", def: "Computers." }] }, exercises: [{ type: "gapfill", instruction: "64.1 Trends.", questions: [{ text: "Remote ___.", answer: "work" }] }], test: [{ q: "Freelance world:", options: ["Gig economy", "Big economy"], answer: 0 }] },
-            { id: 65, title: "Quality Management", icon: "fa-check-double", summary: "Standards.", learning: { intro: "ISO.", keyTerms: [{ term: "ISO", def: "Standard." }, { term: "Audit", def: "Check." }] }, exercises: [{ type: "match", instruction: "65.1 QA.", questions: [{ q: "Fishbone", options: ["Diagram", "Fish"], answer: 0 }] }], test: [{ q: "Zero ___:", options: ["Defects", "Effects"], answer: 0 }] },
+            // --- MODULE 63: UPDATED with "Negotiations 2: Preparing" content ---
+            {
+                id: 63,
+                title: "Negotiations 2: Preparing",
+                icon: "fa-clipboard-check",
+                summary: "Preparation, scenarios, and negotiating styles.",
+                learning: {
+                    intro: "Preparation is key to successful negotiation. You need to know your objectives, plan the scenario, and understand cultural styles.",
+                    sections: [
+                        {
+                            title: "A: Preparing to Negotiate",
+                            content: `<ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Get information:</strong> Learn about the other side's <strong>etiquette</strong> and <strong>negotiating styles</strong>.</li>
+                                <li><strong>Bargaining position:</strong> Know your <strong>needs</strong> and <strong>objectives</strong> (what you want). Decide your <strong>priorities</strong>.</li>
+                                <li><strong>Fallback position:</strong> Conditions you will accept if your main objectives aren't met.</li>
+                                <li><strong>Venue:</strong> Where to meet? <strong>On your own ground</strong> (home), <strong>on their ground</strong>, or on <strong>neutral ground</strong> (e.g. a hotel).</li>
+                                <li><strong>Team:</strong> Allocate <strong>roles and responsibilities</strong> to your negotiating team.</li>
+                            </ul>`
+                        },
+                        {
+                            title: "B: Negotiating Scenario",
+                            content: `<ol class="list-decimal pl-5 space-y-2">
+                                <li><strong>Meet and greet:</strong> Introduce colleagues.</li>
+                                <li><strong>Small talk:</strong> Offer coffee, create a <strong>relaxed atmosphere</strong>.</li>
+                                <li><strong>Get down to business:</strong> Move to the meeting room.</li>
+                                <li><strong>Agenda:</strong> Have a clear agenda and <strong>timetable</strong>.</li>
+                                <li><strong>Background:</strong> Remind people of key facts and issues.</li>
+                                <li><strong>Kick off:</strong> Start negotiations, find out priorities and requirements.</li>
+                            </ol>`
+                        },
+                        {
+                            title: "C: Negotiating Styles",
+                            content: `<p>When negotiating across cultures, consider differences in:</p>
+                            <div class="grid grid-cols-2 gap-2 mt-2">
+                                <ul class="list-disc pl-5">
+                                    <li>Body language</li>
+                                    <li>Physical contact</li>
+                                    <li>Conversational rules</li>
+                                </ul>
+                                <ul class="list-disc pl-5">
+                                    <li>Relationship building</li>
+                                    <li>Hierarchy</li>
+                                    <li>Attitudes to time</li>
+                                </ul>
+                            </div>`
+                        }
+                    ],
+                    keyTerms: []
+                },
+                exercises: [
+                    {
+                        type: "match",
+                        instruction: "63.1 Match the preparation term to the definition.",
+                        questions: [
+                            { q: "1. Objectives", options: ["Things you want to achieve", "Where you meet", "Your team"], answer: 0 },
+                            { q: "2. Fallback position", options: ["Minimum conditions you accept", "Best outcome", "Starting point"], answer: 0 },
+                            { q: "3. Venue", options: ["Place where you meet", "Time you meet", "People you meet"], answer: 0 },
+                            { q: "4. Priorities", options: ["Most important objectives", "Least important things", "Questions"], answer: 0 }
+                        ]
+                    },
+                    {
+                        type: "gapfill",
+                        instruction: "63.2 Complete the negotiating scenario.",
+                        questions: [
+                            { text: "Let's get down to ___.", answer: "business" },
+                            { text: "I'd like to ___ off the discussion.", answer: "kick" },
+                            { text: "First, let me give you the ___ to the situation.", answer: "background" },
+                            { text: "We need to create a ___ atmosphere.", answer: "relaxed" }
+                        ]
+                    },
+                    {
+                        type: "match",
+                        instruction: "63.3 Cultural considerations.",
+                        questions: [
+                            { q: "1. Body language", options: ["Gestures/Posture", "Spoken words", "Writing"], answer: 0 },
+                            { q: "2. Hierarchy", options: ["Rank/Status", "Time", "Greeting"], answer: 0 },
+                            { q: "3. Attitudes to time", options: ["Punctuality/Deadlines", "Touching", "Speaking"], answer: 0 }
+                        ]
+                    }
+                ],
+                test: [
+                    { q: "The place where you meet is the:", options: ["Venue", "Menu", "Avenue", "Value"], answer: 0 },
+                    { q: "If you are in your own office, you are on ___ ground.", options: ["home", "away", "soft", "hard"], answer: 0 },
+                    { q: "A place that belongs to neither side is ___ ground.", options: ["neutral", "natural", "normal", "native"], answer: 0 },
+                    { q: "The things you want to achieve are your:", options: ["Objectives", "Objects", "Objections", "Obstacles"], answer: 0 },
+                    { q: "The most important objectives are your:", options: ["Priorities", "Majorities", "Minorities", "Authorities"], answer: 0 },
+                    { q: "What you will accept if you don't get what you want is your ___ position.", options: ["fallback", "fallout", "falloff", "falldown"], answer: 0 },
+                    { q: "To start the meeting is to ___ down to business.", options: ["get", "go", "set", "let"], answer: 0 },
+                    { q: "To start the negotiation process is to ___ off.", options: ["kick", "jump", "run", "play"], answer: 0 },
+                    { q: "Polite conversation at the start is ___ talk.", options: ["small", "big", "short", "tall"], answer: 0 },
+                    { q: "A list of things to discuss is an:", options: ["Agenda", "Agent", "Agency", "Action"], answer: 0 }
+                ]
+            },
+            { id: 64, title: "Business Trends", icon: "fa-arrow-trend-up", summary: "Future work.", learning: { intro: "Trends.", keyTerms: [{ term: "Gig Economy", def: "Freelance." }, { term: "AI", def: "Artificial Intel." }, { term: "Remote", def: "From home." }] }, exercises: [{ type: "match", instruction: "Trends.", questions: [{ q: "Automation", options: ["Robots", "Humans"], answer: 0 }, { q: "Sustainability", options: ["Green", "Polluting"], answer: 0 }] }, { type: "gapfill", instruction: "Future.", questions: [{ text: "Big ___.", answer: "data" }, { text: "Digital ___.", answer: "transformation" }] }], test: [{ q: "Short contracts:", options: ["Gig economy", "Big economy"], answer: 0 }, { q: "Work from home:", options: ["Remote", "Remove"], answer: 0 }, { q: "AI:", options: ["Artificial Intelligence", "Alien Intelligence"], answer: 0 }] },
+            { id: 65, title: "Quality Management", icon: "fa-check-double", summary: "Standards.", learning: { intro: "Good work.", keyTerms: [{ term: "ISO", def: "Standard." }, { term: "Audit", def: "Check." }, { term: "Scrap", def: "Waste." }] }, exercises: [{ type: "match", instruction: "Tools.", questions: [{ q: "Fishbone", options: ["Diagram", "Fish"], answer: 0 }, { q: "Pareto", options: ["80/20 Rule", "50/50 Rule"], answer: 0 }] }, { type: "gapfill", instruction: "Quality.", questions: [{ text: "Best ___.", answer: "practice" }, { text: "Cost of ___.", answer: "quality" }] }], test: [{ q: "ISO:", options: ["Standards", "Stands"], answer: 0 }, { q: "Redoing work:", options: ["Rework", "Relax"], answer: 0 }, { q: "Continuous improvement:", options: ["Kaizen", "Kaiser"], answer: 0 }] },
             { id: 66, title: "Developing Skills", icon: "fa-seedling", summary: "Growth.", learning: { intro: "Self.", keyTerms: [{ term: "Hard skills", def: "Technical." }, { term: "Soft skills", def: "People." }] }, exercises: [{ type: "gapfill", instruction: "66.1 Growth.", questions: [{ text: "Emotional ___.", answer: "intelligence" }] }], test: [{ q: "EQ means:", options: ["Emotional Quotient", "Equal Quality"], answer: 0 }] }
         ];
 
@@ -170,8 +376,8 @@
             { title: "Finance and the economy", start: 35, end: 39 },
             { title: "Doing the right thing", start: 40, end: 41 },
             { title: "Skills", start: 42, end: 44 },
-            { title: "Culture", start: 45, end: 47 }, 
-            { title: "Telephone, fax and email", start: 48, end: 53 },
+            { title: "Culture", start: 45, end: 48 }, // Adjusted to include Mod 48
+            { title: "Telephone, fax and email", start: 49, end: 53 },
             { title: "Business Skills", start: 54, end: 66 }
         ];
 
@@ -304,14 +510,25 @@
                     <div class="lg:col-span-1">
                         <div class="bg-white rounded-xl shadow-sm p-6 sticky top-24 border border-slate-100">
                             <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center"><i class="fas fa-book mr-2 text-indigo-500"></i>Key Vocabulary</h3>
-                            <ul class="space-y-4">
-                                ${mod.learning.keyTerms.map(term => `
-                                    <li class="group">
-                                        <span class="block font-bold text-indigo-600 group-hover:text-indigo-700 transition">${term.term}</span>
-                                        <span class="text-sm text-slate-600 leading-relaxed">${term.def}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
+                            
+                            <!-- Check for Rich Content Sections -->
+                            ${mod.learning.sections ? 
+                                mod.learning.sections.map(sec => `
+                                    <div class="mb-6 rich-content">
+                                        <h4 class="font-bold text-indigo-700 mb-2">${sec.title}</h4>
+                                        <div class="text-sm text-slate-600 leading-relaxed">${sec.content}</div>
+                                    </div>
+                                `).join('') 
+                                : 
+                                `<ul class="space-y-4">
+                                    ${mod.learning.keyTerms.map(term => `
+                                        <li class="group">
+                                            <span class="block font-bold text-indigo-600 group-hover:text-indigo-700 transition">${term.term}</span>
+                                            <span class="text-sm text-slate-600 leading-relaxed">${term.def}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>`
+                            }
                         </div>
                     </div>
 
